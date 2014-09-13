@@ -1,0 +1,21 @@
+<com.renyu.myhorizontalscrollviewslidingmenu.myview.SlidingMenuView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/slidingmenu"
+    xmlns:slidingmenu="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    slidingmenu:rightextra="60dip">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <include
+            layout="@layout/menulayout">
+
+        </include>
+        <include
+            layout="@layout/contentlayout">
+
+        </include>
+    </LinearLayout>
+</com.renyu.myhorizontalscrollviewslidingmenu.myview.SlidingMenuView>
