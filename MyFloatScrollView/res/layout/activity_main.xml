@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	<com.renyu.myfloatscrollview.myview.MyScrollView
+	    android:id="@+id/scrollView"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent">
+    	<RelativeLayout 
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent">
+    	    <TextView
+    	        android:id="@+id/first_view"
+		        android:layout_width="match_parent"
+		        android:layout_height="300dip"
+		        android:text="@string/hello_world" />
+    	    <TextView
+    	        android:id="@id/target_view"
+    	        android:layout_below="@id/first_view"
+		        android:layout_width="match_parent"
+		        android:layout_height="1000dip"
+		        android:text="@string/hello_world" />
+    	    <ImageView
+    	        android:id="@id/float_view"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+				android:src="@drawable/ic_launcher"/>
+    	</RelativeLayout>
+	</com.renyu.myfloatscrollview.myview.MyScrollView>
+</RelativeLayout>

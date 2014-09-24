@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 悬浮视图 -->
+    <item type="id" name="float_view"></item>
+    <!-- 悬浮视图黏贴的视图 -->
+    <item type="id" name="target_view"></item>
+</resources>
