@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.swipebacklayout.myview.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewpager_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+ 	android:background="@android:color/holo_blue_bright" >
+    <android.support.v4.view.ViewPager 
+        android:id="@+id/viewpager_scrollview"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent" />
+
+</com.renyu.swipebacklayout.myview.SwipeBackLayout>

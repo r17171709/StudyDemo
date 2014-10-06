@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<com.renyu.swipebacklayout.myview.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/normal_swipe"
+ 	android:layout_width="match_parent"
+ 	android:layout_height="match_parent"
+ 	android:background="@android:color/holo_blue_bright">
+    <TextView 
+        android:id="@+id/normal_testview"
+     	android:text="这是普通的activity"
+     	android:gravity="center"
+ 		android:layout_width="match_parent"
+ 		android:layout_height="match_parent"/>
+</com.renyu.swipebacklayout.myview.SwipeBackLayout>

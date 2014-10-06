@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.swipebacklayout.myview.SwipeBackLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_swipe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ 	android:background="@android:color/holo_blue_bright" >
+    <ScrollView 
+        android:id="@+id/scroll_scrollview"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent">
+        <LinearLayout 
+            android:orientation="horizontal"
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent">
+            <TextView 
+		        android:id="@+id/scroll_testview"
+		     	android:text="这是带有scrollview的activity"
+		     	android:gravity="center"
+		     	android:textColor="@android:color/black"
+		 		android:layout_width="match_parent"
+		 		android:layout_height="1000dip"/>
+        </LinearLayout>
+    </ScrollView>
+
+</com.renyu.swipebacklayout.myview.SwipeBackLayout>
