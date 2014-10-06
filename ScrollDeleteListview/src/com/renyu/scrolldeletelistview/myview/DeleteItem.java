@@ -21,6 +21,8 @@ public class DeleteItem extends LinearLayout {
     int startTouchX=0;
     //第一次点击的坐标X
     int firstDownX=0;
+    //是否打开Item getScrollX有延迟，故只能加标志位判断
+    boolean isOpenItem=false;
 
     public DeleteItem(Context context) {
         super(context);
@@ -101,10 +103,10 @@ public class DeleteItem extends LinearLayout {
                 break;
             case MotionEvent.ACTION_UP:
                 if (getScrollX()>backWidth/2) {
-                    scrollTo(backWidth, 0);
+                	scrollState();
                 }
                 else {
-                    scrollTo(0, 0);
+                	resetState();
                 }
                 //为setOnItemClickListener设置
                 if(Math.abs(currentX-firstDownX)<5) {
@@ -117,16 +119,24 @@ public class DeleteItem extends LinearLayout {
         return true;
     }
 
-
+    /**
+     * 关闭item
+     */
     public void resetState() {
+        isOpenItem=false;
         scrollTo(0, 0);
     }
 
+    /**
+     * 展开item
+     */
     public void scrollState() {
+        isOpenItem=true;
         scrollTo(backWidth, 0);
     }
 
     public boolean isScrollToBackWidth() {
-        return getScrollX()!=0?true:false;
+    	System.out.println(isOpenItem);
+        return isOpenItem?true:false;
     }
 }

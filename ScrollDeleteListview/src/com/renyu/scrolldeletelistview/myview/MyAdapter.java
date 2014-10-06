@@ -71,7 +71,7 @@ public class MyAdapter extends BaseAdapter {
                 Toast.makeText(context, "click_delete" + position, Toast.LENGTH_SHORT).show();
             }
         });
-        if (ParamsManager.openItem.contains(""+i)) {
+        if (ParamsManager.openItem.containsKey(""+i)) {
             holder.deleteitem_layout.scrollState();
         }
         else {

@@ -56,7 +56,7 @@ public class DeleteListView extends ListView {
                 moveX= (int) ev.getX();
                 moveY= (int) ev.getY();
                 if (!isLock) {
-                    if(Math.abs(moveX-startX)>scaledEdgeSlop&&Math.abs(moveY-startY)<scaledEdgeSlop) {
+                    if(Math.abs(moveX-startX)>scaledEdgeSlop&&Math.abs(moveY-startY)<scaledEdgeSlop/2) {
                         isLock=true;
                         isScrollItem=true;
                         return false;
@@ -94,7 +94,7 @@ public class DeleteListView extends ListView {
                 View view=getChildAt(position-getFirstVisiblePosition());
                 DeleteItem item=(DeleteItem) view.findViewById(R.id.deleteitem_layout);
                 if (item.isScrollToBackWidth()) {
-                    ParamsManager.openItem.add(""+position);
+                    ParamsManager.openItem.put(""+position, "");
                 }
                 else {
                     ParamsManager.openItem.remove(""+position);
