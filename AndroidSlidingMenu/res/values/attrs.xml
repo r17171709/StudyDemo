@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="left_menu">
+        <attr name="width" format="dimension"></attr>
+    </declare-styleable>
+    <declare-styleable name="left_right_menu">
+        <attr name="left_width" format="dimension"></attr>
+        <attr name="right_width" format="dimension"></attr>
+    </declare-styleable>
+</resources>
