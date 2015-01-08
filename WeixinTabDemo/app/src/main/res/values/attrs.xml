@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="barItemImage">
+        <attr name="selectImage" format="reference"></attr>
+        <attr name="normalImage" format="reference"></attr>
+    </declare-styleable>
+</resources>

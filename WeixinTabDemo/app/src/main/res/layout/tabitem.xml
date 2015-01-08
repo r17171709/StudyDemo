@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.weixintabdemo.myview.ImageTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:layout_height="wrap_content">
+    <com.renyu.weixintabdemo.myview.BarItemImageView
+        xmlns:app="http://schemas.android.com/apk/res/com.renyu.weixintabdemo"
+        android:id="@+id/tabitem_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dip"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        app:selectImage="@drawable/ic_launcher"
+        app:normalImage="@drawable/ic_launcher" />
+    <TextView
+        android:id="@+id/tabitem_text"
+        android:layout_below="@+id/tabitem_image"
+        android:layout_marginTop="5dip"
+        android:text="123"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</com.renyu.weixintabdemo.myview.ImageTextView>
