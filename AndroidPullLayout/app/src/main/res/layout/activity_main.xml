@@ -1,0 +1,37 @@
+<com.renyu.androidpulllayout.myview.PullLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/headview_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/headview_image"/>
+            <com.renyu.androidpulllayout.myview.EyeView
+                android:id="@+id/headview_eye"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/eye"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/content_image"
+                android:layout_width="match_parent"
+                android:layout_height="800dip"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/content_image"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</com.renyu.androidpulllayout.myview.PullLayout>
+
