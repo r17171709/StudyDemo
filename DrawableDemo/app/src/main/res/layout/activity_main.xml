@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <!--canvas.clipRect的使用-->
+    <com.example.rg.drawabledemo.myview.ColorTrackView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/colorTrackView"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_margin="10dip"
+        app:text="@string/hello_world"
+        app:text_size="15sp"
+        app:text_origin_color="@android:color/black"
+        app:text_change_color="@android:color/holo_red_dark"
+        app:direction="left"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!--使用自定义view的方式绘制-->
+    <com.example.rg.drawabledemo.myview.RoundImageViewByXfermode
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:type="round"
+        app:radius="10dip"
+        app:src="@mipmap/sheying0311"  />
+    <!--使用自定义imageview的方式绘制-->
+    <com.example.rg.drawabledemo.myview.RoundImageViewByXfermode2
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/sheying0311"
+        android:layout_margin="10dip"
+        app:type="round"
+        app:radius="20dip"  />
+    <!--使用bitmapshader的方式绘制-->
+    <com.example.rg.drawabledemo.myview.RoundImageViewByBitmapShader
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/sheying0311"
+        android:layout_margin="10dip"
+        app:type="round"
+        app:radius="10dip"  />
+    <ImageView
+        android:id="@+id/imageview1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

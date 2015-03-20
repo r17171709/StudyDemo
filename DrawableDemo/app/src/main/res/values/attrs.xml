@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RoundImageViewByXfermodeAttrs">
+        <!--设置是圆形图片或者圆角图片 -->
+        <attr name="type">
+            <enum name="round" value="1"></enum>
+            <enum name="circle" value="2"></enum>
+        </attr>
+        <!-- 设置圆角图片的半径 -->
+        <attr name="radius" format="dimension"></attr>
+        <!-- 设置图片资源-->
+        <attr name="src" format="reference"></attr>
+    </declare-styleable>
+    
+    <declare-styleable name="ColorTrackViewAttrs">
+        <attr name="text" format="string"></attr>
+        <attr name="text_size" format="dimension"></attr>
+        <attr name="text_origin_color" format="color|reference"></attr>
+        <attr name="text_change_color" format="color|reference"></attr>
+        <attr name="direction">
+            <enum name="left" value="1"></enum>
+            <enum name="right" value="2"></enum>
+        </attr>
+    </declare-styleable>
+</resources>
