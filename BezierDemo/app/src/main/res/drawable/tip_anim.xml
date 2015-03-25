@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item android:drawable="@mipmap/idp" android:duration="100"/>
+    <item android:drawable="@mipmap/idq" android:duration="100"/>
+    <item android:drawable="@mipmap/idr" android:duration="100"/>
+    <item android:drawable="@mipmap/ids" android:duration="100"/>
+    <item android:drawable="@mipmap/idt" android:duration="100"/>
+    <item android:drawable="@android:color/transparent" android:duration="100"/>
+</animation-list>

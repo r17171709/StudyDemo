@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:padding="10dip"
+            android:layout_marginTop="10dip"
+            android:text="我的消息"/>
+        <!-- 此处的margin将用来决定该Imageview的位置，为BezierView覆盖所使用 -->
+        <ImageView
+            android:id="@+id/message_imageview"
+            android:layout_marginLeft="@dimen/bezier_leftmargin"
+            android:layout_marginTop="@dimen/bezier_topmargin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/skin_tips_newmessage_ninetynine"/>
+    </RelativeLayout>
+    <!-- 注意此处 heightOffset 与 widthOffset 2个自定义属性，这个是气泡图的宽高，我们将其写死，是为了将拖动部分盖住一些-->
+    <com.example.rg.bezierdemo.myview.BezierView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/image_imageview"
+        android:visibility="gone"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:heightOffset="20dip"
+        app:widthOffset="42dip">
+
+    </com.example.rg.bezierdemo.myview.BezierView>
+</RelativeLayout>

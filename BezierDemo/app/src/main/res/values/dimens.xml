@@ -1,0 +1,10 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <dimen name="bezier_leftmargin">120dip</dimen>
+    <dimen name="bezier_topmargin">10dip</dimen>
+    <dimen name="heightOffset">20dip</dimen>
+    <dimen name="widthOffset">42dip</dimen>
+</resources>
