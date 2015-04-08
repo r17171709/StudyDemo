@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.example.rg.androidstudiodemo"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+        // dex突破65535的限制
+        multiDexEnabled true
+        // 默认是umeng的渠道
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+
+    }
+
+    signingConfigs {
+        myConfig{
+            storeFile file("android.keystore")
+            storePassword "abcd1234"
+            keyAlias "android.keystore"
+            keyPassword "abcd1234"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig  signingConfigs.myConfig
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            //NDK生成so
+            ndk {
+                moduleName "jniDemo"
+                abiFilters "armeabi", "armeabi-v7a"
+            }
+        }
+
+        debug {
+            ndk {
+                moduleName "jniDemo"
+                abiFilters "armeabi", "armeabi-v7a"
+            }
+        }
+    }
+
+    //多渠道打包， 更改包名
+    productFlavors {
+        xiaomi {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+            applicationId 'com.example.rg.androidstudiodemo.bd'
+        }
+        _360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "_360"]
+            applicationId 'com.example.rg.androidstudiodemo.360'
+        }
+        baidu {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+            applicationId 'com.example.rg.androidstudiodemo.baidu'
+        }
+        wandoujia {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+            applicationId 'com.example.rg.androidstudiodemo.wandoujia'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = ['src/main/jni', 'src/main/jni/']
+            //使用本来就用的so
+            jniLibs.srcDirs=['libs']
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/pinyin4j-2.5.0.jar')
+    compile project(':mylibrary')
+}
