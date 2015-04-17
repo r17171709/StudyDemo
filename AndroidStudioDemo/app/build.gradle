@@ -85,4 +85,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/pinyin4j-2.5.0.jar')
     compile project(':mylibrary')
+    compile 'me.drakeet.materialdialog:library:1.2.2'
 }
