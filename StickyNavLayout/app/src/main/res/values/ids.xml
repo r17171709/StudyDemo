@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="id_topview" type="id"></item>
+    <item name="id_indicatorview" type="id"></item>
+    <item name="id_bottomview" type="id"></item>
+</resources>

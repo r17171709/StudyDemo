@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.rg.stickynavlayout.view.StickyNavLayout
+        android:id="@+id/stickyNavLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@id/id_topview"
+            android:background="@android:color/holo_blue_light"
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="这个是头"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@id/id_indicatorview"
+            android:background="@android:color/holo_orange_light"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dip">
+
+        </LinearLayout>
+        <ListView
+            android:id="@id/id_bottomview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </com.rg.stickynavlayout.view.StickyNavLayout>
+</RelativeLayout>
