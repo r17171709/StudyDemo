@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         strings=new ArrayList<>();
-        for (int i=0;i<18;i++) {
-            strings.add("");
-        }
 
         stickyNavLayout= (StickyNavLayout) findViewById(R.id.stickyNavLayout);
         id_bottomview= (ListView) findViewById(R.id.id_bottomview);
@@ -54,9 +51,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "click2", Toast.LENGTH_SHORT).show();
+
+                changeItems(13);
+                stickyNavLayout.reset();
             }
         });
 
-        stickyNavLayout.setContentHeight(18);
+        changeItems(13);
+    }
+
+    private void changeItems(int num) {
+        stickyNavLayout.setContentHeight(num);
+        strings.clear();
+        for (int i=0;i<num;i++) {
+            strings.add("");
+        }
+        adapter.notifyDataSetChanged();
     }
 }

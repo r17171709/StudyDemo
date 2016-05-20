@@ -24,28 +24,32 @@ public class StickyNavLayout extends LinearLayout {
     LinearLayout id_indicatorview;
     ListView id_bottomview;
 
-    //顶部待隐藏view的高度，此处用来作为临界点的值
-    int mTopViewHeight;
-
-    //ListView内容总高度
-    int contentHeight=0;
-
-    //ListView初始化高度，用来判断
-    int startListViewHeight=0;
-
+    //滚动相关属性
     int touchSlop;
     OverScroller scroller;
     VelocityTracker velocityTracker;
     int maxFling;
     int minFling;
 
-    //顶部待隐藏view是否隐藏
+    //顶部view的高度，此处用来作为临界点的值
+    int mTopViewHeight;
+
+    //ListView内容总高度
+    int contentHeight=0;
+
+    //ListView初始化高度
+    int startListViewHeight=0;
+
+    //悬浮view是否已经进入悬浮状态
     boolean isTopHidden=false;
 
     int lastY;
 
     //是否已经处理过临界点直接更改dispatchTouchEvent
     boolean isInControl=false;
+
+    //是否通过其他事件进行滚动重置
+    boolean isReset=false;
 
     public StickyNavLayout(Context context) {
         this(context, null);
@@ -207,15 +211,22 @@ public class StickyNavLayout extends LinearLayout {
 
     @Override
     public void scrollTo(int x, int y) {
+        //发生过滚动重置
+        if (isReset) {
+            super.scrollTo(x, y);
+            isReset=false;
+            isTopHidden=false;
+            return;
+        }
         //限定滚动在一定范围内
         if (y < 0) {
             y = 0;
         }
-        //高度不满足时候不能超过差值
-        if (y>contentHeight-startListViewHeight) {
+        //滚动距离不满足时候不能超过差值
+        if (y>(contentHeight-startListViewHeight)) {
             y=contentHeight-startListViewHeight;
         }
-        //不能超过悬浮栏
+        //滚动距离不能超过悬浮栏
         if (y > mTopViewHeight) {
             y = mTopViewHeight;
         }
@@ -223,8 +234,26 @@ public class StickyNavLayout extends LinearLayout {
             super.scrollTo(x, y);
         }
 
-        //如果滚动距离与顶部待隐藏view的高度一致，那么则说明viewGroup滚动到底部了
+        //如果滚动距离与顶部view的高度一致，滚动距离达到最大，悬浮栏悬浮
         isTopHidden=getScrollY()==mTopViewHeight;
+    }
+
+    /**
+     * 之前滚动的状态
+     * @return  1:不满足滚动条件  2:滚动距离达不到topview的高度，悬浮栏达不到置顶条件  3.滚动距离足够，悬浮栏置顶
+     */
+    public int getState() {
+        int state=-1;
+        if (getScrollY()==0) {
+            state=1;
+        }
+        if (getScrollY()<mTopViewHeight) {
+            state=2;
+        }
+        if (getScrollY()>=mTopViewHeight) {
+            state=3;
+        }
+        return state;
     }
 
     @Override
@@ -251,6 +280,36 @@ public class StickyNavLayout extends LinearLayout {
 
     public void setContentHeight(int item) {
         this.contentHeight=item*dp2px(context, 50);
+    }
+
+    public void reset() {
+        isReset=true;
+        //之前滚动的状态
+        int state=getState();
+        //不满足滚动条件，则直接回到初始位置
+        if (this.contentHeight<startListViewHeight) {
+            scrollBy(0, -getScrollY());
+            return;
+        }
+        //滚动距离不满足topview的高度，悬浮栏达不到置顶条件
+        if (contentHeight-startListViewHeight<mTopViewHeight) {
+            if (state==3) {
+                //只有当前listview可显示高度超过内容高度，才进行调整
+                if (startListViewHeight+getScrollY()>contentHeight) {
+                    scrollTo(0, (contentHeight-startListViewHeight));
+                }
+            }
+            else if (state==2) {
+                //只有当前listview可显示高度超过内容高度，才进行调整
+                if (startListViewHeight+getScrollY()>contentHeight) {
+                    scrollBy(0, -(startListViewHeight+getScrollY()-contentHeight));
+                }
+            }
+        }
+        //如果新设置高度超过topview的高度，悬浮栏达到置顶条件，不做改动
+        if (contentHeight-startListViewHeight>=mTopViewHeight) {
+
+        }
     }
 
     public static int dp2px(Context context, float dp) {
