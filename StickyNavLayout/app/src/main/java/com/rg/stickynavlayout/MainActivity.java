@@ -52,12 +52,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "click2", Toast.LENGTH_SHORT).show();
 
-                changeItems(13);
+                changeItems(7);
                 stickyNavLayout.reset();
             }
         });
 
-        changeItems(13);
+        changeItems(4);
     }
 
     private void changeItems(int num) {

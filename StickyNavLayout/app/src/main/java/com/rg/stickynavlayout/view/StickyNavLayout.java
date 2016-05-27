@@ -170,12 +170,6 @@ public class StickyNavLayout extends LinearLayout {
                 lastY=y;
                 return true;
             case MotionEvent.ACTION_MOVE:
-                //内容高度不满足滑动条件时拒绝滑动
-                if (contentHeight<startListViewHeight) {
-                    event.setAction(MotionEvent.ACTION_CANCEL);
-                    dispatchTouchEvent(event);
-                    return super.onTouchEvent(event);
-                }
                 scrollBy(0, -(y-lastY));
                 //由上往下滑动时候切换
                 if (getScrollY()==mTopViewHeight && (y-lastY)<0) {
@@ -222,8 +216,12 @@ public class StickyNavLayout extends LinearLayout {
         if (y < 0) {
             y = 0;
         }
+        //内容高度不满足滑动条件时拒绝滑动
+        if (contentHeight<startListViewHeight) {
+            y = 0;
+        }
         //滚动距离不满足时候不能超过差值
-        if (y>(contentHeight-startListViewHeight)) {
+        if (y>(contentHeight-startListViewHeight) && (contentHeight-startListViewHeight)>0) {
             y=contentHeight-startListViewHeight;
         }
         //滚动距离不能超过悬浮栏
