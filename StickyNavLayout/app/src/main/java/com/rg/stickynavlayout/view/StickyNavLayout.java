@@ -140,7 +140,7 @@ public class StickyNavLayout extends LinearLayout {
                     //viewGroup拦截条件：
                     //1. 顶部待隐藏view未隐藏
                     //2. 顶部待隐藏view已经隐藏，当前操作界面是listview的时候，往上滚到达临界点
-                    if (!isTopHidden || (isTopHidden && (y-lastY)>0 && viewItem!=null && viewItem.getTop()==0)) {
+                    if (!isTopHidden || (isTopHidden && (y-lastY)>0 && viewItem!=null && id_bottomview.getFirstVisiblePosition()==0 && viewItem.getTop()==0)) {
                         initVelocityTrackerIfNotExists();
                         velocityTracker.addMovement(ev);
                         lastY=y;
