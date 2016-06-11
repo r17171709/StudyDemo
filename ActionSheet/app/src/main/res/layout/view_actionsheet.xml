@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:background="@android:color/transparent">
+    <LinearLayout
+        android:id="@+id/pop_child_layout"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="10dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginBottom="10dip"
+            android:background="@drawable/shape_popbg">
+            <TextView
+                android:id="@+id/pop_title"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:gravity="center"
+                android:textColor="#999999"
+                android:textSize="13sp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dip"
+                android:background="#c9c9c9"></View>
+            <ListView
+                android:id="@+id/pop_listview"
+                android:scrollbars="none"
+                android:cacheColorHint="@android:color/transparent"
+                android:listSelector="@android:color/transparent"
+                android:divider="#c9c9c9"
+                android:dividerHeight="0.5dip"
+                android:layout_width="match_parent"
+                android:layout_height="0dip">
+
+            </ListView>
+            <android.support.v7.widget.GridLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/pop_grid"
+                app:columnCount="4"
+                app:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.GridLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/pop_cancel"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/shape_popbg"/>
+    </LinearLayout>
+</LinearLayout>
