@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RemoteViews;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by Clevo on 2016/6/14.
@@ -262,11 +264,34 @@ public class NotificationUtils {
      */
     public static int getNotificationColor(Context context) {
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context);
+        builder.setContentText("checkColor");
         Notification notification=builder.build();
         notification.contentView.apply(context, new LinearLayout(context));
         ViewGroup viewGroup= (ViewGroup) notification.contentView.apply(context, new LinearLayout(context));
-        TextView textView= (TextView) viewGroup.findViewById(android.R.id.title);
+        TextView textView= findView(viewGroup);
         return textView.getCurrentTextColor();
+    }
+
+    private static TextView findView(ViewGroup viewGroupSource) {
+        TextView textView=null;
+        LinkedList<ViewGroup> viewGroups=new LinkedList<>();
+        viewGroups.add(viewGroupSource);
+        while (viewGroups.size()>0) {
+            ViewGroup viewGroup1=viewGroups.getFirst();
+            for (int i = 0; i < viewGroup1.getChildCount(); i++) {
+                if (viewGroup1.getChildAt(i) instanceof ViewGroup) {
+                    viewGroups.add((ViewGroup) viewGroup1.getChildAt(i));
+                }
+                else if (viewGroup1.getChildAt(i) instanceof TextView) {
+                    if (((TextView) viewGroup1.getChildAt(i)).getText().toString().equals("checkColor")) {
+                        textView=((TextView) viewGroup1.getChildAt(i));
+                        break;
+                    }
+                }
+            }
+            viewGroups.remove(viewGroup1);
+        }
+        return textView;
     }
 
     private static boolean isSimilarColor(int baseColor, int color) {
