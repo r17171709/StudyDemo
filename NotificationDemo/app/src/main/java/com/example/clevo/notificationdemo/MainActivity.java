@@ -1,26 +1,18 @@
 package com.example.clevo.notificationdemo;
 
-import android.app.Activity;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.SystemClock;
 import android.os.Bundle;
-import android.support.v4.view.LayoutInflaterCompat;
-import android.support.v4.view.LayoutInflaterFactory;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     Button normal;
     Button moretext;
@@ -34,16 +26,6 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-//        LayoutInflaterCompat.setFactory(LayoutInflater.from(this), new LayoutInflaterFactory() {
-//            @Override
-//            public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-//                if (name.equals("ImageView") && Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
-//                    return new ImageView(MainActivity.this);
-//                }
-//                return getDelegate().createView(parent, name, context, attrs);
-//            }
-//        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

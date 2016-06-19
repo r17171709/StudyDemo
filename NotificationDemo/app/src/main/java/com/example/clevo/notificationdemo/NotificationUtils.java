@@ -9,9 +9,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -264,16 +263,17 @@ public class NotificationUtils {
      */
     public static int getNotificationColor(Context context) {
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context);
-        builder.setContentText("checkColor");
         Notification notification=builder.build();
-        notification.contentView.apply(context, new LinearLayout(context));
-        ViewGroup viewGroup= (ViewGroup) notification.contentView.apply(context, new LinearLayout(context));
-        TextView textView= findView(viewGroup);
-        return textView.getCurrentTextColor();
+        int layoutId=notification.contentView.getLayoutId();
+        ViewGroup viewGroup= (ViewGroup) LayoutInflater.from(context).inflate(layoutId, null, false);
+        if (viewGroup.findViewById(android.R.id.title)!=null) {
+            return ((TextView) viewGroup.findViewById(android.R.id.title)).getCurrentTextColor();
+        }
+        return findColor(viewGroup);
     }
 
-    private static TextView findView(ViewGroup viewGroupSource) {
-        TextView textView=null;
+    private static int findColor(ViewGroup viewGroupSource) {
+        int color=Color.TRANSPARENT;
         LinkedList<ViewGroup> viewGroups=new LinkedList<>();
         viewGroups.add(viewGroupSource);
         while (viewGroups.size()>0) {
@@ -283,15 +283,14 @@ public class NotificationUtils {
                     viewGroups.add((ViewGroup) viewGroup1.getChildAt(i));
                 }
                 else if (viewGroup1.getChildAt(i) instanceof TextView) {
-                    if (((TextView) viewGroup1.getChildAt(i)).getText().toString().equals("checkColor")) {
-                        textView=((TextView) viewGroup1.getChildAt(i));
-                        break;
+                    if (((TextView) viewGroup1.getChildAt(i)).getCurrentTextColor()!=-1) {
+                        color=((TextView) viewGroup1.getChildAt(i)).getCurrentTextColor();
                     }
                 }
             }
             viewGroups.remove(viewGroup1);
         }
-        return textView;
+        return color;
     }
 
     private static boolean isSimilarColor(int baseColor, int color) {
