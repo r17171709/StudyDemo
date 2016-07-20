@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //requestCode涉及到通知的intent是否相同
-        pendingIntent=PendingIntent.getActivity(MainActivity.this, (int) SystemClock.uptimeMillis(), new Intent(MainActivity.this, OpenActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent=new Intent(MainActivity.this, OpenActivity.class);
+        pendingIntent=PendingIntent.getActivity(MainActivity.this, (int) SystemClock.uptimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         normal= (Button) findViewById(R.id.normal);
         normal.setOnClickListener(new View.OnClickListener() {
