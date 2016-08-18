@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NineGridlayoutStyle">
+        <!-- 每张图片的间隙 -->
+        <attr name="space" format="dimension"></attr>
+        <!-- 每排有多少张图片 -->
+        <attr name="column_image" format="integer"></attr>
+        <!-- layout的宽度 -->
+        <attr name="total_width" format="dimension"></attr>
+        <!-- 只有单张图片时的宽度 -->
+        <attr name="oneimage_width" format="dimension"></attr>
+    </declare-styleable>
+</resources>
