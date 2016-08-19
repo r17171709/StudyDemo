@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.drawable.ScalingUtils;
@@ -39,7 +38,11 @@ public class NineGridLayout extends ViewGroup {
     //只有单张图片时的宽度
     int oneimage_width=0;
 
+    //上一次复用的的图片数量
     int oldNum=0;
+
+    //计算每一个图片的宽高
+    int itemWH;
 
     ArrayList<NineGridImageModel> models;
 
@@ -65,15 +68,9 @@ public class NineGridLayout extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-    }
-
-    public void setImageData(ArrayList<NineGridImageModel> models) {
-        this.models=models;
-
-        //计算每一个图片的宽高
-        int itemWH;
         //没有的时候宽高均为0
         if (models.size()==0) {
             itemWH=0;
@@ -86,15 +83,11 @@ public class NineGridLayout extends ViewGroup {
             itemWH=(width-(column_image+1)*space)/column_image;
         }
 
-        //设置当前ViewGroup的大小，这里父ViewGroup是LinearLayout
-        LinearLayout.LayoutParams layout_params= (LinearLayout.LayoutParams) getLayoutParams();
         if (models.size()==0) {
-            layout_params.width=0;
-            layout_params.height=0;
+            setMeasuredDimension(0, 0);
         }
         else if (models.size()==1) {
-            layout_params.width=oneimage_width;
-            layout_params.height=oneimage_width;
+            setMeasuredDimension(oneimage_width, oneimage_width);
         }
         else {
             //总行数
@@ -108,19 +101,44 @@ public class NineGridLayout extends ViewGroup {
                 column=column_image;
             }
             //通过每个item的宽高计算出layout整体宽高
-            layout_params.width=space*(column+1)+column*itemWH;
-            layout_params.height=space*(row+1)+row*itemWH;
+            setMeasuredDimension(space*(column+1)+column*itemWH, space*(row+1)+row*itemWH);
         }
-        setLayoutParams(layout_params);
+    }
 
-        //设置图片控件的大小，并进行添加
-        ViewGroup.LayoutParams params=new LayoutParams(itemWH, itemWH);
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        for (int i = 0; i < getChildCount(); i++) {
+            if (models.get(i).getImage()==null) {
+                continue;
+            }
+            SimpleDraweeView imageView= (SimpleDraweeView) getChildAt(i);
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(models.get(i).getImage()))
+                    .setResizeOptions(new ResizeOptions(itemWH, itemWH)).build();
+            DraweeController draweeController = Fresco.newDraweeControllerBuilder()
+                    .setImageRequest(request).setAutoPlayAnimations(true).build();
+            imageView.setController(draweeController);
+
+            int row=i/column_image+1;
+            int column=i%column_image+1;
+
+            int left=space*column + itemWH*(column-1);
+            int top=space*row + itemWH*(row-1);
+            int right=left+itemWH;
+            int bottom=top+itemWH;
+
+            imageView.layout(left, top, right, bottom);
+        }
+    }
+
+    public void setImageData(ArrayList<NineGridImageModel> models) {
+        this.models=models;
+
         if (models.size()!=0) {
             //从来没有创建过
             if (oldNum==0) {
                 for (NineGridImageModel model : models) {
                     SimpleDraweeView imageView=getSimpleDraweeView();
-                    addView(imageView, params);
+                    addView(imageView);
                 }
             }
             else {
@@ -132,38 +150,18 @@ public class NineGridLayout extends ViewGroup {
                 else if (oldNum<models.size()) {
                     for (int i = 0; i < models.size() - oldNum; i++) {
                         SimpleDraweeView imageView=getSimpleDraweeView();
-                        addView(imageView, params);
+                        addView(imageView);
                     }
                 }
             }
             oldNum=models.size();
-
-            for (int i = 0; i < oldNum; i++) {
-                if (models.get(i).getImage()==null) {
-                    continue;
-                }
-                SimpleDraweeView imageView= (SimpleDraweeView) getChildAt(i);
-                ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(models.get(i).getImage()))
-                        .setResizeOptions(new ResizeOptions(itemWH, itemWH)).build();
-                DraweeController draweeController = Fresco.newDraweeControllerBuilder()
-                        .setImageRequest(request).setAutoPlayAnimations(true).build();
-                imageView.setController(draweeController);
-
-                int row=i/column_image+1;
-                int column=i%column_image+1;
-
-                int left=space*column + itemWH*(column-1);
-                int top=space*row + itemWH*(row-1);
-                int right=left+itemWH;
-                int bottom=top+itemWH;
-
-                imageView.layout(left, top, right, bottom);
-            }
         }
         else {
             removeAllViews();
             oldNum=0;
         }
+
+        requestLayout();
     }
 
     private SimpleDraweeView getSimpleDraweeView() {
