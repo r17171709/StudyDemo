@@ -7,7 +7,9 @@
         <attr name="column_image" format="integer"></attr>
         <!-- layout的宽度 -->
         <attr name="total_width" format="dimension"></attr>
-        <!-- 只有单张图片时的宽度 -->
-        <attr name="oneimage_width" format="dimension"></attr>
+        <!-- 单张图片最大宽度 -->
+        <attr name="oneimage_maxwidth" format="dimension"></attr>
+        <!-- 单张图片最大高度 -->
+        <attr name="oneimage_maxheight" format="dimension"></attr>
     </declare-styleable>
 </resources>

@@ -21,10 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView nine_rv;
 
-    String[] images=new String[]{"http://d.lanrentuku.com/down/png/1510/weixin-qq-icon/weixin.png",
-            "http://d.lanrentuku.com/down/png/1510/weixin-qq-icon/pengyouquan.png",
-            "http://d.lanrentuku.com/down/png/1510/weixin-qq-icon/qq.png",
-            "http://d.lanrentuku.com/down/png/1510/weixin-qq-icon/qqcom.png",
+    String[] images=new String[]{
             "http://d.lanrentuku.com/down/png/1406/fifa_world_cup_2014_teams_country_flags/portugal-flag-icon.png",
             "http://d.lanrentuku.com/down/png/1406/fifa_world_cup_2014_teams_country_flags/usa-flag-icon.png",
             "http://d.lanrentuku.com/down/png/1406/fifa_world_cup_2014_teams_country_flags/spain-flag-icon.png",
@@ -47,10 +44,18 @@ public class MainActivity extends AppCompatActivity {
 
         lists=new ArrayList<>();
         for (int i=0;i<15;i++) {
-            int random=new Random().nextInt(7);
+            int random=new Random().nextInt(8);
             ArrayList<NineGridImageModel> temps=new ArrayList<>();
+            boolean isOne=false;
+            if (random==1) {
+                isOne=true;
+            }
             for (int j=0;j<random;j++) {
                 NineGridImageModel model=new NineGridImageModel();
+                if (isOne) {
+                    model.setHeight(400);
+                    model.setWidth(700);
+                }
                 model.setImage(images[new Random().nextInt(images.length)]);
                 temps.add(model);
             }
