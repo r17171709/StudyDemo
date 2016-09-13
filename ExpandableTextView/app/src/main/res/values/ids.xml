@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 原始textview -->
+    <item name="id_source_textview" type="id"></item>
+    <!-- 收起展开按钮textview -->
+    <item name="id_expand_textview" type="id"></item>
+</resources>
