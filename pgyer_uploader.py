@@ -132,13 +132,13 @@ def send_Email(json_result):
     appBuildVersion = json_result['data']['appBuildVersion']
     appShortcutUrl = json_result['data']['appShortcutUrl']
     #邮件接受者
-    mail_receiver = ['413791059@qq.com']
+    mail_receiver = ['yyy@qq.com']
                         
     #根据不同邮箱配置 host，user，和pwd
     mail_host = 'smtp.139.com'
     mail_port = 465
-    mail_user = '15895886064@139.com'
-    mail_pwd = 'r17171709'
+    mail_user = 'xxx@139.com'
+    mail_pwd = 'xxx'
     mail_to = ','.join(mail_receiver)
     
     msg = MIMEMultipart()
@@ -164,7 +164,7 @@ def send_Email(json_result):
     msg["Accept-Charset"]="ISO-8859-1,utf-8"
     msg.attach(body)
     msg['To'] = mail_to
-    msg['from'] = '15895886064@139.com'
+    msg['from'] = 'xxxx@139.com'
     msg['subject'] = 'Android APP 最新打包文件' 
     
     try:
