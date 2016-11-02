@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mina-core-2.0.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/mina-core-2.0.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
