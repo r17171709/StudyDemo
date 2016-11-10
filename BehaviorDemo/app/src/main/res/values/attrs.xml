@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="cardrv">
+        <attr name="head_bg" format="color"></attr>
+        <attr name="head_title" format="string"></attr>
+    </declare-styleable>
+</resources>

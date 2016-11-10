@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.renyu.behaviordemo.view.RVView xmlns:head="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        head:head_bg="@android:color/holo_blue_bright"
+        head:head_title="rv1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.renyu.behaviordemo.behavior.CardRvBehavior">
+
+    </com.renyu.behaviordemo.view.RVView>
+    <com.renyu.behaviordemo.view.RVView xmlns:head="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        head:head_bg="@android:color/holo_red_light"
+        head:head_title="rv2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.renyu.behaviordemo.behavior.CardRvBehavior">
+
+    </com.renyu.behaviordemo.view.RVView>
+</android.support.design.widget.CoordinatorLayout>

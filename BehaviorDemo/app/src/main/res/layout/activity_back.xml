@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:background="@android:color/background_dark" >
+
+        </View>
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB3"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB4"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB6"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB7"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB8"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB9"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB10"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <View xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_gravity="bottom"
+        app:layout_behavior="com.renyu.behaviordemo.behavior.BackBehavior"
+        android:background="@android:color/holo_red_dark">
+
+    </View>
+</android.support.design.widget.CoordinatorLayout>
