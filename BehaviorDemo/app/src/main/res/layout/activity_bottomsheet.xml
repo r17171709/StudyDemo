@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/design_coor">
+
+    <android.support.v4.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB3"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB4"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB6"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB7"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB8"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB9"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB10"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/holo_red_light"
+        app:layout_anchor="@+id/design_bottom_sheet"
+        app:layout_anchorGravity="top"
+        android:id="@+id/design_toolbar"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+    </android.support.v7.widget.Toolbar>
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_bright"
+        android:id="@+id/design_bottom_sheet"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="100dp"
+        app:layout_behavior="@string/bottom_sheet_behavior" >
+        <TextView
+            android:text="Behavior"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="200dip" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

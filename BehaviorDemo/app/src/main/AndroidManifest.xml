@@ -20,6 +20,7 @@
         <activity android:name=".CardRVActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".TopBottomActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".NstestActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".BottomSheetActivity" android:screenOrientation="portrait"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
