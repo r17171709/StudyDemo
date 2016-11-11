@@ -22,6 +22,20 @@
         android:layout_marginRight="16dp" />
 
     <Button
+        android:text="自定义NestedScrollingParent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_customerparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <Button
         android:text="RV折叠"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,22 +46,36 @@
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintBottom_toTopOf="@id/button_customerparent"
+        android:layout_marginBottom="8dp" />
 
     <Button
         android:text="上下移动"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button_htb"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/button_fab"
+        android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <Button
+        android:text="NestScrolling测试"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_nstest"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toTopOf="@id/button_rv"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/button_fab" />
+        app:layout_constraintTop_toBottomOf="@+id/button_htb"
+        app:layout_constraintBottom_toTopOf="@+id/button_rv"
+        android:layout_marginBottom="8dp" />
 </android.support.constraint.ConstraintLayout>

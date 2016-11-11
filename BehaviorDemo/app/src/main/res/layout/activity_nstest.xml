@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.behaviordemo.view.NestScrollingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_red_light">
+    <com.renyu.behaviordemo.view.NestScrollingView
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:background="@android:color/holo_blue_bright"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123123"/>
+</com.renyu.behaviordemo.view.NestScrollingLayout>

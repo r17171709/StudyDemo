@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -56,5 +57,18 @@ public class FloatingActionBarBehavior extends CoordinatorLayout.Behavior<Floati
         }
         animator=ObjectAnimator.ofFloat(child, View.TRANSLATION_Y, viewY).setDuration(500);
         animator.start();
+    }
+
+    @Override
+    public boolean layoutDependsOn(CoordinatorLayout parent, FloatingActionButton child, View dependency) {
+        return dependency instanceof Snackbar.SnackbarLayout;
+    }
+
+    @Override
+    public boolean onDependentViewChanged(CoordinatorLayout parent, FloatingActionButton child, View dependency) {
+        //这个是SnackBar的变化区间
+        float offsetSnackBar=ViewCompat.getTranslationY(dependency);
+        child.setTranslationY(-(int) (dependency.getHeight()-offsetSnackBar));
+        return true;
     }
 }

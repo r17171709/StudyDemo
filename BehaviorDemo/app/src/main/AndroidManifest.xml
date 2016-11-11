@@ -18,6 +18,8 @@
         <activity android:name=".FloatingActionButtonActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".BackActivity" android:screenOrientation="portrait"></activity>
         <activity android:name=".CardRVActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".TopBottomActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".NstestActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

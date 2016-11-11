@@ -35,5 +35,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CardRVActivity.class));
             }
         });
+
+        RxView.clicks(findViewById(R.id.button_customerparent)).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(MainActivity.this, TopBottomActivity.class));
+            }
+        });
+
+        RxView.clicks(findViewById(R.id.button_nstest)).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(MainActivity.this, NstestActivity.class));
+            }
+        });
     }
 }
