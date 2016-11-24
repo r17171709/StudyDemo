@@ -53,8 +53,8 @@ public class CardRvBehavior extends CoordinatorLayout.Behavior<RVView> {
 
     @Override
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, RVView child, View target, int dx, int dy, int[] consumed) {
-        //target滑动之前的处理，这里RecyclerView的检测规则是：consumed[1]处理后返回给RecyclerView，只有这个值大于touchSlop，才能将后续事件传递给dispatchNestedScroll，也就是让RecyclerView自己滚动起来
-        //因此在滑动范围内才需要处理，其余直接交给RecyclerView自行滚动
+        // target滑动之前的处理，这里RecyclerView的检测规则是：consumed[1]处理后返回给RecyclerView，只有这个值大于touchSlop，才能将后续事件传递给dispatchNestedScroll，也就是让RecyclerView自己滚动起来
+        // 所以此处虽然先调用，但是也只有onNestedScroll方法中进行位移改变，这里的if才能进行调用，从而产生对target的影响
         if (child.getTop()>defaultOffset) {
             int min=defaultOffset;
             int max=child.getHeight()-child.getHeadHeight()+defaultOffset;
@@ -65,7 +65,10 @@ public class CardRvBehavior extends CoordinatorLayout.Behavior<RVView> {
 
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, RVView child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-        //target滑动之后的处理，也就是RecyclerView自行滚动
+        // 这里需要区分dyConsumed与dyUnconsumed，
+        // 当dyConsumed>0 && dyUnconsumed==0，代表target自身向上滚动
+        // 当dyConsumed==0 && dyUnconsumed>0，代表target自身向上滚动已经结束了，交由Behavior去处理后续向上滚动事件
+        // 所以target最早是由此处dyUnconsumed发生变化而触发了位移，进而转交onNestedPreScroll去处理。
         int min=defaultOffset;
         int max=child.getHeight()-child.getHeadHeight()+defaultOffset;
         int scrollY=scroll(child, dyUnconsumed, min, max);
