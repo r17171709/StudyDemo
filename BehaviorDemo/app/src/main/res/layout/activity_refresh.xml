@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.behaviordemo.view.PullToRefreshView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_marginTop="-200dip"
+        android:background="@android:color/holo_blue_bright">
+
+    </LinearLayout>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB3"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB4"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB6"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB7"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB8"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB9"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dip"
+                android:gravity="center"
+                android:textColor="@android:color/background_dark"
+                android:textSize="20sp"
+                android:text="Hello FAB10"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:background="@android:color/holo_red_light">
+
+    </LinearLayout>
+</com.renyu.behaviordemo.view.PullToRefreshView>

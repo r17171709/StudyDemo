@@ -13,7 +13,7 @@
     </com.renyu.behaviordemo.view.RVView>
     <com.renyu.behaviordemo.view.RVView xmlns:head="http://schemas.android.com/apk/res-auto"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        head:head_bg="@android:color/holo_red_light"
+        head:head_bg="@android:color/holo_green_dark"
         head:head_title="rv2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

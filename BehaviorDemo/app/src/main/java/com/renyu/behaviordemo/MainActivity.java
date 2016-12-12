@@ -56,5 +56,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, BottomSheetActivity.class));
             }
         });
+
+        RxView.clicks(findViewById(R.id.button_refresh)).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(MainActivity.this, RefreshActivity.class));
+            }
+        });
     }
 }
