@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.antfortune.freeline'
+apply plugin: 'com.antfortune.freeline'
 
 android {
     compileSdkVersion 24
@@ -21,10 +21,10 @@ android {
     lintOptions {
         abortOnError false
     }
-//    freeline {
-//        hack true
-//        autoDependency false
-//    }
+    freeline {
+        hack true
+        autoDependency false
+    }
 }
 
 dependencies {
@@ -40,5 +40,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta3'
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 
-//    debugCompile project(":runtime:runtime")
+    debugCompile project(":runtime:runtime")
 }

@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BehaviorDemo.iml" filepath="$PROJECT_DIR$/BehaviorDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../runtime/BehaviorDemo-runtime.iml" filepath="$PROJECT_DIR$/../runtime/BehaviorDemo-runtime.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../runtime/runtime-no-op/runtime-no-op.iml" filepath="$PROJECT_DIR$/../runtime/runtime-no-op/runtime-no-op.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../runtime/runtime/runtime-runtime.iml" filepath="$PROJECT_DIR$/../runtime/runtime/runtime-runtime.iml" />
     </modules>
   </component>
 </project>

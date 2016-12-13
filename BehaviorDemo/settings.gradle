@@ -1,4 +1,4 @@
 include ':app'
-//includeFlat 'runtime'
-//include ':runtime:runtime'
-//include ':runtime:runtime-no-op'
+includeFlat 'runtime'
+include ':runtime:runtime'
+include ':runtime:runtime-no-op'

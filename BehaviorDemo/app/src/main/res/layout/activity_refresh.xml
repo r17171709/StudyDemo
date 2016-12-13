@@ -6,9 +6,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dip"
-        android:layout_marginTop="-200dip"
+        android:gravity="bottom|center_horizontal"
         android:background="@android:color/holo_blue_bright">
-
+        <ImageView
+            android:id="@+id/refresh_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_grade_level_0"/>
     </LinearLayout>
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -92,7 +96,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dip"
+        android:gravity="center_horizontal"
         android:background="@android:color/holo_red_light">
-
+        <ImageView
+            android:id="@+id/refresh_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_grade_level_0"/>
     </LinearLayout>
 </com.renyu.behaviordemo.view.PullToRefreshView>

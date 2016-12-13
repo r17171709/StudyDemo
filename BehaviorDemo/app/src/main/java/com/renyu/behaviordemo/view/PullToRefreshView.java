@@ -10,7 +10,10 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.renyu.behaviordemo.R;
 
 /**
  * Created by renyu on 2016/12/11.
@@ -38,6 +41,15 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
     }
 
     @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+
+        getChildAt(0).layout(0, dp2Px(context, -200), getMeasuredWidth(), 0);
+        getChildAt(1).layout(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        getChildAt(2).layout(0, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight()+dp2Px(context, 200));
+    }
+
+    @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
         return (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL)!=0;
     }
@@ -46,7 +58,7 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
     public void onNestedScroll(View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         if (dyUnconsumed<0) {
             int max=dp2Px(context, 200);
-            int min=1;
+            int min=0;
             scrollDown(this, dyUnconsumed, min, max);
         }
         else if (dyUnconsumed>0) {
@@ -58,12 +70,12 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
 
     @Override
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
-        if (getChildAt(1).getTop()>1) {
+        if (getChildAt(1).getTop()>0) {
             int max=dp2Px(context, 200);
             int min=1;
             consumed[1]=scrollDown(this, dy, min, max);
         }
-        else if (getChildAt(1).getTop()<-1) {
+        else if (getChildAt(1).getTop()<0) {
             int min=-dp2Px(context, 200);
             int max=0;
             consumed[1]=scrollUp(this, dy, min, max);
@@ -75,7 +87,7 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
         if (canScrollExtra) {
             ValueAnimator valueAnimator=null;
             if (getChildAt(1).getTop()>0) {
-                if (Math.abs(getChildAt(1).getTop())==1) {
+                if (Math.abs(getChildAt(1).getTop())==0) {
                     return;
                 }
                 //下拉未到临界点
@@ -89,7 +101,7 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
                 }
             }
             else if (getChildAt(1).getTop()<0) {
-                if (Math.abs(getChildAt(1).getTop())==-1) {
+                if (Math.abs(getChildAt(1).getTop())==0) {
                     return;
                 }
                 //上拉未到临界点
@@ -127,6 +139,7 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
                     super.onAnimationEnd(animation);
                     deltaY=0;
                     if (isIntercept) {
+                        changeText();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
@@ -156,6 +169,8 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
                 getChildAt(0).offsetTopAndBottom((Integer.parseInt(animation.getAnimatedValue().toString())-deltaY));
                 getChildAt(1).offsetTopAndBottom((Integer.parseInt(animation.getAnimatedValue().toString())-deltaY));
                 deltaY=Integer.parseInt(animation.getAnimatedValue().toString());
+
+                changeText();
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -178,6 +193,8 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
                 getChildAt(1).offsetTopAndBottom((Integer.parseInt(animation.getAnimatedValue().toString())-deltaY));
                 getChildAt(2).offsetTopAndBottom((Integer.parseInt(animation.getAnimatedValue().toString())-deltaY));
                 deltaY=Integer.parseInt(animation.getAnimatedValue().toString());
+
+                changeText();
             }
         });
         valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -202,9 +219,10 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
             childView.getChildAt(1).offsetTopAndBottom(min-childView.getChildAt(1).getTop());
         }
         else {
-            childView.getChildAt(0).offsetTopAndBottom(-y);
-            childView.getChildAt(1).offsetTopAndBottom(-y);
+            childView.getChildAt(0).offsetTopAndBottom(-y/4);
+            childView.getChildAt(1).offsetTopAndBottom(-y/4);
         }
+        changeText();
         return y;
     }
 
@@ -219,19 +237,49 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
             childView.getChildAt(1).offsetTopAndBottom(min-childView.getChildAt(1).getTop());
         }
         else {
-            childView.getChildAt(2).offsetTopAndBottom(-y);
-            childView.getChildAt(1).offsetTopAndBottom(-y);
+            childView.getChildAt(2).offsetTopAndBottom(-y/4);
+            childView.getChildAt(1).offsetTopAndBottom(-y/4);
         }
+        changeText();
         return y;
-    }
-
-    private int dp2Px(Context context, float dp) {
-        float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (dp * scale + 0.5f);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         return isIntercept;
+    }
+
+    private void changeText() {
+        //上拉加载更多
+        if (getChildAt(1).getTop()<0) {
+            //判断临界点上方还是下方
+            if (getChildAt(1).getTop()>-dp2Px(context, 200)/2) {
+                ((ImageView) ((LinearLayout) getChildAt(2)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_1);
+            }
+            else if (getChildAt(1).getTop()<-dp2Px(context, 200)/2) {
+                ((ImageView) ((LinearLayout) getChildAt(2)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_2);
+            }
+            else {
+                ((ImageView) ((LinearLayout) getChildAt(2)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_3);
+            }
+        }
+        //下拉刷新
+        else if (getChildAt(1).getTop()>0) {
+            //判断临界点上方还是下方
+            if (getChildAt(1).getTop()>dp2Px(context, 200)/2) {
+                ((ImageView) ((LinearLayout) getChildAt(0)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_2);
+            }
+            else if (getChildAt(1).getTop()<dp2Px(context, 200)/2) {
+                ((ImageView) ((LinearLayout) getChildAt(0)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_1);
+            }
+            else {
+                ((ImageView) ((LinearLayout) getChildAt(0)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_3);
+            }
+        }
+    }
+
+    private int dp2Px(Context context, float dp) {
+        float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 }
