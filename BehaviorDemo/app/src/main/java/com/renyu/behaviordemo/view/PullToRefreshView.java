@@ -260,7 +260,7 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
                 ((ImageView) ((LinearLayout) getChildAt(2)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_2);
             }
             else {
-                ((ImageView) ((LinearLayout) getChildAt(2)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_3);
+                ((ImageView) ((LinearLayout) getChildAt(2)).getChildAt(0)).setImageResource(R.mipmap.ic_launcher);
             }
         }
         //下拉刷新
@@ -273,7 +273,7 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
                 ((ImageView) ((LinearLayout) getChildAt(0)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_1);
             }
             else {
-                ((ImageView) ((LinearLayout) getChildAt(0)).getChildAt(0)).setImageResource(R.mipmap.ic_grade_level_3);
+                ((ImageView) ((LinearLayout) getChildAt(0)).getChildAt(0)).setImageResource(R.mipmap.ic_launcher);
             }
         }
     }
@@ -281,5 +281,11 @@ public class PullToRefreshView extends LinearLayout implements NestedScrollingPa
     private int dp2Px(Context context, float dp) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
+    }
+
+    //对资源进行设置的时候(比如setImageResource或者setText等)，会发生requestLayout
+    @Override
+    public void requestLayout() {
+
     }
 }
