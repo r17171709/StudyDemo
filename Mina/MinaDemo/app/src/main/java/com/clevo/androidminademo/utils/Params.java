@@ -13,7 +13,7 @@ public class Params {
     //应答超时
     public static final int REQUEST_TIMEOUT=5;
     //IP
-    public static final String HOSTNAME="172.30.254.34";
+    public static final String HOSTNAME="192.168.1.106";
     //端口号
     public static final int PORT = 4444;
     //心跳包发送
