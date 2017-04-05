@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RangeSeekbar">
+        <!-- 主线默认颜色 -->
+        <attr name="mainLineColor" format="color"></attr>
+        <!-- 主线区间颜色 -->
+        <attr name="mainLineSecondColor" format="color"></attr>
+        <!-- 顶部提示文字颜色 -->
+        <attr name="tipColor" format="color"></attr>
+        <!-- 顶部提示文字大小 -->
+        <attr name="tipTextSize" format="dimension"></attr>
+        <!-- 顶部提示文字 -->
+        <attr name="tipTextString" format="string"></attr>
+        <!-- 顶部提示文字距离主轴高度 -->
+        <attr name="tipMargin" format="dimension"></attr>
+        <!-- 底部提示文字颜色 -->
+        <attr name="tipBottomColor" format="color"></attr>
+        <!-- 底部提示文字大小 -->
+        <attr name="tipBottomTextSize" format="dimension"></attr>
+        <!-- 底部提示文字距离主轴高度 -->
+        <attr name="tipBottomMargin" format="dimension"></attr>
+        <!-- 最大值 -->
+        <attr name="maxValue" format="integer"></attr>
+        <!-- thumb图片 -->
+        <attr name="image" format="reference"></attr>
+    </declare-styleable>
+</resources>

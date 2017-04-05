@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.renyu.rangeseekbar.myview.RangeSeekbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/range"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        app:tipColor="#ffac00"
+        app:tipTextSize="14sp"
+        app:tipTextString="请选择"
+        app:tipBottomColor="#dddddd"
+        app:tipBottomTextSize="14sp"
+        app:mainLineColor="#dddddd"
+        app:mainLineSecondColor="#f8b62d"
+        app:image="@mipmap/ic_round"
+        app:tipBottomMargin="18dip"
+        app:tipMargin="30dip"
+        app:maxValue="15000"/>
+</RelativeLayout>
