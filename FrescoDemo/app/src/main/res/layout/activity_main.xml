@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <com.example.renyu.frescodemo.libs.MySimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/image_fresco1"
+        android:layout_width="100dip"
+        android:layout_height="100dip"/>
+    <!-- 
+        fresco:actualImageScaleType： 加载完成的图片的缩放样式
+        fresco:fadeDuration： 由进度条和占位符图片渐变过渡到加载完成的图片所使用的时间间隔
+        fresco:failureImage： 加载失败所使用的图片
+        fresco:failureImageScaleType： 加载失败所使用的图片的缩放样式
+        fresco:placeholderImage： 占位符图片
+        fresco:placeholderImageScaleType： 占位符图片的缩放样式
+        fresco:progressBarAutoRotateInterval： 旋转进度条旋转1圈所需要的时间
+        fresco:progressBarImage： 旋转进度条所使用的图片
+        fresco:progressBarImageScaleType： 旋转进度条所使用的图片的缩放样式
+        fresco:retryImage： 重试所使用的图片
+        fresco:retryImageScaleType： 重试所使用的图片的缩放样式
+        fresco:backgroundImage： 背景图片
+        fresco:overlayImage： 覆盖在加载完成后图片上的叠加图片
+        fresco:pressedStateOverlayImage： 按压状态下的叠加图片
+        fresco:roundAsCircle： 是否将图片剪切为圆形
+        fresco:roundedCornerRadius： 圆角图片时候，圆角的半径大小
+        fresco:roundTopLeft： 左上角是否为圆角
+        fresco:roundTopRight： 右上角是否为圆角
+        fresco:roundBottomLeft： 左下角是否为圆角
+        fresco:roundBottomRight： 右下角是否为圆角
+        fresco:roundWithOverlayColor： 圆角或圆形图叠加的颜色，只能是颜色
+        fresco:roundingBorderWidth： 圆角或圆形图边框的宽度
+        fresco:roundingBorderColor： 圆角或圆形图边框的颜色
+        fresco:viewAspectRatio： 设置宽高比
+    -->
+    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/image_fresco2"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        fresco:actualImageScaleType="focusCrop"
+        fresco:fadeDuration="3000"
+        fresco:failureImage="@mipmap/ic_launcher"
+        fresco:failureImageScaleType="focusCrop"
+        fresco:placeholderImage="@mipmap/ic_launcher"
+        fresco:placeholderImageScaleType="focusCrop"
+        fresco:progressBarAutoRotateInterval="1000"
+        fresco:progressBarImage="@drawable/ani_rotate"
+        fresco:progressBarImageScaleType="focusCrop"
+        fresco:retryImage="@drawable/load_progress_8"
+        fresco:retryImageScaleType="focusCrop"
+        fresco:backgroundImage="@mipmap/ic_launcher"
+        fresco:overlayImage="@android:color/transparent"
+        fresco:pressedStateOverlayImage="@mipmap/ic_launcher"
+        fresco:roundAsCircle="false"
+        fresco:roundedCornerRadius="5dip"
+        fresco:roundTopLeft="true"
+        fresco:roundTopRight="true"
+        fresco:roundBottomLeft="true"
+        fresco:roundBottomRight="true"
+        fresco:roundWithOverlayColor="@color/colorAccent"
+        fresco:roundingBorderWidth="2dip"
+        fresco:roundingBorderColor="@color/colorPrimary"
+        fresco:viewAspectRatio="1"/>
+
+    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/image_fresco3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/image_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
