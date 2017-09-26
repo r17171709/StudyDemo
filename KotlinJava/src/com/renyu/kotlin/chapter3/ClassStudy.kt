@@ -44,6 +44,7 @@ fun main(args: Array<String>) {
     for (value in W.values()) {
         println("${value.name}--${value.ordinal}")
     }
+    W.left.getDirection()
     X.READING.printValue()
     println(W.valueOf("left").ordinal)
 
@@ -239,7 +240,9 @@ enum class V {
 }
 
 enum class W(val intValue:Int) {
-    left(1), top(2), right(3), bottom(4)
+    left(1), top(2), right(3), bottom(4);
+
+    fun getDirection() = intValue
 }
 
 enum class X {

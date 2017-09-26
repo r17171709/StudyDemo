@@ -9,6 +9,8 @@ fun main(args: Array<String>) {
     var a1 = 2
     var b = "b"
     val c = "c"
+    var d: Int
+    d=3
     // 使用字符串模板
     var value = "$a+$a1=${a+a1}"
     println(value)
