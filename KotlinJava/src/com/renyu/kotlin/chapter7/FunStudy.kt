@@ -75,15 +75,28 @@ fun main(args: Array<String>) {
     }
     i(funValue)
 
-    i {
-        println("${it+100}")
-        return
-    }
+//    i {
+//        println("${it+100}")
+//        return
+//    }
 
     i1 {
         println("${it+100}")
         return@i1
     }
+
+    // Lambda表达式也是一种类型（变相类型）
+//    codeBlock("1", "2")
+    codeBlock.javaClass.methods.forEach {
+        println(it)
+        if (it.name == "invoke") {
+            try {
+                var innerBlock: () -> String = it.invoke(codeBlock, "2", "3") as () -> String
+                innerBlock()
+            } catch (e: Exception) {}
+        }
+    }
+
 }
 
 infix fun Int.min(value: Int) : Int {
@@ -175,6 +188,12 @@ fun justCount():() -> Unit {
     var count = 0
     return {
         println(count++)
+    }
+}
+
+val codeBlock: (String, String) -> (() -> String) = {
+    a: String, b: String -> {
+        a+b
     }
 }
 
