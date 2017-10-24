@@ -4,16 +4,21 @@ import com.renyu.kotlin.chapter2.b.APP as BAPP
 import com.renyu.kotlin.chapter2.a.APP
 
 fun main(args: Array<String>) {
+    // 数值常量字面值中的下划线
     val a: Int=10000
     val b: Int=10_000
-    println(a== b)
-    val c: Long = a.toLong()
+    println(a == b)
 
+    // 装箱与拆箱
     val boxA: Int? = a
     var anotherBoxA: Int? = a
     println(boxA == anotherBoxA)
     println(boxA === anotherBoxA)
 
+    // 显式转换
+    val c: Long = a.toLong()
+
+    // 数组
     var array: Array<String> = arrayOf("1", "2", "3")
     array[0]
     println(array[0])
@@ -27,6 +32,7 @@ fun main(args: Array<String>) {
         println(s)
     }
 
+    // 字符串
     val text1="Hello \n"
     var text= """
         |ABC""
@@ -36,15 +42,18 @@ fun main(args: Array<String>) {
         """
     println(text.trimMargin())
     text="World"
+    // 字符串模板
     val text12="Hello $text"
     println(text12)
     println("1+2=${1+2}")
 
+    // 包冲突
     val appa: APP = APP()
     println(appa.value)
     val appb: BAPP = BAPP()
     println(appb.value)
 
+    // if表达式
     var a1=10
     var b2=20
     var maxValue: Int = if (a1>b2) {
@@ -56,6 +65,7 @@ fun main(args: Array<String>) {
     }
     println(maxValue)
 
+    // when表达式
     println(getValue(5))
 
     var maxValue1: Int = when {
@@ -67,6 +77,7 @@ fun main(args: Array<String>) {
     }
     println(maxValue1)
 
+    // 返回和跳转
     var array3: Array<String> = arrayOf("1", "2", "3", "4", "5")
     loop@ for (s in array3) {
         println("1. $s")
