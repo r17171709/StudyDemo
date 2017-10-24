@@ -100,10 +100,17 @@ fun main(args: Array<String>) {
     }
 
     // with
-    with(lazyClass) {
-        println(valueA)
-        println(valueB)
+    var lazyClass1 = with(lazyClass) {
+        valueB = "valueBwith"
+        this
     }
+    println(lazyClass1.valueB)
+
+    // apply
+    lazyClass1 = lazyClass.apply {
+        valueB = "valueBapply"
+    }
+    println(lazyClass1.valueB)
 }
 
 // 返回值为Int类型的函数
