@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_adapter"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/iv_adapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
     <TextView
         android:id="@+id/tv_adapter"
         android:gravity="center"
         android:background="@android:color/holo_green_light"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="50dip" />
+    <ImageView
+        android:id="@+id/iv2_adapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
 </LinearLayout>
