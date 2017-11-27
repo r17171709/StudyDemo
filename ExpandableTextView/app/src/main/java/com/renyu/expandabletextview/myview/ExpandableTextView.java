@@ -55,7 +55,7 @@ public class ExpandableTextView extends LinearLayout {
         setOrientation(VERTICAL);
 
         TypedArray array=context.obtainStyledAttributes(attrs, R.styleable.ExpandableTextViewAttr);
-        maxExpandLines=array.getInteger(R.styleable.ExpandableTextViewAttr_maxExpandLines, 3);
+        maxExpandLines=array.getInteger(R.styleable.ExpandableTextViewAttr_maxExpandLines, 10);
         duration=array.getInteger(R.styleable.ExpandableTextViewAttr_duration, 500);
         array.recycle();
     }
@@ -124,6 +124,7 @@ public class ExpandableTextView extends LinearLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //如果隐藏控件或者textview的值没有发生改变，那么不进行测量
         if (getVisibility()==GONE || !isChange) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             return;
         }
         isChange=false;
@@ -143,7 +144,7 @@ public class ExpandableTextView extends LinearLayout {
 
         //如果处于收缩状态，则设置最多显示行数
         if (isCollapsed) {
-            id_source_textview.setLines(maxExpandLines);
+            id_source_textview.setMaxLines(maxExpandLines);
         }
         id_expand_textview.setVisibility(VISIBLE);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
