@@ -31,9 +31,4 @@ public class ReflectStudy {
     }
 }
 
-class ReflectStudyA {
-    private String aValue="123";
-    private void toIntValue(String value) {
-        System.out.println(Integer.parseInt(value));
-    }
-}
+
