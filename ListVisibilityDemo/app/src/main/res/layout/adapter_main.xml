@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="150dip">
+    <RelativeLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tv_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tv_percent"
+            android:gravity="right|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@color/colorAccent"></View>
+</LinearLayout>
