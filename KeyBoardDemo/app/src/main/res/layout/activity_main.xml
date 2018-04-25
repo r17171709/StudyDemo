@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.renyu.keyboarddemo.MainActivity">
+    <LinearLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="400dip"></View>
+        <com.renyu.keyboarddemo.KeyBoardEditText
+            android:id="@+id/ed_main"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:background="@android:color/holo_orange_dark"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="#999999"
+        android:visibility="gone">
+        <include layout="@layout/content_keyboard"></include>
+    </LinearLayout>
+</RelativeLayout>
