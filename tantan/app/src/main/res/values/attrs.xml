@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StackCardsView">
+        <!-- 最多可见视图个数 -->
+        <attr name="maxVisibleCnt" format="integer" />
+        <!-- 层叠时相对前一张卡片间距 -->
+        <attr name="edgeHeight" format="integer" />
+        <!-- 层叠时相对前一张卡片缩放比例 -->
+        <attr name="scaleFactor" format="float" />
+        <!-- 层叠时相对前一张卡片渐变比例 -->
+        <attr name="alphaFactor" format="float" />
+        <!-- 判断最小可以判定消失比例 -->
+        <attr name="dismissFactor" format="float" />
+        <!-- 判断消失时的透明度 -->
+        <attr name="dismissAlpha" format="float" />
+        <!-- 卡片宽度 -->
+        <attr name="itemWidth" format="dimension" />
+        <!-- 卡片高度 -->
+        <attr name="itemHeight" format="dimension" />
+    </declare-styleable>
+</resources>

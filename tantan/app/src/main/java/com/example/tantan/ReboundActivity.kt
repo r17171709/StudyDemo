@@ -10,12 +10,13 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class ReboundActivity : AppCompatActivity() {
 
+    val springSystem = SpringSystem.create()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         iv_main.setOnClickListener {
-            val springSystem = SpringSystem.create()
             val scaleSpring = springSystem.createSpring()
             scaleSpring.currentValue = 0.0
             scaleSpring.springConfig = SpringConfig.fromOrigamiTensionAndFriction(40.0, 5.0)

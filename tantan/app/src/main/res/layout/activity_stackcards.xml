@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.example.tantan.view.StackCardsView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/view_stackcard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:itemHeight="300dp"
+        app:itemWidth="300dp">
+
+    </com.example.tantan.view.StackCardsView>
+</android.support.constraint.ConstraintLayout>
