@@ -15,18 +15,16 @@ class StackCardsView: FrameLayout {
 
     private val INVALID_SIZE = Int.MIN_VALUE
 
-    // 最多可见视图个数
+    // 可见卡片个数
     var maxVisibleCnt = 0
-    // 层叠时相对前一张卡片间距
+    // 层叠时相对前一张卡片的边距
     var edgeHeight = 0
-    // 层叠时相对前一张卡片缩放比例
+    // 层叠时相对前一张卡片的缩放比例
     var scaleFactor = 1f
-    // 层叠时相对前一张卡片渐变比例
+    // 层叠时相对前一张卡片的渐变比例
     var alphaFactor = 1f
-    // 判断最小可以判定消失比例
+    // 滑动时判定可以消失的最小滑动距离比例
     var dismissFactor = 0.4f
-    // 判断消失时的透明度
-    var dismissAlpha = 0.3f
     // 卡片宽度
     private var itemWidth = 0
     // 卡片高度
@@ -52,6 +50,10 @@ class StackCardsView: FrameLayout {
 
     var listener: OnCardSwipedListener? = null
 
+    val mTouchHelper: SwipeTouchHelper by lazy {
+        SwipeTouchHelper(this)
+    }
+
     constructor(context: Context, attributeSet: AttributeSet, defStyleAttr: Int) : super(context, attributeSet, defStyleAttr) {
         init(context, attributeSet, defStyleAttr)
     }
@@ -71,7 +73,6 @@ class StackCardsView: FrameLayout {
         scaleFactor = typeArray.getFloat(R.styleable.StackCardsView_scaleFactor, 0.8f)
         alphaFactor = typeArray.getFloat(R.styleable.StackCardsView_alphaFactor, 0.8f)
         dismissFactor = typeArray.getFloat(R.styleable.StackCardsView_dismissFactor, 0.4f)
-        dismissAlpha = typeArray.getFloat(R.styleable.StackCardsView_dismissAlpha, 0.3f)
         itemWidth = typeArray.getDimensionPixelSize(R.styleable.StackCardsView_itemWidth, INVALID_SIZE)
         if (itemWidth == INVALID_SIZE) {
             throw IllegalArgumentException("必须设置itemWidth")
@@ -92,8 +93,8 @@ class StackCardsView: FrameLayout {
         if (mNeedAdjustChildren) {
             mNeedAdjustChildren = false
             adjustChildren()
-            // 数据刷新之后重置mTouchChild
-            SwipeTouchHelper.getInstance(this).onChildChanged()
+            // 数据刷新之后重新获取mTouchChild
+            mTouchHelper.onChildChanged()
         }
         val count = childCount
         if (count>0) {
@@ -105,7 +106,7 @@ class StackCardsView: FrameLayout {
     }
 
     /**
-     * 对当前可见卡片进行初始化配置，并对缩放、渐变、位移属性区间参数配置完成
+     * 对所有卡片进行初始化配置，并对缩放、渐变、位移属性区间参数配置完成
      */
     private fun adjustChildren() {
         val count = childCount
@@ -141,13 +142,14 @@ class StackCardsView: FrameLayout {
         for (i in (maxVisibleIndex+1) until count) {
             val child = getChildAt(i)
 
-            // 不可见卡片直接沿用最后一张可用卡片
+            // 不可见卡片直接沿用最后一张可见卡片数据
             mScaleArray!![i] = scale.toFloat()
             mAlphaArray!![i] = alpha.toFloat()
             mTranslationYArray!![i] = translationY
 
             child.scaleX = scale.toFloat()
             child.scaleY = scale.toFloat()
+            // 透明度设置为0
             child.alpha = 0f
             child.translationY = translationY.toFloat()
         }
@@ -160,14 +162,26 @@ class StackCardsView: FrameLayout {
         val count = adapter?.getCount()
         removeAllViewsInLayout()
         if (count != 0 && count != null) {
-            var maxVisibleIndex = Math.min(count!!, maxVisibleCnt)
+            var maxVisibleIndex = Math.min(count, maxVisibleCnt)
             // 多加一个动画就没有那么突兀了
             for (i in 0..maxVisibleIndex) {
-                addViewInLayout(adapter?.getView(i, null, this), -1, LayoutParams(itemWidth, itemHeight, Gravity.CENTER), true)
+                addViewInLayout(adapter?.getView(i, null, this), -1, LayoutParams(itemWidth, itemHeight, Gravity.CENTER, DIRECTION.Swipe_Left), true)
             }
         }
         mNeedAdjustChildren = true
         requestLayout()
+    }
+
+    object DIRECTION {
+        const val Swipe_ALL = 0
+        const val Swipe_Left = 1
+        const val Swipe_Top = 2
+        const val Swipe_Right = 3
+        const val Swipe_Bottom = 4
+    }
+
+    inner class LayoutParams(width: Int, height: Int, gravity: Int, swipeDirection: Int) : FrameLayout.LayoutParams(width, height, gravity) {
+        val swipeDirection = swipeDirection
     }
 
     private fun safeRegisterObserver() {
@@ -282,8 +296,7 @@ class StackCardsView: FrameLayout {
     /**
      * 调整未拖动的子View的动画属性
      */
-    fun updateChildrenProgress(progress: Float, scrollingView: View) {
-        println(progress)
+    fun updateChildren(progress: Float, scrollingView: View) {
         val count = childCount
         // 一般情况下都是当前可见的第一个视图是scrollingView，所以未发送滚动的View都是第二个视图开始
         val startIndex = indexOfChild(scrollingView) + 1
@@ -330,11 +343,11 @@ class StackCardsView: FrameLayout {
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        return SwipeTouchHelper.getInstance(this).onInterceptTouchEvent(ev)
+        return mTouchHelper.onInterceptTouchEvent(ev)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return SwipeTouchHelper.getInstance(this).onTouchEvent(event)
+        return mTouchHelper.onTouchEvent(event)
     }
 
     override fun addView(child: View?) {
