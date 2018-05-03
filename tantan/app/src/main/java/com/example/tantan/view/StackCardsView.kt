@@ -165,7 +165,7 @@ class StackCardsView: FrameLayout {
             var maxVisibleIndex = Math.min(count, maxVisibleCnt)
             // 多加一个动画就没有那么突兀了
             for (i in 0..maxVisibleIndex) {
-                addViewInLayout(adapter?.getView(i, null, this), -1, LayoutParams(itemWidth, itemHeight, Gravity.CENTER, DIRECTION.Swipe_Left), true)
+                addViewInLayout(adapter?.getView(i, null, this), -1, LayoutParams(itemWidth, itemHeight, Gravity.CENTER, DIRECTION.Swipe_ALL), true)
             }
         }
         mNeedAdjustChildren = true
@@ -288,7 +288,7 @@ class StackCardsView: FrameLayout {
         if (adapter?.getCount()!! > childCount) {
             // adapter中数据集与当前ViewGroup中的视图顺序是一对一的，假设当前视图中有三个子View，则取下一个视图的索引正好是3
             val view = adapter?.getView(count, null, this)
-            addViewInLayout(view, -1,  LayoutParams(itemWidth, itemHeight, Gravity.CENTER), true)
+            addViewInLayout(view, -1,  LayoutParams(itemWidth, itemHeight, Gravity.CENTER, DIRECTION.Swipe_ALL), true)
             view?.layout(mLastLeft, mLastTop, mLastRight, mLastBottom)
         }
     }
