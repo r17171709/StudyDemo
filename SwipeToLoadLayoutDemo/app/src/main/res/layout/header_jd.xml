@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.swipetoloadlayoutdemo.view.JDRefreshHeaderView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="80dip">
+    <LinearLayout
+        android:id="@+id/layout_jd"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dip"
+        android:orientation="vertical">
+        <TextView
+            android:text="让购物更便捷"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_jd"
+            android:text="下拉刷新..."
+            android:layout_marginTop="3dip"
+            android:textSize="11sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_jd_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/layout_jd"
+        android:layout_centerVertical="true"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:alpha="0.3"
+        android:src="@mipmap/jd_box"/>
+    <ImageView
+        android:id="@+id/iv_jd_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/iv_jd_box"
+        android:layout_centerVertical="true"
+        android:scaleX="0.4"
+        android:scaleY="0.4"
+        android:alpha="0.3"
+        android:background="@drawable/animation_list_refresh_jd"/>
+    <ImageView
+        android:id="@+id/iv_jd_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/iv_jd_person"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/jd_speed"/>
+</com.renyu.swipetoloadlayoutdemo.view.JDRefreshHeaderView>

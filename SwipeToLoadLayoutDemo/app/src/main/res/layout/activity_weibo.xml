@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipe_weibo">
+
+    <include
+        layout="@layout/header_weibo"
+        android:id="@id/swipe_refresh_header" />
+    <TextView
+        android:id="@id/swipe_target"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="下拉刷新"/>
+</com.aspsine.swipetoloadlayout.SwipeToLoadLayout>

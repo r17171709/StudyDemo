@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.swipetoloadlayoutdemo.view.MTRefreshHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="10dip">
+    <ImageView
+        android:id="@+id/iv_mt"
+        android:layout_width="112dp"
+        android:layout_height="44dp"
+        android:background="@drawable/animation_list_refresh_mt"
+        android:transformPivotX="56dp"
+        android:transformPivotY="22dp"
+        android:scaleY="0.3"
+        android:scaleX="0.3"/>
+</com.renyu.swipetoloadlayoutdemo.view.MTRefreshHeaderView>
