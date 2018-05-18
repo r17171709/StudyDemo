@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="beans"
+            type="com.renyu.architecturedemo.mvvm.model.SearchBeans">
+
+        </variable>
+
+        <variable
+            name="eventListener"
+            type="com.renyu.architecturedemo.mvvm.impl.EventListener">
+
+        </variable>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:gravity="center"
+            android:onClick="@{(view) -> eventListener.onClickListener(view, beans.value)}"
+            android:text="@{beans.value}"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dip"
+            android:background="@color/colorAccent">
+
+        </View>
+    </LinearLayout>
+</layout>
