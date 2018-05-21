@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.renyu.databindingdemo.Utils">
+
+        </import>
+
+        <variable
+            name="activity"
+            type="com.renyu.databindingdemo.BindingMethodsActivity.Presenter" />
+
+        <variable
+            name="user"
+            type="com.renyu.databindingdemo.model.User">
+
+        </variable>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> activity.longClick(`long`)}"
+            android:text="@{`测试`+Utils.showTextValue(user.name)}"/>
+        <com.renyu.databindingdemo.view.CustomerTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{user::click}"
+            android:text="@{user.name}"
+            app:toast="@{user.name}"/>
+    </LinearLayout>
+</layout>

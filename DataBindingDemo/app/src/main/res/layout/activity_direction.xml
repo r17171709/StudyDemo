@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.databinding.ObservableArrayMap">
+
+        </import>
+        <import type="android.view.View">
+
+        </import>
+        <variable
+            name="direction"
+            type="com.renyu.databindingdemo.model.Direction">
+
+        </variable>
+    </data>
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btn_direction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更新"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{direction.direction[direction.choice]}"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="@{direction.choice != null ? View.VISIBLE : View.GONE}"/>
+    </LinearLayout>
+</layout>

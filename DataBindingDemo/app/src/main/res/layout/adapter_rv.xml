@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="user"
+            type="com.renyu.databindingdemo.model.User">
+
+        </variable>
+    </data>
+    <LinearLayout
+        android:id="@+id/layout_adapter_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_adapter_rv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.id}"/>
+        <TextView
+            android:id="@+id/tv_adapter_rv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.name}" />
+        <TextView
+            android:id="@+id/tv_adapter_rv_blog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.blog}" />
+    </LinearLayout>
+</layout>

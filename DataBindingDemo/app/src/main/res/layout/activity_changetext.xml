@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="score"
+            type="com.renyu.databindingdemo.model.Score">
+
+        </variable>
+    </data>
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/ed_changetext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={score.name}"/>
+        <TextView
+            android:id="@+id/tv_changetext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{score.name}"/>
+    </LinearLayout>
+</layout>

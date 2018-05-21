@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="user"
+            type="com.renyu.databindingdemo.model.User">
+
+        </variable>
+
+        <variable
+            name="listener"
+            type="com.renyu.databindingdemo.RecyclerView2Activity.RVListener" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.id}"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> listener.onClick(user)}"
+            android:text="@{user.name}" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.blog}" />
+    </LinearLayout>
+</layout>

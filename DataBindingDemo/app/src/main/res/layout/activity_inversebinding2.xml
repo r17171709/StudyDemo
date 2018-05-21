@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="score"
+            type="com.renyu.databindingdemo.model.Score">
+
+        </variable>
+    </data>
+    <com.renyu.databindingdemo.view.CustomerRefreshLayout
+        android:id="@+id/refresh_inversebing"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:refresh="@={score.isOK}"
+        android:text="@{score.isOK?`按下`:`抬起`}"
+        android:clickable="true"/>
+</layout>
