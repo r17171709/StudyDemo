@@ -22,7 +22,7 @@ class NetRequest private constructor() {
     fun getRequestInfo() : Observable<String> {
         return Observable.create<String> {
             val builder = Request.Builder()
-            val request = builder.url("http://www.mocky.io/v2/5afe76b83200007400222e7b").build()
+            val request = builder.url("https://www.mocky.io/v2/5afe76b83200007400222e7b").build()
             val call = (Utils.getApp() as MyApplication).client!!.newCall(request)
             val response = call.execute()
             if (response.isSuccessful) {

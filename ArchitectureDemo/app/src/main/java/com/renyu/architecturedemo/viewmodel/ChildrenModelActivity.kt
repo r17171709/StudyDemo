@@ -13,7 +13,7 @@ class ChildrenModelActivity : AppCompatActivity() {
     private val nameViewModel by lazy {
 //        ViewModelProviders.of(this).get(ChildrenViewModel::class.java)
         // ViewModel带参数
-        ViewModelProviders.of(this, ChildrenModelFactory.getInstance(Utils.getApp())).get(ChildrenViewModel::class.java)
+        ViewModelProviders.of(this, ChildrenModelFactory(Utils.getApp())).get(ChildrenViewModel::class.java)
     }
 
     private val myChildrenViewModel by lazy {

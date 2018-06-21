@@ -14,13 +14,16 @@ abstract class BaseActivity<T : ViewDataBinding, M : Any, VM : Any> : AppCompatA
     abstract fun initParams()
     abstract fun loadData()
 
-    var viewDataBinding: T? = null
     var viewModel: VM? = null
+
+    var viewDataBinding: T? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewDataBinding = DataBindingUtil.setContentView(this, initViews())
-        viewDataBinding?.setVariable(variableId(), model())
+
+        viewDataBinding = DataBindingUtil.setContentView<T>(this, initViews()).also {
+            it.setVariable(variableId(), model())
+        }
 
         viewModel = viewModel()
 
