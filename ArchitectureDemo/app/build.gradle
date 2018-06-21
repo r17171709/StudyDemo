@@ -7,19 +7,39 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.renyu.architecturedemo"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            // Temporary workaround for Kotlin 1.2.50 and DataBinding bug. For more context see
+            // https://issuetracker.google.com/issues/110198434 and
+            // https://youtrack.jetbrains.com/issue/KT-24915#comment=27-2914947
+            tasks.whenTaskAdded { task ->
+                if (task.name == 'kaptDebugKotlin') {
+                    task.dependsOn dataBindingExportFeaturePackageIdsDebug
+                }
+            }
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // Temporary workaround for Kotlin 1.2.50 and DataBinding bug. For more context see
+            // https://issuetracker.google.com/issues/110198434 and
+            // https://youtrack.jetbrains.com/issue/KT-24915#comment=27-2914947
+            tasks.whenTaskAdded { task ->
+                if (task.name == 'kaptReleaseKotlin') {
+                    task.dependsOn dataBindingExportFeaturePackageIdsRelease
+                }
+            }
         }
     }
     dataBinding {
@@ -34,8 +54,8 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-alpha3'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     kapt 'android.arch.lifecycle:compiler:1.1.1'
     implementation 'android.arch.work:work-runtime-ktx:1.0.0-alpha02'
