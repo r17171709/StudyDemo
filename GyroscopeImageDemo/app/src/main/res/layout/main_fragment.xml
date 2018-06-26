@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.MainFragment">
+    <com.example.administrator.gyroscopeimagedemo.ui.view.GyroscopeImageView
+        android:id="@+id/iv_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:scaleType="center"/>
+
+    <com.yarolegovich.discretescrollview.DiscreteScrollView
+        android:id="@+id/rv_image"
+        android:layout_marginTop="10dip"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"/>
+</LinearLayout>
