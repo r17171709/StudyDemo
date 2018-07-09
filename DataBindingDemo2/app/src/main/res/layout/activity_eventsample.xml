@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" >
+    <data>
+        <variable
+            name="handlers"
+            type="com.example.administrator.databindingdemo2.util.MyHandlers"></variable>
+        <variable
+            name="impl"
+            type="com.example.administrator.databindingdemo2.impl.ClickEventImpl"></variable>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="@{handlers::onClick}"
+            android:gravity="center"
+            android:text="点击1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="@{(view)->handlers.onClick(view)}"
+            android:gravity="center"
+            android:text="点击2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="@{(view)->handlers.onClick3(view, String.valueOf(`234`))}"
+            android:gravity="center"
+            android:text="点击3"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="@{(view)->impl.clickEvent(view, String.valueOf(`234`))}"
+            android:gravity="center"
+            android:text="点击4"/>
+    </LinearLayout>
+</layout>

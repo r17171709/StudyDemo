@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"></import>
+        <import type="com.example.administrator.databindingdemo2.model.Teacher"></import>
+        <!--<variable-->
+            <!--name="teacher"-->
+            <!--type="com.example.administrator.databindingdemo2.model.Teacher"></variable>-->
+        <variable
+            name="teacher"
+            type="com.example.administrator.databindingdemo2.model.Teacher">
+
+        </variable>
+        <variable
+            name="student"
+            type="com.example.administrator.databindingdemo2.model.Student"></variable>
+        <variable
+            name="courses"
+            type="com.example.administrator.databindingdemo2.model.Course"></variable>
+    </data>
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            layout="@layout/view_basesample"
+            bind:student="@{student}">
+
+        </include>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@{teacher.name}"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@{String.format(@string/teacher_age, teacher.age)}"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:visibility="@{teacher.age&lt;30 ? View.VISIBLE : View.GONE}"
+            android:text="@{String.valueOf(teacher.age)}"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@{String.valueOf(courses.course[teacher.name].age)}"
+            android:gravity="center"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@{courses.course[teacher.name].age&gt;10 ? @drawable/ic_launcher : @drawable/ic_launcher_round}"/>
+    </LinearLayout>
+</layout>

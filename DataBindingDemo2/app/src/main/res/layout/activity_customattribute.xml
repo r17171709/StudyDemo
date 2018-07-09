@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewUtils"
+            type="com.example.administrator.databindingdemo2.util.ViewUtils"></variable>
+        <variable
+            name="dayNight"
+            type="com.example.administrator.databindingdemo2.model.DayNight"></variable>
+        <variable
+            name="handlers"
+            type="com.example.administrator.databindingdemo2.util.MyHandlers"></variable>
+    </data>
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.example.administrator.databindingdemo2.ui.view.CustomerTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:textshow="@{`点击`+@string/app_name}"
+            app:toast="@{`CustomerTextView`}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:text="@{`text`}"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:startText="@{`startText`}"
+            app:endText="@{`endText`}"
+            android:background="@{dayNight.day}"
+            android:layout_weight="1"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:text="@{`接口`}"
+            app:clickEventImpl="@{(view, string) -> handlers.onClick3(view, string)}"
+            app:inputValue="@{dayNight.day}"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</layout>

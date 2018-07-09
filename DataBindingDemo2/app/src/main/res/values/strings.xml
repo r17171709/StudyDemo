@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DataBindingDemo2</string>
+    <string name="teacher_age">老师的年龄是%s</string>
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="teacher2"
+            type="com.example.administrator.databindingdemo2.model.Teacher2"></variable>
+        <variable
+            name="showhide"
+            type="com.example.administrator.databindingdemo2.model.ShowHide"></variable>
+    </data>
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{teacher2.name.equals(``) ? true : false}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:gravity="center"
+            android:text="@{teacher2.name}"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:text="@={teacher2.name}"/>
+        <com.example.administrator.databindingdemo2.ui.view.VisibleView2
+            android:id="@+id/view_inversebinding"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:displayShow="@={showhide.sh}"/>
+    </LinearLayout>
+</layout>

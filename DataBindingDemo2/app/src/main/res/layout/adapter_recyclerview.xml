@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="teacher"
+            type="com.example.administrator.databindingdemo2.model.Teacher2"></variable>
+        <variable
+            name="handlers"
+            type="com.example.administrator.databindingdemo2.util.MyHandlers"></variable>
+    </data>
+    <LinearLayout
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:onClick="@{(view) -> handlers.onClick3(view, teacher.name)}">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@{teacher.name}"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@{String.valueOf(teacher.age)}"
+            android:gravity="center"/>
+    </LinearLayout>
+</layout>
