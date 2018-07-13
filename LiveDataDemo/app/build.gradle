@@ -49,5 +49,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.2.51"
     implementation "android.arch.lifecycle:extensions:1.1.1"
     testImplementation 'junit:junit:4.12'
-    implementation 'com.github.renyu:AndroidCommonLibrary:1.12.4'
+    implementation 'com.github.renyu:AndroidCommonLibrary:1.13.0'
 }
