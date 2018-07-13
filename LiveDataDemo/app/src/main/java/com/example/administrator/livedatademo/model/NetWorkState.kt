@@ -1,11 +1,11 @@
 package com.example.administrator.livedatademo.model
 
+import android.arch.lifecycle.LiveData
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import androidx.lifecycle.LiveData
 import com.blankj.utilcode.util.NetworkUtils
 
 class NetWorkState(val context: Context) : LiveData<Boolean>() {
