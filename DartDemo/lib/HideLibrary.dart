@@ -1,0 +1,3 @@
+void hideFunction() {
+  print("hideFunction");
+}

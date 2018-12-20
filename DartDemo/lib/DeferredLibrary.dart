@@ -1,0 +1,3 @@
+void deferredFunction() {
+  print("deferredFunction");
+}

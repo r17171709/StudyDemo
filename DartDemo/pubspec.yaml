@@ -1,0 +1,14 @@
+name: DartDemo
+description: A sample command-line application.
+# version: 1.0.0
+# homepage: https://www.example.com
+# author: Administrator <email@example.com>
+
+environment:
+  sdk: '>=2.1.0 <3.0.0'
+
+dependencies:
+  dio: '1.0.12'
+
+dev_dependencies:
+  test: ^1.0.0
