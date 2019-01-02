@@ -78,6 +78,11 @@ void main() {
   int9 ??= 11;
   print("int9:$int9");
 
+  // ??运算符
+  int int10;
+  int int11 = int10 ?? 11;
+  print("int11 = ${int11}");
+
   // ?. 类似于Kotlin的非空判断
   int a10;
   print("a10:${a10?.toString()}");

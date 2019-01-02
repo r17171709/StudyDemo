@@ -17,6 +17,8 @@ void main() {
 
   Asia asia = new Asia("China");
   asia.name;
+
+  EventBus eventBus = new EventBus();
 }
 
 class ClassTest {
@@ -244,4 +246,14 @@ class Europe implements Continent {
 class Utils<T, R> {
   T valueA;
   R valueB;
+}
+
+class EventBus {
+  EventBus._singleInstance();
+
+  static EventBus _instance = new EventBus._singleInstance();
+
+  factory EventBus() {
+    return _instance;
+  }
 }
