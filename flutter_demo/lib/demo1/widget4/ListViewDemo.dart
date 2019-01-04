@@ -89,22 +89,31 @@ class _ListViewDemoState extends State<ListViewDemoState> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.instance = ScreenUtil(width: 1080, height: 1920)..init(context);
-    return new ListView.separated(
-        itemBuilder: (BuildContext context, int index) {
-          return new Container(
-            child: new HouseAdapter(widget.arrayList[index]),
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return new Container(
-            margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(72)),
-            child: new Divider(
-              height: 1.0,
-              color: Colors.grey,
-            ),
-          );
-        },
-        itemCount: widget.arrayList.length);
+    NotificationListener<ScrollNotification> listener =
+        new NotificationListener(
+            onNotification: (ScrollNotification notification) {
+              print(
+                  "${notification.metrics.pixels} ${notification.metrics.maxScrollExtent} ${notification.metrics.atEdge}");
+              return false;
+            },
+            child: new ListView.separated(
+                itemBuilder: (BuildContext context, int index) {
+                  return new Container(
+                    child: new HouseAdapter(widget.arrayList[index]),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return new Container(
+                    margin: EdgeInsets.symmetric(
+                        horizontal: ScreenUtil().setWidth(72)),
+                    child: new Divider(
+                      height: 1.0,
+                      color: Colors.grey,
+                    ),
+                  );
+                },
+                itemCount: widget.arrayList.length));
+    return listener;
   }
 
   void _getWebResult() {
