@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-//    this.fit            缩放的方式。默认的属性是BoxFit.contain。child在FittedBox范围内，尽可能的大，但是不超出其尺寸。这里注意一点，contain是保持着child宽高比的大前提下，尽可能的填满，一般情况下，宽度或者高度达到最大值时，就会停止缩放
+//    this.fit            缩放的方式。默认的属性是BoxFit.contain。
+//                        child在FittedBox范围内，尽可能的大，但是不超出其尺寸。这里注意一点，contain是保持着child宽高比的大前提下，尽可能的填满，一般情况下，宽度或者高度达到最大值时，就会停止缩放
 //    this.alignment      对齐方式。默认的属性是Alignment.center，居中显示child
 
 void main() {

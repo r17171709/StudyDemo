@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-//    Key key,                        组件唯一标识符
-//    this.alignment,                 控制child的对齐方式
-//    this.padding,
-//    Color color,                    背景色
-//    Decoration decoration,          绘制在child下层的装饰，不能与color同时使用
-//    this.foregroundDecoration,      绘制在child上层的装饰
-//    double width,
-//    double height,
-//    BoxConstraints constraints,     添加到child上额外的约束条件
-//    this.margin,
-//    this.transform,                 设置变换矩阵，类型为Matrix4
-//    this.child,
+//   this.alignment,                 控制child的对齐方式
+//   this.padding,
+//   Color color,                    背景色
+//   Decoration decoration,          绘制在child下层的装饰，不能与color同时使用
+//   this.foregroundDecoration,      绘制在child上层的装饰
+//   double width,
+//   double height,
+//   BoxConstraints constraints,     添加到child上额外的约束条件
+//   this.margin,
+//   this.transform,                 设置变换矩阵，类型为Matrix4
+//   this.child,
 
 void main() {
   runApp(new MyContainerAppDemo());
@@ -33,7 +32,7 @@ class MyContainerAppDemo extends StatelessWidget {
   }
 }
 
-// Container在没有子节点（child）的时候，会试图去变得足够大。
+// Container在没有child的时候，会试图去变得足够大。
 //class ContainerDemo extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class MyContainerAppDemo extends StatelessWidget {
 //  }
 //}
 
-// 没有子节点的Container构造器中如果包含了width、height或者constraints，则会按照构造器中的参数以及父节点的限制，将自身调节到足够小
+// 没有child的Container构造器中如果包含了width、height或者constraints，则会按照构造器中的参数以及父节点的限制，将自身调节到足够小
 //class ContainerDemo extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
@@ -55,44 +54,13 @@ class MyContainerAppDemo extends StatelessWidget {
 //  }
 //}
 
-// 带子节点的Container，会根据子节点尺寸调节自身尺寸
-class ContainerDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-      color: Colors.black,
-      child: new Container(
-        decoration: new BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            gradient:
-                new LinearGradient(colors: <Color>[Colors.green, Colors.blue]),
-            boxShadow: <BoxShadow>[
-              new BoxShadow(
-                  color: Colors.grey,
-                  offset: new Offset(4.0, 4.0),
-                  blurRadius: 4.0)
-            ]),
-        height: 150.0,
-        width: 150.0,
-        alignment: AlignmentDirectional.center,
-        child: new Text(
-          "ContainerDemo",
-          style: new TextStyle(color: Colors.blue),
-        ),
-      ),
-    );
-  }
-}
-
-// 带子节点的Container构造器中如果包含了width、height或者constraints，则会按照构造器中的参数来进行尺寸的调节
+// 带child的Container会根据child的尺寸调节自身尺寸
+// 这时候Container的尺寸以child为准
 //class ContainerDemo extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
 //    return new Container(
 //      color: Colors.black,
-//      height: 50.0,
-//      width: 50.0,
 //      child: new Container(
 //        decoration: new BoxDecoration(
 //            color: Colors.red,
@@ -117,7 +85,40 @@ class ContainerDemo extends StatelessWidget {
 //  }
 //}
 
-// 简而言之，单身的时候，想怎样就怎样。有了孩子之后，一切围着孩子转，除非给孩子加限制，孩子才跟着你转
+// 带child的Container构造器中如果包含了width、height或者constraints，则会按照构造器中的参数来进行尺寸的调节
+// 这时候child的尺寸以Container为准
+class ContainerDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      color: Colors.black,
+      height: 350.0,
+      width: 350.0,
+      child: new Container(
+        decoration: new BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            gradient:
+                new LinearGradient(colors: <Color>[Colors.green, Colors.blue]),
+            boxShadow: <BoxShadow>[
+              new BoxShadow(
+                  color: Colors.grey,
+                  offset: new Offset(4.0, 4.0),
+                  blurRadius: 4.0)
+            ]),
+        height: 150.0,
+        width: 150.0,
+        alignment: AlignmentDirectional.center,
+        child: new Text(
+          "ContainerDemo",
+          style: new TextStyle(color: Colors.blue),
+        ),
+      ),
+    );
+  }
+}
+
+// 简而言之，单身的时候，想怎样就怎样。有了孩子之后，一切围着孩子转。除非非要以大自居给孩子脸色，孩子才跟着你转
 
 //class ContainerDemo extends StatefulWidget {
 //  @override

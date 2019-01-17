@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-//    this.color,                       背景色
-//    this.image,                       背景图片
-//    this.border,                      边界颜色、宽度等
-//    this.borderRadius,                边界圆角大小
-//    this.boxShadow,                   阴影
-//    this.gradient,                    过度效果。会覆盖color
-//    this.backgroundBlendMode,
-//    this.shape = BoxShape.rectangle,  边界形状。若设置成BoxShape.circle，则不能与borderRadius同时使用
+//   this.color,                       背景色
+//   this.image,                       背景图片
+//   this.border,                      边界颜色、宽度等
+//   this.borderRadius,                边界圆角大小
+//   this.boxShadow,                   阴影
+//   this.gradient,                    过度效果。会覆盖color
+//   this.backgroundBlendMode,
+//   this.shape = BoxShape.rectangle,  边界形状。若设置成BoxShape.circle，则不能与borderRadius同时使用
 
 void main() {
-  runApp(new MyDecorationAppDemo());
+  runApp(new MyDecorationBoxAppDemo());
 }
 
-class MyDecorationAppDemo extends StatelessWidget {
+class MyDecorationBoxAppDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -23,13 +23,13 @@ class MyDecorationAppDemo extends StatelessWidget {
         appBar: new AppBar(
           title: new Text("DecorationDemo"),
         ),
-        body: new DecorationDemo(),
+        body: new DecorationBoxDemo(),
       ),
     );
   }
 }
 
-//class DecorationDemo extends StatelessWidget {
+//class DecorationBoxDemo extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
 //    Container container = new Container(
@@ -50,7 +50,7 @@ class MyDecorationAppDemo extends StatelessWidget {
 //  }
 //}
 
-class DecorationDemo extends StatelessWidget {
+class DecorationBoxDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Container container = new Container(
