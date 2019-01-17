@@ -8,41 +8,35 @@ class MyImageAppDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "MyImageDemo",
+      title: "MyImageAppDemo",
       theme: new ThemeData(primarySwatch: Colors.red),
-      home: new MyImageState(),
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text("ImageDemo"),
+        ),
+        body: new ImageDemo(),
+      ),
     );
   }
 }
 
-class MyImageState extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return new _MyImageState();
-  }
-}
-
-class _MyImageState extends State<MyImageState> {
+class ImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("MyImage"),
-      ),
-      body: new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          new NetworkImageDemo(),
-          new AssetImageDemo(),
-          new IconImageDemo(),
-          new FitDemo(),
-          new RepeatDemo()
-        ],
-      ),
+    return new Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        new NetworkImageDemo(),
+        new AssetImageDemo(),
+        new IconImageDemo(),
+        new FitDemo(),
+        new RepeatDemo()
+      ],
     );
   }
 }
 
+// 网络图片
 class NetworkImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -57,6 +51,7 @@ class NetworkImageDemo extends StatelessWidget {
   }
 }
 
+// 本地图片
 class AssetImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -71,6 +66,7 @@ class AssetImageDemo extends StatelessWidget {
   }
 }
 
+// Icon图片
 class IconImageDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -82,6 +78,7 @@ class IconImageDemo extends StatelessWidget {
   }
 }
 
+// 剪裁样式
 class FitDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -147,9 +144,9 @@ class RepeatDemo extends StatelessWidget {
       padding: EdgeInsets.all(10.0),
       child: new Image.network(
         "https://avatars2.githubusercontent.com/u/20411648?s=460&v=4",
-        width: 200.0,
-        height: 50.0,
-        repeat: ImageRepeat.repeatX,
+        width: 100.0,
+        height: 150.0,
+        repeat: ImageRepeat.repeat,
       ),
     );
   }
@@ -157,6 +154,6 @@ class RepeatDemo extends StatelessWidget {
 
 class MyIcons {
   static const IconData cactus =
-  // fontPackage命名要小心，命名不当不显示图像
+      // fontPackage命名要小心，命名不当不显示图像
       const IconData(0xe601, fontFamily: "iconfonts", matchTextDirection: true);
 }

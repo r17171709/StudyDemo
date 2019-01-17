@@ -13,35 +13,30 @@ class MyTextDemoApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: new MyTextDemoState(),
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text("TextDemo"),
+        ),
+        body: new TextDemo(),
+      ),
     );
   }
 }
 
-class MyTextDemoState extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return new _MyTextDemoState();
-  }
-}
-
-class _MyTextDemoState extends State<MyTextDemoState> {
+class TextDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("TextDemo"),
-      ),
-      body: new Column(
-        children: <Widget>[
-          new TextAlignDemo(),
-          new TextMaxLineDemo(),
-          new TextScaleFactorDemo(),
-          new TextStyleDemo(),
-          new TextSpanDemo(),
-          new DefaultTextStyleDemo()
-        ],
-      ),
+    return new Column(
+      children: <Widget>[
+        new TextAlignDemo(),
+        new TextDirectionDemo(),
+        new TextMaxLineDemo(),
+        new TextScaleFactorDemo(),
+        new TextStyleDemo(),
+        new TextSpanDemo(),
+        new DefaultTextStyleDemo(),
+        new RichTextDemo()
+      ],
     );
   }
 }
@@ -49,9 +44,29 @@ class _MyTextDemoState extends State<MyTextDemoState> {
 class TextAlignDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Padding(
-      padding: EdgeInsets.all(10.0),
-      child: new Text("TextAlign" * 16, textAlign: TextAlign.center),
+    return new Row(
+      children: <Widget>[
+        new Expanded(
+            child: new Text(
+          "Hello World",
+          textAlign: TextAlign.center,
+        ))
+      ],
+    );
+  }
+}
+
+class TextDirectionDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Row(
+      children: <Widget>[
+        new Expanded(
+            child: new Text(
+          "Hello World",
+          textDirection: TextDirection.rtl,
+        ))
+      ],
     );
   }
 }
@@ -89,12 +104,35 @@ class TextStyleDemo extends StatelessWidget {
     return new Padding(
       padding: EdgeInsets.all(10.0),
       child: new Text(
-        "TextStyleDemo",
+        "Hello TextStyleDemo",
         style: new TextStyle(
+            // 文字颜色
             color: Colors.red,
+            // 加粗
+            fontWeight: FontWeight.bold,
+            // 文字大小
             fontSize: 16.0,
+            // 斜体
+            fontStyle: FontStyle.italic,
+            // 字间距
+            letterSpacing: 2,
+            // 单词间距
+            wordSpacing: 10,
+            // 背景色
             background: new Paint()..color = Colors.yellow,
+            // 阴影
+            // 右下方4像素、虚化半径4像素的蓝色阴影
+            shadows: <Shadow>[
+              new Shadow(
+                  color: Colors.blue,
+                  offset: new Offset(4.0, 4.0),
+                  blurRadius: 4.0)
+            ],
+            // 下划线
             decoration: TextDecoration.underline,
+            // 下划线颜色
+            decorationColor: Colors.lightBlue,
+            // 下划线样式
             decorationStyle: TextDecorationStyle.dashed),
       ),
     );
@@ -106,13 +144,14 @@ class TextSpanDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Padding(
         padding: EdgeInsets.all(10.0),
+        // 使用Text.rich构造函数，Text组件可以显示具有不同样式的TextSpan段落
+        // Text.rich与第一层TextSpan定义的属性均可以成为基类属性。但如果属性相同，TextSpan的优先级高于Text.rich
         child: new Text.rich(
+          // 基类属性
           new TextSpan(
-              style: new TextStyle(
-                  color: Colors.blue,
-                  fontSize: 16.0,
-                  background: new Paint()..color = Colors.yellow),
+              style: new TextStyle(fontWeight: FontWeight.bold),
               children: <TextSpan>[
+                // 子类属性
                 new TextSpan(
                     text: "TextSpanDemo1",
                     recognizer: new TapGestureRecognizer()
@@ -126,6 +165,11 @@ class TextSpanDemo extends StatelessWidget {
                       fontSize: 12.0,
                     ))
               ]),
+          // 基类属性
+          style: new TextStyle(
+              color: Colors.blue,
+              fontSize: 16.0,
+              background: new Paint()..color = Colors.yellow),
         ));
   }
 }
@@ -135,6 +179,7 @@ class DefaultTextStyleDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Padding(
       padding: EdgeInsets.all(10.0),
+      // 同样也是基类属性给子类使用
       child: new DefaultTextStyle(
           style: new TextStyle(
               color: Colors.blue,
@@ -146,10 +191,28 @@ class DefaultTextStyleDemo extends StatelessWidget {
               new Text("DefaultTextStyleDemo2"),
               new Text(
                 "DefaultTextStyleDemo3",
-                style: new TextStyle(color: Colors.green),
+                style: new TextStyle(color: Colors.black),
               )
             ],
           )),
     );
+  }
+}
+
+// 无论是Text或者Text.rich, 查看源代码发现. 都是由RichText构建出来
+class RichTextDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new RichText(
+        text: new TextSpan(
+            style: new TextStyle(
+              color: Colors.blue,
+              fontSize: 16,
+            ),
+            children: <TextSpan>[
+          new TextSpan(text: "Hello", style: new TextStyle(color: Colors.red)),
+          new TextSpan(
+              text: "World", style: new TextStyle(color: Colors.purple))
+        ]));
   }
 }
