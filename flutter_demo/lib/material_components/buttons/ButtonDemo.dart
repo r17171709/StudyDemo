@@ -32,7 +32,9 @@ class ButtonDemo extends StatelessWidget {
         new FlatButtonDemo(),
         new OutlineButtonDemo(),
         new IconButtonDemo(),
-        new FloatingActionButtonExtendedDemo()
+        new FloatingActionButtonExtendedDemo(),
+        new PopupMenuButtonDemo(),
+        new ButtonBarDemo()
       ],
     );
   }
@@ -170,6 +172,67 @@ class FloatingActionButtonExtendedDemo extends StatelessWidget {
       backgroundColor: Colors.blue,
       elevation: 6,
       highlightElevation: 10,
+    );
+  }
+}
+
+enum No { No1, No2, No3, No4 }
+
+class PopupMenuButtonDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new PopupMenuButton(
+      itemBuilder: (BuildContext context) {
+        return <PopupMenuEntry<No>>[
+          new PopupMenuItem(
+            // 显示出的文字
+            child: new Text("1"),
+            // onSelected中的入参
+            value: No.No1,
+          ),
+          new PopupMenuItem(
+            child: new Text("2"),
+            value: No.No2,
+          ),
+          new PopupMenuItem(
+            child: new Text("3"),
+            value: No.No3,
+          ),
+          new PopupMenuItem(
+            child: new Text("4"),
+            value: No.No4,
+          )
+        ];
+      },
+      // 选择某一项
+      onSelected: (No value) {
+        Scaffold.of(context)
+            .showSnackBar(SnackBar(content: new Text(value.toString())));
+      },
+      // 显示出来的图标
+      icon: new Icon(Icons.select_all),
+      // 未选择某一项
+      onCanceled: () {
+        Scaffold.of(context)
+            .showSnackBar(SnackBar(content: new Text("取消")));
+      },
+    );
+  }
+}
+
+// 一组带边距的横排显示组件组合
+class ButtonBarDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new ButtonBar(
+      // 组件对齐方式
+      alignment: MainAxisAlignment.center,
+      // 组件横向铺满还是以children的实际尺寸展现
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        new Text("Hello"),
+        new Text("World"),
+      ],
     );
   }
 }
