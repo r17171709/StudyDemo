@@ -19,6 +19,15 @@ void main() {
   asia.name;
 
   EventBus eventBus = new EventBus();
+
+  SeniorExecutive seniorExecutive = new SeniorExecutive();
+  seniorExecutive.showValue();
+
+  LegalPerson legalPerson = new LegalPerson();
+  legalPerson.showValue();
+
+  NaturalPerson2 naturalPerson2 = new NaturalPerson2();
+  naturalPerson2.showValue();
 }
 
 class ClassTest {
@@ -180,14 +189,58 @@ class Sponsor {
   void sFunction() {}
 }
 
-// 扩展类
-// 使用with关键字后面跟着一个或多个扩展类名
+// 扩展类(mixins)
+// mixins的中文意思是混入，就是在类中混入其他功能。它是一种在多个类层次结构中重用类代码的方法。mixins要重用的代码，不是方法或者是接口，而是类！
+// mixins要用到的关键字with，with关键字后面跟着一个或多个扩展类名
+// 这里，应该这样描述Person类：类Club想使用类Sponsor的sFunction()方法，那么这时候就需要用到mixins，而类Sponsor就是mixins类(混入类)，类Club就是要被mixins的类。最后Person继承这个Club与Sponsor mixins后的类(Club with Sponsor)
 class Person extends Club with Sponsor {
   void a() {
     color;
     clubName;
     cFunction();
     sFunction();
+  }
+}
+// 一个类可以mixins多个mixins类
+
+class Company1 {
+  void name() {
+    print("Company1");
+  }
+}
+class Company2 {
+  void name() {
+    print("Company2");
+  }
+}
+// Company1与Company2同时有相同名称的函数类型，那么在这种情况下应该选择哪一个呢
+class SeniorExecutive with Company1, Company2 {
+  void showValue() {
+    // 打印出来的是Company2，相当于(SeniorExecutive with Company1) with Company2
+    name();
+  }
+}
+
+class NaturalPerson {
+  void name() {
+    print("NaturalPerson");
+  }
+}
+// 如果继承的NaturalPerson与mixins的Company1同时有相同名称的函数类型，那么在这种情况下应该选择哪一个呢
+class LegalPerson extends NaturalPerson with Company1 {
+  void showValue() {
+    // 打印出来的是Company1，相当于LegalPerson extends (NaturalPerson with Company1)
+    name();
+  }
+}
+// 如果当前类NaturalPerson2与mixins的Company1、Company2同时有相同名称的函数类型，那么在这种情况下应该选择哪一个呢
+class NaturalPerson2 with Company1, Company2 {
+  void name() {
+    print("NaturalPerson");
+  }
+  void showValue() {
+    // 打印出来的是NaturalPerson，相当于LegalPerson extends (NaturalPerson with Company1)
+    name();
   }
 }
 
