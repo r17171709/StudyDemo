@@ -1,6 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+//  this.style,              文本样式
+//  this.textAlign,          文本对齐方式
+//  this.textDirection,      文字排列方向
+//  this.locale,             设置区域，默认系统的区域
+//  this.softWrap,           是否自动换行
+//  this.overflow,           截取展示方式
+//  this.textScaleFactor,    字体缩放比例
+//  this.maxLines,           最大行数
+
 void main() {
   runApp(new MyTextDemoApp());
 }
@@ -41,6 +50,7 @@ class TextDemo extends StatelessWidget {
   }
 }
 
+// textAlign的使用
 class TextAlignDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -56,6 +66,7 @@ class TextAlignDemo extends StatelessWidget {
   }
 }
 
+// textDirection的使用
 class TextDirectionDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -71,6 +82,7 @@ class TextDirectionDemo extends StatelessWidget {
   }
 }
 
+// overflow与maxLines的使用
 class TextMaxLineDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -85,6 +97,7 @@ class TextMaxLineDemo extends StatelessWidget {
   }
 }
 
+// textScaleFactor的使用
 class TextScaleFactorDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -98,6 +111,23 @@ class TextScaleFactorDemo extends StatelessWidget {
   }
 }
 
+// TextStyle设计到的主要属性
+//  this.color,             文字颜色
+//  this.fontSize,          文字大小
+//  this.fontWeight,        文字加粗
+//  this.fontStyle,         文字倾斜
+//  this.letterSpacing,     字间距
+//  this.wordSpacing,       单词间距
+//  this.textBaseline,      字体基线
+//  this.height,
+//  this.locale,            设置区域，默认系统的区域
+//  this.foreground,        前景色
+//  this.background,        背景色
+//  this.shadows,           阴影
+//  this.decoration,        下划线
+//  this.decorationColor,   下划线颜色
+//  this.decorationStyle,   下划线样式
+
 class TextStyleDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -106,21 +136,13 @@ class TextStyleDemo extends StatelessWidget {
       child: new Text(
         "Hello TextStyleDemo",
         style: new TextStyle(
-            // 文字颜色
             color: Colors.red,
-            // 加粗
             fontWeight: FontWeight.bold,
-            // 文字大小
             fontSize: 16.0,
-            // 斜体
             fontStyle: FontStyle.italic,
-            // 字间距
             letterSpacing: 2,
-            // 单词间距
             wordSpacing: 10,
-            // 背景色
             background: new Paint()..color = Colors.yellow,
-            // 阴影
             // 右下方4像素、虚化半径4像素的蓝色阴影
             shadows: <Shadow>[
               new Shadow(
@@ -128,16 +150,18 @@ class TextStyleDemo extends StatelessWidget {
                   offset: new Offset(4.0, 4.0),
                   blurRadius: 4.0)
             ],
-            // 下划线
             decoration: TextDecoration.underline,
-            // 下划线颜色
             decorationColor: Colors.lightBlue,
-            // 下划线样式
             decorationStyle: TextDecorationStyle.dashed),
       ),
     );
   }
 }
+
+// TextSpan的使用
+//  this.style,        当前TextSpan以及其children的基本样式
+//  this.text,         文字
+//  this.children,     为一段文字展现不同的样式而拆分成多个样式不同的child
 
 class TextSpanDemo extends StatelessWidget {
   @override
