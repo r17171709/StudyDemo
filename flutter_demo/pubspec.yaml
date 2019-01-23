@@ -42,16 +42,16 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - images/ic_index_customer_nor.png
-    - images/ic_index_customer_sel.png
-    - images/ic_index_field_nor.png
-    - images/ic_index_field_sel.png
-    - images/ic_index_home_nor.png
-    - images/ic_index_home_sel.png
-    - images/ic_index_message_nor.png
-    - images/ic_index_message_sel.png
-    - images/ic_index_my_nor.png
-    - images/ic_index_my_sel.png
+  - images/ic_index_customer_nor.png
+  - images/ic_index_customer_sel.png
+  - images/ic_index_field_nor.png
+  - images/ic_index_field_sel.png
+  - images/ic_index_home_nor.png
+  - images/ic_index_home_sel.png
+  - images/ic_index_message_nor.png
+  - images/ic_index_message_sel.png
+  - images/ic_index_my_nor.png
+  - images/ic_index_my_sel.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
@@ -65,9 +65,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: iconfonts
-      fonts:
-        - asset: fonts/iconfont.ttf
+  - family: iconfonts
+    fonts:
+    - asset: fonts/iconfont.ttf
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
