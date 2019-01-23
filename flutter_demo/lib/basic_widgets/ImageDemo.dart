@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/services.dart' show rootBundle;
 import 'dart:typed_data';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:path_provider/path_provider.dart';
 
 // 一般通过如下三种方式加载图片
 // new Image
@@ -42,8 +43,6 @@ class ImageDemo extends StatelessWidget {
           new NetworkImageDemo2(),
           new Padding(padding: EdgeInsets.all(10)),
           new AssetImageDemo(),
-          new Padding(padding: EdgeInsets.all(10)),
-          new IconImageDemo(),
           new Padding(padding: EdgeInsets.all(10)),
           new FileImageDemo(),
           new Padding(padding: EdgeInsets.all(10)),
@@ -172,18 +171,6 @@ class MemoryImageDemoState extends State<MemoryImageDemo> {
   }
 }
 
-// Icon图片
-class IconImageDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Icon(
-      MyIcons.cactus,
-      color: Colors.green,
-      size: 50.0,
-    );
-  }
-}
-
 // 剪裁样式
 class FitDemo extends StatelessWidget {
   @override
@@ -256,10 +243,4 @@ class RepeatDemo extends StatelessWidget {
       ),
     );
   }
-}
-
-class MyIcons {
-  static const IconData cactus =
-      // fontPackage命名要小心，命名不当不显示图像
-      const IconData(0xe601, fontFamily: "iconfonts", matchTextDirection: true);
 }
