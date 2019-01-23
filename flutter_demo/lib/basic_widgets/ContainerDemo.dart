@@ -60,26 +60,10 @@ class MyContainerAppDemo extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
 //    return new Container(
-//      color: Colors.black,
-//      child: new Container(
-//        decoration: new BoxDecoration(
-//            color: Colors.red,
-//            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-//            gradient:
-//                new LinearGradient(colors: <Color>[Colors.green, Colors.blue]),
-//            boxShadow: <BoxShadow>[
-//              new BoxShadow(
-//                  color: Colors.grey,
-//                  offset: new Offset(4.0, 4.0),
-//                  blurRadius: 4.0)
-//            ]),
-//        height: 150.0,
-//        width: 150.0,
-//        alignment: AlignmentDirectional.center,
-//        child: new Text(
-//          "ContainerDemo",
-//          style: new TextStyle(color: Colors.blue),
-//        ),
+//      color: Colors.green,
+//      child: new Text(
+//        "Hello World",
+//        style: new TextStyle(background: new Paint()..color = Colors.yellow),
 //      ),
 //    );
 //  }
@@ -87,33 +71,73 @@ class MyContainerAppDemo extends StatelessWidget {
 
 // 带child的Container构造器中如果包含了width、height或者constraints，则会按照构造器中的参数来进行尺寸的调节
 // 这时候child的尺寸以Container为准
+//class ContainerDemo extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return new Container(
+//      color: Colors.green,
+//      child: new Container(
+//        color: Colors.blue,
+//        constraints: new BoxConstraints.expand(height: 150),
+//        child: new Text(
+//          "Hello World",
+//          style: new TextStyle(background: new Paint()..color = Colors.yellow),
+//        ),
+//      ),
+//    );
+//  }
+//}
+
+// 综合使用
+// 圆角文本框
+//class ContainerDemo extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return new Container(
+//      decoration: new BoxDecoration(
+//          color: Colors.red,
+//          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+//          gradient:
+//              new LinearGradient(colors: <Color>[Colors.green, Colors.blue]),
+//          boxShadow: <BoxShadow>[
+//            new BoxShadow(
+//                color: Colors.grey,
+//                offset: new Offset(4.0, 4.0),
+//                blurRadius: 4.0)
+//          ]),
+//      height: 150.0,
+//      width: 150.0,
+//      alignment: AlignmentDirectional.center,
+//      child: new Text(
+//        "ContainerDemo",
+//        style: new TextStyle(color: Colors.white),
+//      ),
+//    );
+//  }
+//}
+
+// 综合使用
+// 使用网络图片来做Container前景图
 class ContainerDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      color: Colors.black,
-      height: 350.0,
-      width: 350.0,
-      child: new Container(
-        decoration: new BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            gradient:
-                new LinearGradient(colors: <Color>[Colors.green, Colors.blue]),
-            boxShadow: <BoxShadow>[
-              new BoxShadow(
-                  color: Colors.grey,
-                  offset: new Offset(4.0, 4.0),
-                  blurRadius: 4.0)
-            ]),
-        height: 150.0,
-        width: 150.0,
-        alignment: AlignmentDirectional.center,
-        child: new Text(
-          "ContainerDemo",
-          style: new TextStyle(color: Colors.blue),
-        ),
+      // 宽度填充
+      constraints: new BoxConstraints.expand(
+        height: 300,
       ),
+      padding: const EdgeInsets.all(8.0),
+      alignment: Alignment.center,
+      child: Text(
+        'Hello World',
+        style: new TextStyle(color: Colors.black, fontSize: 20),
+      ),
+      decoration: new BoxDecoration(
+          image: new DecorationImage(
+              image: new NetworkImage(
+                  "http://h.hiphotos.baidu.com/image/h%3D300/sign=2c66cdcc4636acaf46e090fc4cd88d03/18d8bc3eb13533fa65021ddba5d3fd1f40345b8b.jpg"),
+              fit: BoxFit.cover)),
+      transform: Matrix4.rotationZ(0.1),
     );
   }
 }
@@ -147,7 +171,7 @@ class ContainerDemo extends StatelessWidget {
 //          style: new TextStyle(color: Colors.white, fontSize: 24.0),
 //        ),
 //        alignment: Alignment.center,
-//        margin: EdgeInsets.all(8.0),
+//        margin: const EdgeInsets.all(8.0),
 //      ),
 //      onTapDown: (TapDownDetails details) {
 //        setState(() {
