@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/demo1/widget7/BottomNavigationBarDemo.dart';
+import 'package:flutter_demo/material_components/app_structure_and_navigation/BottomNavigationBarDemo.dart';
 
 // Scaffold实现了基本的Material Design布局结构，比如抽屉（Drawers）、SnackBars、以及BottomSheets。
 
