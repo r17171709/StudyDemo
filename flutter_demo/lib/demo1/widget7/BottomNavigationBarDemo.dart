@@ -29,8 +29,6 @@ class MyBottomNavigationBarAppDemo extends StatelessWidget {
 }
 
 class BottomNavigationBarDemo extends StatefulWidget {
-  int index = 0;
-
   @override
   State<StatefulWidget> createState() {
     return new _BottomNavigationBarDemoState();
@@ -38,17 +36,19 @@ class BottomNavigationBarDemo extends StatefulWidget {
 }
 
 class _BottomNavigationBarDemoState extends State<BottomNavigationBarDemo> {
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return new Theme(
         data: Theme.of(context).copyWith(
-            // 此处为BottomNavigationBar的背景色
+          // 此处为BottomNavigationBar的背景色
             canvasColor: Colors.white,
             textTheme: Theme.of(context).textTheme.copyWith(
-                  caption: new TextStyle(
-                      // 未被选中的文字颜色
-                      color: Colors.grey),
-                )),
+              caption: new TextStyle(
+                // 未被选中的文字颜色
+                  color: Colors.grey),
+            )),
         child: new BottomNavigationBar(
           items: <BottomNavigationBarItem>[
             new BottomNavigationBarItem(
@@ -62,14 +62,15 @@ class _BottomNavigationBarDemoState extends State<BottomNavigationBarDemo> {
           ],
           onTap: (index) {
             setState(() {
-              widget.index = index;
+              currentIndex = index;
             });
           },
           // 选中的颜色
           fixedColor: Colors.blue,
+          // BottomNavigationBar的展现样式。一定要设置
           type: BottomNavigationBarType.fixed,
           // 默认选中页
-          currentIndex: widget.index,
+          currentIndex: currentIndex,
           // 图片尺寸
           iconSize: 24,
         ));
