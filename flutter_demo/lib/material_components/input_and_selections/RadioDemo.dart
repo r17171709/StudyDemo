@@ -21,8 +21,6 @@ class MyRadioAppDemo extends StatelessWidget {
 }
 
 class RadioDemo extends StatefulWidget {
-  int checkNo = 0;
-
   @override
   State<StatefulWidget> createState() {
     return new _RadioDemoState();
@@ -30,21 +28,23 @@ class RadioDemo extends StatefulWidget {
 }
 
 class _RadioDemoState extends State<RadioDemo> {
+  int checkNo = 0;
+
   @override
   Widget build(BuildContext context) {
     return new Row(
       children: <Widget>[
         new Radio(
             value: 1,
-            groupValue: widget.checkNo,
+            groupValue: checkNo,
             onChanged: (value) => change(value)),
         new Radio(
             value: 2,
-            groupValue: widget.checkNo,
+            groupValue: checkNo,
             onChanged: (value) => change(value)),
         new Radio(
             value: 3,
-            groupValue: widget.checkNo,
+            groupValue: checkNo,
             onChanged: (value) => change(value))
       ],
     );
@@ -52,7 +52,7 @@ class _RadioDemoState extends State<RadioDemo> {
 
   void change(int value) {
     setState(() {
-      widget.checkNo = value;
+      checkNo = value;
     });
   }
 }
