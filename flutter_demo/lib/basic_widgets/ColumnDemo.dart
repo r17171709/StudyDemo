@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// 竖直方向排列，但是无法在竖直方向进行滚动，与Row相对
+
 void main() {
   runApp(new MyColumnAppDemo());
 }

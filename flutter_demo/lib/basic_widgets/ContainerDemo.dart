@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// 最常用的控件，结合了大小调整、位置、装饰、动画效果等功能
+
 //   this.alignment,                 控制child的对齐方式
 //   this.padding,
 //   Color color,                    背景色

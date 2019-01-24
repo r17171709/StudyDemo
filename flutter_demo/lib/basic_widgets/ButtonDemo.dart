@@ -34,7 +34,10 @@ class ButtonDemo extends StatelessWidget {
         new IconButtonDemo(),
         new FloatingActionButtonExtendedDemo(),
         new PopupMenuButtonDemo(),
-        new ButtonBarDemo()
+        new ButtonBarDemo(),
+        new DropdownButtonDemo(),
+        new RawMaterialButtonDemo(),
+        new InkWellDemo()
       ],
     );
   }
@@ -45,13 +48,13 @@ class RaisedButtonDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RaisedButton button = new RaisedButton(
-      // 通过设置onPressed的值来达到是否禁用RaisedButton的目的
+      // 如果onPressed回调为null，则该按钮将被禁用，不会对触摸做出反应
       onPressed: () {},
       // 按钮文字颜色，如果没有设置字体自身的颜色时才会起作用
 //          textColor: Colors.white,
       // 按钮默认颜色
       color: Colors.blue,
-      //
+      // 按钮失效时的文字颜色
       disabledTextColor: Colors.blue[100],
       // 选中后高亮模式下的颜色
       highlightColor: Colors.blue[700],
@@ -69,6 +72,8 @@ class RaisedButtonDemo extends StatelessWidget {
       onHighlightChanged: (bool value) {
         print(value);
       },
+      // 抗锯齿能力,抗锯齿等级依次递增,none（默认),hardEdge,antiAliasWithSaveLayer,antiAlias
+      clipBehavior: Clip.antiAlias,
       child: new Text(
         "RaisedButtonDemo",
       ),
@@ -117,6 +122,8 @@ class OutlineButtonDemo extends StatelessWidget {
         print("OutlineButtonDemo");
       },
       child: new Text("OutlineButtonDemo"),
+      // 边框颜色
+      borderSide: BorderSide(color: Colors.blue),
     );
   }
 }
@@ -213,8 +220,7 @@ class PopupMenuButtonDemo extends StatelessWidget {
       icon: new Icon(Icons.select_all),
       // 未选择某一项
       onCanceled: () {
-        Scaffold.of(context)
-            .showSnackBar(SnackBar(content: new Text("取消")));
+        Scaffold.of(context).showSnackBar(SnackBar(content: new Text("取消")));
       },
     );
   }
@@ -233,6 +239,86 @@ class ButtonBarDemo extends StatelessWidget {
         new Text("Hello"),
         new Text("World"),
       ],
+    );
+  }
+}
+
+// 从列表中进行选择的按钮
+class DropdownButtonDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _DropdownButtonDemoState();
+  }
+}
+
+class _DropdownButtonDemoState extends State<DropdownButtonDemo> {
+  String choiceValue = "DropdownMenuItem1";
+
+  @override
+  Widget build(BuildContext context) {
+    return new DropdownButton(
+      hint: new Text("请选择"),
+      // 下拉菜单选择完之后文本框处显示的值。此值必须与items里面的某一项的value一致
+      value: choiceValue,
+      items: <DropdownMenuItem<String>>[
+        new DropdownMenuItem(
+          child: new Text("DropdownMenuItem1"),
+          value: "DropdownMenuItem1",
+        ),
+        new DropdownMenuItem(
+          child: new Text("DropdownMenuItem2"),
+          value: "DropdownMenuItem2",
+        ),
+        new DropdownMenuItem(
+          child: new Text("DropdownMenuItem3"),
+          value: "DropdownMenuItem3",
+        ),
+        new DropdownMenuItem(
+          child: new Text("DropdownMenuItem4"),
+          value: "DropdownMenuItem4",
+        ),
+      ],
+      onChanged: (String value) {
+        setState(() {
+          choiceValue = value;
+        });
+      },
+      // 文本框里面文字的样式
+      style: new TextStyle(color: Colors.red),
+      // 将下拉列表的内容设置为水平填充满
+//      isExpanded: true,
+      // 设置倒三角标icon的大小
+      iconSize: 30,
+    );
+  }
+}
+
+// 此按钮不使用当前Theme或ButtonTheme来计算未指定参数的默认值
+class RawMaterialButtonDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new RawMaterialButton(
+      onPressed: () {},
+      child: new Text(
+        "RawMaterialButtonDemo",
+        style: new TextStyle(color: Colors.white),
+      ),
+      padding: EdgeInsets.only(left: 10, right: 10),
+      fillColor: Colors.red,
+      shape: new RoundedRectangleBorder(side: BorderSide(color: Colors.blue)),
+    );
+  }
+}
+
+class InkWellDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new InkWell(
+      child: new Text("InkWellDemo"),
+      onTap: () {
+        Scaffold.of(context)
+            .showSnackBar(new SnackBar(content: new Text("InkWellDemo")));
+      },
     );
   }
 }

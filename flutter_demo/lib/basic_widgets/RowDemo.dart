@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 
+// 横向方向排列，但是无法在横向方向进行滚动，与Column相对
+
 //  MainAxisAlignment mainAxisAlignment              主轴方向对齐，Row的主轴方向是水平，Column的主轴是垂直方向
+//                                                   spaceEvenly：将主轴方向空白区域均分，使得children之间空间相等，包括首尾children
+//                                                   spaceAround：将主轴方向空白区域均分，使得children之间空间相等，但是首尾children的空白部分为一半
+//                                                   spaceBetween：将主轴方向空白区域均分，使得children之间空间相等，但是首尾childre紧贴两端不留细逢
+//                                                   start：将children放置在主轴起点方向
+//                                                   end：将children放置在主轴末尾方向
+//                                                   center：将children放置在主轴中间方向
 //  MainAxisSize mainAxisSize                        主轴的长度。若为MainAxisSize.min则会缩小到横轴上children的尺寸总和，反之为最大宽度
 //  CrossAxisAlignment crossAxisAlignment            次轴对齐方式，对齐的属性和mainAxisAlignment一样
+//                                                   center/end/start: children在交叉轴上居中/末端/起点
+//                                                   stretch：让children填满交叉轴方向
+//                                                   baseline：在交叉轴方向，使得于这个baseline对齐
 //  TextDirection textDirection                      排列方向
 void main() {
   runApp(new MyRowDemo());
