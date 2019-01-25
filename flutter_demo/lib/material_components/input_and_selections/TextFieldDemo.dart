@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// 输入文本框
+
 //  this.controller,                      控制器。可以用来获取文字内容
 //  this.focusNode,
 //  this.decoration                       装饰
