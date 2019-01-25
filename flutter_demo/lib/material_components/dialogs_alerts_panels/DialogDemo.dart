@@ -5,33 +5,33 @@ import 'package:flutter/material.dart';
 // Dialog        没有任何可操作的选项的弹出层
 
 void main() {
-  runApp(new MySimpleDialogAppDemo());
+  runApp(new MyDialogAppDemo());
 }
 
-class MySimpleDialogAppDemo extends StatelessWidget {
+class MyDialogAppDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: "MySimpleDialogAppDemo",
+      title: "MyDialogAppDemo",
       theme: new ThemeData(primarySwatch: Colors.red),
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text("SimpleDialogDemo"),
+          title: new Text("DialogDemo"),
         ),
-        body: new SimpleDialogDemo(),
+        body: new DialogDemo(),
       ),
     );
   }
 }
 
-class SimpleDialogDemo extends StatefulWidget {
+class DialogDemo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new SimpleDialogDemoState();
+    return new DialogDemoState();
   }
 }
 
-class SimpleDialogDemoState extends State<SimpleDialogDemo> {
+class DialogDemoState extends State<DialogDemo> {
   Future<String> _showSimpleDialog(BuildContext context) async {
     String dialog = await showDialog(
         context: context,
