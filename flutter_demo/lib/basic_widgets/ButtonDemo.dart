@@ -24,21 +24,24 @@ class MyButtonDemoApp extends StatelessWidget {
 class ButtonDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        new RaisedButtonDemo(),
-        new RaisedButtonIconDemo(),
-        new FlatButtonDemo(),
-        new OutlineButtonDemo(),
-        new IconButtonDemo(),
-        new FloatingActionButtonExtendedDemo(),
-        new PopupMenuButtonDemo(),
-        new ButtonBarDemo(),
-        new DropdownButtonDemo(),
-        new RawMaterialButtonDemo(),
-        new InkWellDemo()
-      ],
+    return new SingleChildScrollView(
+      child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          new RaisedButtonDemo(),
+          new RaisedButtonIconDemo(),
+          new FlatButtonDemo(),
+          new OutlineButtonDemo(),
+          new IconButtonDemo(),
+          new FloatingActionButtonExtendedDemo(),
+          new PopupMenuButtonDemo(),
+          new ButtonBarDemo(),
+          new DropdownButtonDemo(),
+          new RawMaterialButtonDemo(),
+          new InkWellDemo(),
+          new ButtonThemeDemo()
+        ],
+      ),
     );
   }
 }
@@ -319,6 +322,30 @@ class InkWellDemo extends StatelessWidget {
         Scaffold.of(context)
             .showSnackBar(new SnackBar(content: new Text("InkWellDemo")));
       },
+    );
+  }
+}
+
+class ButtonThemeDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ButtonTheme.bar(
+      colorScheme: ColorScheme.light(
+        secondary: Colors.white,
+      ),
+      splashColor: Colors.white,
+      buttonColor: Colors.blue,
+      disabledColor: Colors.white,
+      highlightColor: Colors.blue[700],
+      shape: new RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4)),
+          side: new BorderSide(color: Colors.black12)),
+      child: new Row(
+        children: <Widget>[
+          new RaisedButton(onPressed: null, child: new Text("FlatButton1"),),
+          new RaisedButton(onPressed: () {}, child: new Text("FlatButton2"))
+        ],
+      ),
     );
   }
 }
