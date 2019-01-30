@@ -28,8 +28,8 @@ class SizedOverflowBoxDemo extends StatelessWidget {
     return new SizedOverflowBox(
       size: new Size(50, 50),
       child: new Container(
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         color: Color(0x33FF00FF),
       ),
     );
