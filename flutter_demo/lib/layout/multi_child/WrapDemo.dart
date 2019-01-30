@@ -26,7 +26,7 @@ class WrapDemo extends StatelessWidget {
     return new Wrap(
       runSpacing: 8.0,
       spacing: 8.0,
-      alignment: WrapAlignment.center,
+      alignment: WrapAlignment.spaceBetween,
       children: <Widget>[
         new Container(
           color: Colors.red,

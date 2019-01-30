@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// 用于将多个childs相对于其框的边缘定位，多用于以简单方式重叠children
+
 void main() {
   runApp(new MyStackAppDemo());
 }
@@ -38,7 +40,7 @@ class StackDemo extends StatelessWidget {
               height: 50,
               width: 100,
             ),
-            left: 50.0,
+            left: 150.0,
           ),
           new Positioned(
             child: new Container(
@@ -49,7 +51,7 @@ class StackDemo extends StatelessWidget {
             top: 50.0,
           )
         ],
-        fit: StackFit.expand,
+        fit: StackFit.loose,
       ),
     );
   }

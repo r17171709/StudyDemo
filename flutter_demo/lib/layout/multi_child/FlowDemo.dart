@@ -91,7 +91,6 @@ class TestFlowDelegate extends FlowDelegate {
 
   @override
   bool shouldRepaint(FlowDelegate oldDelegate) {
-    // TODO: implement shouldRepaint
     return oldDelegate != this;
   }
 }

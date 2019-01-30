@@ -16,10 +16,10 @@ import 'package:flutter/material.dart';
 //                                                   baseline：在交叉轴方向，使得于这个baseline对齐
 //  TextDirection textDirection                      排列方向
 void main() {
-  runApp(new MyRowDemo());
+  runApp(new MyRowAppDemo());
 }
 
-class MyRowDemo extends StatelessWidget {
+class MyRowAppDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
