@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-// 提供了一个控制child布局的delegate，这个delegate可以控制这些因素：
+// 单节点的自定义布局的控件。通过提供的delegate，可以实现控制节点的位置以及尺寸。
+
 // 可以控制child的布局Constraints
 // 可以控制child的位置
+// 可以决定自身的尺寸，但是自身的自身必须不能依赖child的尺寸。
 
 void main() {
   runApp(new MyCustomSingleChildLayoutAppDemo());
