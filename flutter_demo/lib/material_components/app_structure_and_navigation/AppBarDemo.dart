@@ -12,6 +12,12 @@ class MyAppBarAppDemo extends StatelessWidget {
       theme: new ThemeData(primarySwatch: Colors.red),
       home: new Scaffold(
         body: new AppBarDemo(),
+        floatingActionButton: new FloatingActionButton(
+          onPressed: () {},
+          child: new Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: new BottomAppBarDemo(),
       ),
     );
   }
@@ -99,6 +105,24 @@ class _AppBarDemoState extends State<AppBarDemo>
           child: appBar,
         )
       ],
+    );
+  }
+}
+
+class BottomAppBarDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new BottomAppBar(
+      shape: new CircularNotchedRectangle(),
+      notchMargin: 8,
+      child: new Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          new IconButton(icon: new Icon(Icons.home), onPressed: () {}),
+          new IconButton(icon: new Icon(Icons.delete), onPressed: () {})
+        ],
+      ),
     );
   }
 }
