@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Form  给多个TextField分组的widget
+// FormField  单独的表单字段。此widget维护表单字段的当前状态，以便在UI中直观地反映更新和验证错误。
+
 void main() {
   runApp(new MyFormAppDemo());
 }
