@@ -9,15 +9,13 @@ class SecondPageDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: "SecondPageDemo",
-      theme: new ThemeData(
-        primaryColor: Colors.red
-      ),
+      theme: new ThemeData(primaryColor: Colors.red),
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text("SecondPageDemo"),
         ),
         body: new InkWell(
-          child: new Text(fromValue),
+          child: new Text(fromValue == null ? "DefaultValue" : fromValue),
           onTap: () {
             Navigator.of(context).pop("Second");
           },
