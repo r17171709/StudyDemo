@@ -73,7 +73,7 @@ class _GridViewDemoState extends State<GridViewDemo> {
         .then((Response<dynamic> onValue) {
       if (onValue.statusCode == 200) {
         var data = onValue.data["data"];
-        var moduleList = data = data["moduleList"];
+        var moduleList = data["moduleList"];
         var icons = moduleList[0];
         var iconsList = icons["list"];
         for (var list in iconsList) {
