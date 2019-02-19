@@ -40,6 +40,23 @@ class _AnimationDemoState extends State<AnimationDemo>
     _animation = new Tween(begin: 20.0, end: 80.0).animate(_animationController)
       ..addListener(() {
         setState(() {});
+      })..addStatusListener((AnimationStatus status) {
+        // 监视动画
+        switch (status) {
+          case AnimationStatus.completed:
+            print("AnimationStatus.completed");
+            _animationController.reverse();
+            break;
+          case AnimationStatus.dismissed:
+            print("AnimationStatus.dismissed");
+            break;
+          case AnimationStatus.forward:
+            print("AnimationStatus.forward");
+            break;
+          case AnimationStatus.reverse:
+            print("AnimationStatus.reverse");
+            break;
+        }
       });
     _animationController.forward();
   }
