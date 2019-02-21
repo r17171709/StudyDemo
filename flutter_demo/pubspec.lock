@@ -42,7 +42,7 @@ packages:
       name: cookie_jar
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.7"
+    version: "0.0.8"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -56,7 +56,7 @@ packages:
       name: dio
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "1.0.14"
+    version: "1.0.17"
   flutter:
     dependency: "direct main"
     description: flutter
