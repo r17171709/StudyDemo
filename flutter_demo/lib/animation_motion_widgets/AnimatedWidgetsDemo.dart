@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(new MyAnimatedWidgetsAppDemo());
@@ -15,7 +16,7 @@ class MyAnimatedWidgetsAppDemo extends StatelessWidget {
         appBar: new AppBar(
           title: new Text("AnimatedWidgetsDemo"),
         ),
-        body: new RotationTransitionDemo(),
+        body: new AnimatedPhysicalModelDemo(),
       ),
     );
   }
@@ -283,6 +284,274 @@ class _RotationTransitionDemoState extends State<RotationTransitionDemo>
         height: 100,
         width: 100,
         color: Colors.red,
+      ),
+    );
+  }
+}
+
+class ScaleTransitionDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _ScaleTransitionDemoState();
+  }
+}
+
+class _ScaleTransitionDemoState extends State<ScaleTransitionDemo>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller =
+        new AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _animation = new Tween(begin: 0.5, end: 1.5)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
+
+    _controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new ScaleTransition(
+      scale: _controller,
+      child: new Container(
+        height: 100,
+        width: 100,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+class SizeTransitionDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _SizeTransitionDemoState();
+  }
+}
+
+class _SizeTransitionDemoState extends State<SizeTransitionDemo>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        new AnimationController(vsync: this, duration: Duration(seconds: 2));
+
+    _controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // 定义从小变大的动画效果
+    return new SizeTransition(
+      axis: Axis.horizontal,
+      sizeFactor: _controller,
+      child: new Container(
+        width: 100,
+        height: 300,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+class SlideTransitionDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _SlideTransitionDemoState();
+  }
+}
+
+class _SlideTransitionDemoState extends State<SlideTransitionDemo>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<Offset> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller =
+        new AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _animation = new Tween(begin: new Offset(0.5, 0.5), end: Offset.zero)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
+
+    _controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // 代表相对自己x轴移动的倍数以及y轴移动的倍数
+    return new SlideTransition(
+      position: _animation,
+      child: new Container(
+        width: 100,
+        height: 100,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+class AnimatedDefaultTextStyleDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _AnimatedDefaultTextStyleState();
+  }
+}
+
+class _AnimatedDefaultTextStyleState
+    extends State<AnimatedDefaultTextStyleDemo> {
+  TextStyle _style;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _style = new TextStyle(color: Colors.red);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new InkWell(
+      // TextView动画过渡
+      child: new AnimatedDefaultTextStyle(
+        style: _style,
+        child: new Text("AnimatedDefaultTextStyleDemo"),
+        duration: Duration(seconds: 2),
+      ),
+      onTap: () {
+        setState(() {
+          _style = new TextStyle(color: Colors.green);
+        });
+      },
+    );
+  }
+}
+
+class AnimatedModalBarrierDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _AnimatedModalBarrierDemoState();
+  }
+}
+
+class _AnimatedModalBarrierDemoState extends State<AnimatedModalBarrierDemo>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<Color> _animation;
+  bool isVisibile = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller =
+        new AnimationController(vsync: this, duration: Duration(seconds: 2));
+    _animation = new ColorTween(begin: Colors.transparent, end: Colors.black38)
+        .animate(
+            new CurvedAnimation(parent: _controller, curve: Curves.easeIn));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Column(
+      children: <Widget>[
+        new Stack(
+          children: <Widget>[
+            // 显示隐藏动画
+            new AnimatedOpacity(
+              opacity: isVisibile ? 1.0 : 0.0,
+              duration: _controller.duration,
+              child: new Container(
+                width: 200,
+                height: 200,
+                color: Colors.red,
+                child: new Center(
+                  child: new Text("Hello, AnimatedModalBarrier"),
+                ),
+              ),
+            ),
+            new SizedBox(
+              width: 200,
+              height: 200,
+              // 用来做半透明遮罩，防止用户点击遮罩下面的 widget
+              child: new AnimatedModalBarrier(
+                color: _animation,
+                dismissible: false,
+              ),
+            ),
+          ],
+        ),
+        new RaisedButton(
+          child: new Text("点击"),
+          onPressed: () {
+            setState(() {
+              isVisibile = true;
+              _controller.forward();
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class AnimatedPhysicalModelDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _AnimatedPhysicalModelDemoState();
+  }
+}
+
+class _AnimatedPhysicalModelDemoState extends State<AnimatedPhysicalModelDemo> {
+  BoxShape _shape;
+  BorderRadius _radius;
+  double _elevation;
+  Color _color;
+  Color _shadowColor;
+
+  @override
+  void initState() {
+    super.initState();
+    _shape = BoxShape.rectangle;
+    _radius = BorderRadius.all(Radius.circular(10));
+    _elevation = 10;
+    _color = Colors.yellow;
+    _shadowColor = Colors.blue;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Center(
+      child: new InkWell(
+        // 用来控制圆角、阴影、elevation以及形状(圆形或者矩形)等material属性
+        child: new AnimatedPhysicalModel(
+            child: new Container(
+              width: 100,
+              height: 100,
+              child: new Image.asset("images/ic_index_customer_nor.png"),
+            ),
+            shape: _shape,
+            borderRadius: _radius,
+            elevation: _elevation,
+            color: _color,
+            shadowColor: _shadowColor,
+            duration: Duration(seconds: 2)),
+        onTap: () {
+          setState(() {
+            _radius = BorderRadius.all(Radius.circular(20));
+            _elevation = 20;
+            _color = Colors.green;
+            _shadowColor = Colors.purple;
+          });
+        },
       ),
     );
   }
