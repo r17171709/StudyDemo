@@ -16,7 +16,7 @@ class MyAnimatedWidgetsAppDemo extends StatelessWidget {
         appBar: new AppBar(
           title: new Text("AnimatedWidgetsDemo"),
         ),
-        body: new AnimatedPhysicalModelDemo(),
+        body: new AnimatedSizeDemo(),
       ),
     );
   }
@@ -551,6 +551,45 @@ class _AnimatedPhysicalModelDemoState extends State<AnimatedPhysicalModelDemo> {
             _color = Colors.green;
             _shadowColor = Colors.purple;
           });
+        },
+      ),
+    );
+  }
+}
+
+class AnimatedSizeDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _AnimatedSizeDemoState();
+  }
+}
+
+class _AnimatedSizeDemoState extends State<AnimatedSizeDemo>
+    with SingleTickerProviderStateMixin {
+  double _height = 100;
+  double _width = 100;
+
+  void _change() {
+    setState(() {
+      _height = 200;
+      _width = 200;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // 大小更改
+    return new AnimatedSize(
+      duration: Duration(seconds: 2),
+      vsync: this,
+      child: new InkWell(
+        child: new Container(
+          height: _height,
+          width: _width,
+          color: Colors.red,
+        ),
+        onTap: () {
+          _change();
         },
       ),
     );
