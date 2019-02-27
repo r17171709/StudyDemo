@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(new MyAnimatedWidgetsAppDemo());
+  runApp(new AnimatedSizeDemo());
 }
 
 class MyAnimatedWidgetsAppDemo extends StatelessWidget {
@@ -16,42 +16,39 @@ class MyAnimatedWidgetsAppDemo extends StatelessWidget {
         appBar: new AppBar(
           title: new Text("AnimatedWidgetsDemo"),
         ),
-        body: new AnimatedSizeDemo(),
+        body: new AnimatedPositionedDemo(),
       ),
     );
   }
 }
 
-class AnimatedWidgetsDemo extends StatefulWidget {
+class AnimatedContainerDemo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new _AnimatedWidgetsDemoState();
+    return new _AnimatedContainerDemoState();
   }
 }
 
-class _AnimatedWidgetsDemoState extends State<AnimatedWidgetsDemo> {
-  double height = 100;
-  double width = 100;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
+  double _height = 100;
+  double _width = 100;
+  Color _color = Colors.red;
 
   @override
   Widget build(BuildContext context) {
+    // 当Container属性发生变化的时候，会自动动画过度
     return new AnimatedContainer(
-      height: height,
-      width: width,
+      height: _height,
+      width: _width,
+      color: _color,
       duration: Duration(seconds: 2),
       child: new InkWell(
-        child: new Container(
-          color: Colors.red,
-        ),
+        child: new Container(),
         onTap: () {
           setState(() {
-            height = 200;
-            width = 200;
+            _height = 200;
+            _width = 200;
+            _color = Colors.yellow;
           });
         },
       ),
@@ -78,6 +75,7 @@ class _AnimatedCrossFadeState extends State<AnimatedCrossFadeDemo> {
   @override
   Widget build(BuildContext context) {
     return new InkWell(
+      // 两个子widget（只能是两个）渐入渐出过渡动画
       child: new AnimatedCrossFade(
           firstChild: new Container(
             height: 100,
@@ -152,6 +150,7 @@ class _DecoratedBoxTransitionDemoState extends State<DecoratedBoxTransitionDemo>
   @override
   Widget build(BuildContext context) {
     return new InkWell(
+      // 设置Decoration属性动画过度
       child: new DecoratedBoxTransition(
           decoration: _animation,
           child: new Container(
@@ -193,6 +192,7 @@ class _FadeTransitionState extends State<FadeTransitionDemo>
   @override
   Widget build(BuildContext context) {
     return new InkWell(
+      // 设置opacity属性动画过度
       child: new FadeTransition(
         opacity: _animation,
         child: new Container(
@@ -232,13 +232,18 @@ class _PositionedTransitionDemoState extends State<PositionedTransitionDemo>
     RelativeRect end = new RelativeRect.fromLTRB(50, 50, 50, 50);
     _animation = new RelativeRectTween(begin: begin, end: end).animate(
         new CurvedAnimation(parent: _controller, curve: Curves.easeIn));
-
     _controller.forward();
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // PositionedTransition必须作为Stack这个widget的child Widget来使用
+    // PositionedTransition必须使用Stack作为这个widget的child Widget来使用
     return new Stack(
       children: <Widget>[
         new PositionedTransition(
@@ -277,7 +282,14 @@ class _RotationTransitionDemoState extends State<RotationTransitionDemo>
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // 旋转
     return new RotationTransition(
       turns: _animation,
       child: new Container(
@@ -309,12 +321,18 @@ class _ScaleTransitionDemoState extends State<ScaleTransitionDemo>
         new AnimationController(vsync: this, duration: Duration(seconds: 2));
     _animation = new Tween(begin: 0.5, end: 1.5)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
-
     _controller.forward();
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // 比例
     return new ScaleTransition(
       scale: _controller,
       child: new Container(
@@ -341,10 +359,16 @@ class _SizeTransitionDemoState extends State<SizeTransitionDemo>
   @override
   void initState() {
     super.initState();
+
     _controller =
         new AnimationController(vsync: this, duration: Duration(seconds: 2));
-
     _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -377,12 +401,18 @@ class _SlideTransitionDemoState extends State<SlideTransitionDemo>
   @override
   void initState() {
     super.initState();
+
     _controller =
         new AnimationController(vsync: this, duration: Duration(seconds: 2));
     _animation = new Tween(begin: new Offset(0.5, 0.5), end: Offset.zero)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
-
     _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -553,6 +583,49 @@ class _AnimatedPhysicalModelDemoState extends State<AnimatedPhysicalModelDemo> {
           });
         },
       ),
+    );
+  }
+}
+
+class AnimatedPositionedDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new _AnimatedPositionedDemoState();
+  }
+}
+
+class _AnimatedPositionedDemoState extends State<AnimatedPositionedDemo> {
+  double _top = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Stack(
+      children: <Widget>[
+        new AnimatedPositioned(
+          top: _top,
+          child: new InkWell(
+            child: new Image.asset(
+              "images/ic_index_customer_nor.png",
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+            onTap: () {
+              setState(() {
+                _top = 100;
+              });
+            },
+          ),
+          duration: Duration(seconds: 2),
+          width: 100,
+          height: 100,
+        )
+      ],
     );
   }
 }
