@@ -50,12 +50,12 @@ class _FutureBuilderDemoState extends State<FutureBuilderDemo> {
     return temp;
   }
 
-  void _onRefresh() {
-    _getData().then((onValue) {
-      setState(() {
-        _beans.clear();
-        _beans.addAll(onValue);
-      });
+  Future<void> _onRefresh() async {
+    List<String> onValue = await _getData();
+    setState(() {
+      _beans.clear();
+      _beans.add("测试");
+      _beans.addAll(onValue);
     });
   }
 
