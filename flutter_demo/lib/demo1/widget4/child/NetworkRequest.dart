@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_demo/demo1/widget4/GridViewDemo.dart';
+import 'package:flutter_demo/scroll/GridViewDemo.dart';
 import 'package:flutter_demo/demo1/widget4/child/News.dart';
 import 'package:flutter_demo/demo1/widget4/child/SecondHouseContent.dart';
 

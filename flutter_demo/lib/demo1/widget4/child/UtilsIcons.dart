@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_demo/demo1/widget4/GridViewDemo.dart'
+import 'package:flutter_demo/scroll/GridViewDemo.dart'
     show IconsList, GridAdapter;
-export 'package:flutter_demo/demo1/widget4/GridViewDemo.dart'
+export 'package:flutter_demo/scroll/GridViewDemo.dart'
     show IconsList, GridAdapter;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

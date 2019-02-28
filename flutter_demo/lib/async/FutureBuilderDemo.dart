@@ -29,7 +29,11 @@ class FutureBuilderDemo extends StatefulWidget {
 }
 
 class _FutureBuilderDemoState extends State<FutureBuilderDemo> {
+  // 适用于首次请求使用
   Future<List<String>> _data;
+
+  // 真正的数据源
+  List<String> _beans;
 
   Future<List<String>> _getData() async {
     Dio dio = new Dio();
@@ -46,9 +50,19 @@ class _FutureBuilderDemoState extends State<FutureBuilderDemo> {
     return temp;
   }
 
+  void _onRefresh() {
+    _getData().then((onValue) {
+      setState(() {
+        _beans.clear();
+        _beans.addAll(onValue);
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+    _beans = [];
     _data = _getData();
   }
 
@@ -62,13 +76,16 @@ class _FutureBuilderDemoState extends State<FutureBuilderDemo> {
               case ConnectionState.waiting:
                 return new Container();
               case ConnectionState.done:
+                if (_beans.length == 0) {
+                  _beans.addAll(snapshot.data);
+                }
                 return new ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
                     return new ListTile(
-                      title: new Text(snapshot.data[index]),
+                      title: new Text(_beans[index]),
                     );
                   },
-                  itemCount: snapshot.data.length,
+                  itemCount: _beans.length,
                 );
               default:
                 return new Container();
@@ -76,6 +93,6 @@ class _FutureBuilderDemoState extends State<FutureBuilderDemo> {
           },
           future: _data,
         ),
-        onRefresh: _getData);
+        onRefresh: _onRefresh);
   }
 }
