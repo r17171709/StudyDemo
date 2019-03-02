@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(new MyOffstageAppDemo());
+  runApp(MyOffstageAppDemo());
 }
 
 class MyOffstageAppDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: "MyOffstageAppDemo",
-      theme: new ThemeData(primarySwatch: Colors.red),
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text("OffstageDemo"),
+      theme: ThemeData(primarySwatch: Colors.red),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("OffstageDemo"),
         ),
-        body: new OffstageDemo(),
+        body: OffstageDemo(),
       ),
     );
   }
 }
 
 class OffstageDemo extends StatefulWidget {
-  bool offstage = false;
-
   @override
   State<StatefulWidget> createState() {
-    return new _OffstageDemoState();
+    return _OffstageDemoState();
   }
 }
 
 class _OffstageDemoState extends State<OffstageDemo> {
+  bool offstage = false;
+
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new Offstage(
-          offstage: widget.offstage,
-          child: new Text("OffstageDemo"),
+        Offstage(
+          offstage: offstage,
+          child: Text("OffstageDemo"),
         ),
-        new RaisedButton(
+        RaisedButton(
           onPressed: () {
             setState(() {
-              widget.offstage = !widget.offstage;
+              offstage = !offstage;
             });
           },
-          child: new Text("Click"),
+          child: Text("Click"),
         )
       ],
     );
