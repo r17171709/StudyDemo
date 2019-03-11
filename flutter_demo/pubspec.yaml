@@ -20,13 +20,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   path_provider: ^0.4.1
-  dio: ^1.0.14
+  dio: ^1.0.17
   flutter_screenutil: ^0.4.6
   hex: ^0.1.2
   flutter_staggered_grid_view: ^0.2.7
   image_picker: ^0.4.12+1
   flutter_markdown: ^0.2.0
-  json_annotation: any
+  json_annotation: ^2.0.0
+  rxdart: ^0.21.0
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +57,18 @@ flutter:
   - images/ic_index_message_sel.png
   - images/ic_index_my_nor.png
   - images/ic_index_my_sel.png
+  - images/ic_bk_white_back.png
+  - images/ic_bk_white_heart.png
+  - images/ic_bk_white_message.png
+  - images/ic_bk_wshare.png
+  - images/icon_second_house_vrlook.png
+  - images/icon_real_house_logo.png
+  - images/icon_seconddetail_downpay_im.png
+  - images/icon_secondhouse_detail_goodhouse.png
+  - images/details_enter.png
+  - images/icon_employment_card.png
+  - images/agent_card_call.png
+  - images/agent_card_im.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
