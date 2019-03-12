@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/async/HouseDetail.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(HouseDetailPage());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
