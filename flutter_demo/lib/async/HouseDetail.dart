@@ -106,6 +106,8 @@ class _HouseDetailPageDemo extends State<HouseDetailPageDemo> {
               communityCard(snapshot.data.communityCard),
               divider(),
               sameCommunityDeal(snapshot.data.communityCard.sameCommunityDeal),
+              divider(),
+              SameCommunityHouseWidget(snapshot.data.communityCard.sameCommunityHouse),
             ],
           );
         }

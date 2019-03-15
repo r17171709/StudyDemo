@@ -669,7 +669,7 @@ Widget positionSurrounding(PositionSurrounding positionSurrounding) {
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
             width: double.infinity,
             height: ScreenUtil().setHeight(612),
-            child: AndroidView(viewType: "MapView"),
+//            child: AndroidView(viewType: "MapView"),
           ),
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -1046,6 +1046,232 @@ Widget sameCommunityDeal(SameCommunityDeal sameCommunityDeal) {
   return Column(
     children: widgets,
   );
+}
+
+class SameCommunityHouseWidget extends StatefulWidget {
+  final SameCommunityHouse sameCommunityHouse;
+
+  SameCommunityHouseWidget(this.sameCommunityHouse) : super();
+
+  @override
+  State<StatefulWidget> createState() {
+    return _SameCommunityHouseWidgetState();
+  }
+}
+
+class _SameCommunityHouseWidgetState extends State<SameCommunityHouseWidget> {
+  bool isZufang = false;
+
+  ScrollController controller = ScrollController();
+
+  void _changeZufang() {
+    setState(() {
+      isZufang = !isZufang;
+
+      // listview滚动到指定位置（没有动画）
+      controller.jumpTo(0);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Container(
+          margin: EdgeInsets.fromLTRB(
+              ScreenUtil().setWidth(72), 0, ScreenUtil().setWidth(72), 0),
+          width: double.infinity,
+          height: ScreenUtil().setHeight(204),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  child: Text(widget.sameCommunityHouse.name,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 34, 34, 34),
+                          fontSize: ScreenUtil().setSp(48)))),
+              InkWell(
+                child: Text(
+                  "在售",
+                  style: TextStyle(
+                    color: !isZufang
+                        ? Color.fromARGB(255, 48, 114, 246)
+                        : Color.fromARGB(255, 153, 153, 153),
+                  ),
+                ),
+                onTap: _changeZufang,
+              ),
+              Container(
+                margin: EdgeInsets.only(left: ScreenUtil().setWidth(42)),
+                child: InkWell(
+                  child: Text(
+                    "在租",
+                    style: TextStyle(
+                        color: isZufang
+                            ? Color.fromARGB(255, 48, 114, 246)
+                            : Color.fromARGB(255, 153, 153, 153)),
+                  ),
+                  onTap: _changeZufang,
+                ),
+              )
+            ],
+          ),
+        ),
+        isZufang
+            ? Container(
+                height: ScreenUtil().setHeight(639),
+                width: double.infinity,
+                margin: EdgeInsets.fromLTRB(
+                    ScreenUtil().setWidth(72), 0, ScreenUtil().setWidth(72), 0),
+                child: ListView.builder(
+                  controller: controller,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: index ==
+                              widget.sameCommunityHouse.zufang.list.length - 1
+                          ? EdgeInsets.all(0)
+                          : EdgeInsets.only(right: ScreenUtil().setWidth(30)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Image.network(
+                            widget
+                                .sameCommunityHouse.zufang.list[index].coverPic,
+                            width: ScreenUtil().setWidth(579),
+                            height: ScreenUtil().setHeight(435),
+                            fit: BoxFit.cover,
+                          ),
+                          Divider(
+                            height: ScreenUtil().setHeight(18),
+                            color: Colors.transparent,
+                          ),
+                          Container(
+                            width: ScreenUtil().setWidth(579),
+                            child: Text(
+                                widget.sameCommunityHouse.zufang.list[index]
+                                    .title,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 34, 34, 34),
+                                    fontSize: ScreenUtil().setSp(42))),
+                          ),
+                          Divider(
+                            height: ScreenUtil().setHeight(18),
+                            color: Colors.transparent,
+                          ),
+                          Text(
+                              widget
+                                  .sameCommunityHouse.zufang.list[index].price,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 250, 87, 65),
+                                  fontSize: ScreenUtil().setSp(42))),
+                        ],
+                      ),
+                    );
+                  },
+                  scrollDirection: Axis.horizontal,
+                  itemCount: widget.sameCommunityHouse.zufang.list.length,
+                ),
+              )
+            : Container(
+                height: ScreenUtil().setHeight(699),
+                width: double.infinity,
+                margin: EdgeInsets.fromLTRB(
+                    ScreenUtil().setWidth(72), 0, ScreenUtil().setWidth(72), 0),
+                child: ListView.builder(
+                  controller: controller,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: index ==
+                              widget.sameCommunityHouse.ershoufang.list.length -
+                                  1
+                          ? EdgeInsets.all(0)
+                          : EdgeInsets.only(right: ScreenUtil().setWidth(30)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Image.network(
+                            widget.sameCommunityHouse.ershoufang.list[index]
+                                .coverPic,
+                            width: ScreenUtil().setWidth(579),
+                            height: ScreenUtil().setHeight(435),
+                            fit: BoxFit.cover,
+                          ),
+                          Divider(
+                            height: ScreenUtil().setHeight(18),
+                            color: Colors.transparent,
+                          ),
+                          Text(
+                              widget.sameCommunityHouse.ershoufang.list[index]
+                                  .title,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 34, 34, 34),
+                                  fontSize: ScreenUtil().setSp(42))),
+                          Divider(
+                            height: ScreenUtil().setHeight(9),
+                            color: Colors.transparent,
+                          ),
+                          Text(
+                              widget.sameCommunityHouse.ershoufang.list[index]
+                                  .communityName,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 153, 153, 153),
+                                  fontSize: ScreenUtil().setSp(33))),
+                          Divider(
+                            height: ScreenUtil().setHeight(9),
+                            color: Colors.transparent,
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Text(
+                                  widget.sameCommunityHouse.ershoufang
+                                      .list[index].price,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 250, 87, 65),
+                                      fontSize: ScreenUtil().setSp(42))),
+                              VerticalDivider(
+                                width: ScreenUtil().setWidth(9),
+                              ),
+                              Text(
+                                  widget.sameCommunityHouse.ershoufang
+                                      .list[index].unitPrice,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 153, 153, 153),
+                                      fontSize: ScreenUtil().setSp(33))),
+                            ],
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  itemCount: widget.sameCommunityHouse.ershoufang.list.length,
+                  scrollDirection: Axis.horizontal,
+                )),
+        Container(
+          height: ScreenUtil().setHeight(148),
+          width: double.infinity,
+          margin: EdgeInsets.fromLTRB(
+              ScreenUtil().setWidth(72),
+              ScreenUtil().setWidth(0),
+              ScreenUtil().setWidth(72),
+              ScreenUtil().setWidth(60)),
+          color: Color.fromARGB(255, 244, 248, 255),
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              isZufang
+                  ? widget.sameCommunityHouse.zufang.moreDesc
+                  : widget.sameCommunityHouse.ershoufang.moreDesc,
+              style: TextStyle(
+                  color: Color.fromARGB(255, 48, 114, 246),
+                  fontSize: ScreenUtil().setSp(42)),
+            ),
+          ),
+        )
+      ],
+    );
+  }
 }
 
 // 子模块标题

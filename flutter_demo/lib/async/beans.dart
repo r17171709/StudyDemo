@@ -166,8 +166,44 @@ Beans parseData2(dynamic onData2, Beans bean) {
       data["communityCard"]["sameCommunityDeal"]["name"],
       sameCommunityDealLists);
 
-  CommunityCard communityCard = CommunityCard(data["communityCard"]["name"],
-      data["communityCard"]["moreDesc"], basicInfo2, sameCommunityDeal);
+  List<ErshoufangList> ershoufangList = [];
+  data["communityCard"]["sameCommunityHouse"]["ershoufang"]["list"]
+      .forEach((dynamic onData) {
+    ershoufangList.add(ErshoufangList(
+        onData["houseCode"],
+        onData["title"],
+        onData["price"],
+        onData["unitPrice"],
+        onData["communityName"],
+        onData["coverPic"],
+        onData["isGoodHouse"]));
+  });
+  Ershoufang ershoufang = Ershoufang(
+      data["communityCard"]["sameCommunityHouse"]["ershoufang"]["name"],
+      data["communityCard"]["sameCommunityHouse"]["ershoufang"]["moreDesc"],
+      ershoufangList);
+  List<ZufangList> zufangList = [];
+  data["communityCard"]["sameCommunityHouse"]["zufang"]["list"]
+      .forEach((dynamic onData) {
+    zufangList.add(ZufangList(onData["houseCode"], onData["title"],
+        onData["price"], onData["coverPic"]));
+  });
+  Zufang zufang = Zufang(
+      data["communityCard"]["sameCommunityHouse"]["zufang"]["navText"],
+      data["communityCard"]["sameCommunityHouse"]["zufang"]["name"],
+      data["communityCard"]["sameCommunityHouse"]["zufang"]["totalCount"],
+      data["communityCard"]["sameCommunityHouse"]["zufang"]["moreDesc"],
+      data["communityCard"]["sameCommunityHouse"]["zufang"]["hasMoreData"],
+      zufangList);
+  SameCommunityHouse sameCommunityHouse = SameCommunityHouse(
+      data["communityCard"]["sameCommunityHouse"]["name"], ershoufang, zufang);
+
+  CommunityCard communityCard = CommunityCard(
+      data["communityCard"]["name"],
+      data["communityCard"]["moreDesc"],
+      basicInfo2,
+      sameCommunityDeal,
+      sameCommunityHouse);
 
   bean.communityCard = communityCard;
 
@@ -415,9 +451,10 @@ class CommunityCard {
   final String moreDesc;
   final BasicInfo2 basicInfo2;
   final SameCommunityDeal sameCommunityDeal;
+  final SameCommunityHouse sameCommunityHouse;
 
-  CommunityCard(
-      this.name, this.moreDesc, this.basicInfo2, this.sameCommunityDeal);
+  CommunityCard(this.name, this.moreDesc, this.basicInfo2,
+      this.sameCommunityDeal, this.sameCommunityHouse);
 }
 
 class BasicInfo2 {
@@ -460,4 +497,54 @@ class SameCommunityDealList {
 
   SameCommunityDealList(this.houseCode, this.title, this.desc, this.realDesc,
       this.price, this.realPrice, this.requireLogin);
+}
+
+class SameCommunityHouse {
+  final String name;
+  final Ershoufang ershoufang;
+  final Zufang zufang;
+
+  SameCommunityHouse(this.name, this.ershoufang, this.zufang);
+}
+
+class Ershoufang {
+  final String name;
+  final String moreDesc;
+  final List<ErshoufangList> list;
+
+  Ershoufang(this.name, this.moreDesc, this.list);
+}
+
+class ErshoufangList {
+  final String houseCode;
+  final String title;
+  final String price;
+  final String unitPrice;
+  final String communityName;
+  final String coverPic;
+  final bool isGoodHouse;
+
+  ErshoufangList(this.houseCode, this.title, this.price, this.unitPrice,
+      this.communityName, this.coverPic, this.isGoodHouse);
+}
+
+class Zufang {
+  final String navText;
+  final String name;
+  final int totalCount;
+  final String moreDesc;
+  final int hasMoreData;
+  final List<ZufangList> list;
+
+  Zufang(this.navText, this.name, this.totalCount, this.moreDesc,
+      this.hasMoreData, this.list);
+}
+
+class ZufangList {
+  final String houseCode;
+  final String title;
+  final String price;
+  final String coverPic;
+
+  ZufangList(this.houseCode, this.title, this.price, this.coverPic);
 }
