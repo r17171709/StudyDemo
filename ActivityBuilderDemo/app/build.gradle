@@ -33,6 +33,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // 必须将编译注解库与代码库进行拆分
     implementation project(":Annotation")
     kapt project(":BuilderLibrary")
     implementation 'com.squareup.leakcanary:leaksentry:2.0-alpha-2'
