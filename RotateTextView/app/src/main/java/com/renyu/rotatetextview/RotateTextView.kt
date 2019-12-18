@@ -10,6 +10,8 @@ import android.view.View
 
 /**
  * Created by Administrator on 2019/12/19.
+ *
+ * 参考文章 https://blog.csdn.net/iasxk/article/details/17411381
  */
 class RotateTextView : View {
     private val paint: Paint by lazy {
