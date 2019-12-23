@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:layout_marginStart="40dip"
+        android:layout_marginEnd="40dip"
+        android:background="@drawable/shape_networkloadingdialog"
+        android:gravity="center"
+        android:paddingStart="15dip"
+        android:paddingEnd="20dip">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            style="?android:attr/progressBarStyleSmall" />
+
+        <TextView
+            android:id="@+id/tv_networkloading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dip"
+            android:text="正在加载中..."
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+</RelativeLayout>
