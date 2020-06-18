@@ -7,6 +7,6 @@
         android:layout_marginStart="5dip"
         android:layout_marginEnd="5dip"
         android:layout_marginTop="10dip"
-        android:layout_width="100dip"
-        android:layout_height="100dip"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

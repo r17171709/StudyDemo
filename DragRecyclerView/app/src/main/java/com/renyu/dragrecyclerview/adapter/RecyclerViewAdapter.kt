@@ -34,7 +34,11 @@ class RecyclerViewAdapter(private val beans: ArrayList<String>) :
             return@setOnTouchListener true
         }
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "${beans[holder.layoutPosition]}", Toast.LENGTH_SHORT)
+            Toast.makeText(
+                holder.itemView.context,
+                "${beans[holder.layoutPosition]}",
+                Toast.LENGTH_SHORT
+            )
                 .show()
         }
     }
