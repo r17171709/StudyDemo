@@ -35,4 +35,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.blankj:utilcode:1.25.9'
+    implementation 'com.facebook.fresco:fresco:2.1.0'
 }
