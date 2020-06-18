@@ -52,8 +52,10 @@ class Main3Activity : AppCompatActivity() {
     private fun bottom() {
         Handler().postDelayed({
             swipy.isRefreshing = false
+            val oldLength = beans.size
             loadSecond()
-            adapter.notifyDataSetChanged()
+            // 防止错位，需要使用notifyItemRangeInserted去刷新
+            adapter.notifyItemRangeInserted(oldLength, beans.size);
         }, 200)
     }
 
