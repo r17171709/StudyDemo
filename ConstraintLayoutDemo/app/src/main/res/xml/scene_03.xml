@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/view3"
+            android:layout_width="64dip"
+            android:layout_height="64dip"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="backgroundColor"
+                app:customColorValue="@color/colorPrimary" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/view3"
+            android:layout_width="64dip"
+            android:layout_height="64dip"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <CustomAttribute
+                app:attributeName="backgroundColor"
+                app:customColorValue="@color/colorAccent" />
+        </Constraint>
+    </ConstraintSet>
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="3000">
+        <OnClick app:targetId="@+id/view3" />
+        <KeyFrameSet>
+            <KeyPosition
+                app:framePosition="50"
+                app:keyPositionType="parentRelative"
+                app:motionTarget="@+id/view3"
+                app:percentX="0.2"
+                app:percentY="0.4" />
+
+            <!--            <KeyTimeCycle app:motionTarget="@id/view3"-->
+            <!--                android:rotation="50"-->
+            <!--                app:wavePeriod="1" />-->
+
+            <KeyAttribute
+                android:rotation="-45"
+                android:scaleX="2"
+                android:scaleY="2"
+                app:framePosition="50"
+                app:motionTarget="@+id/view3" />
+
+            <KeyTrigger
+                app:framePosition="20"
+                app:motionTarget="@+id/view3"
+                app:onCross="startAnim" />
+
+            <KeyTrigger
+                app:framePosition="80"
+                app:motionTarget="@+id/view3"
+                app:onCross="endAnim" />
+        </KeyFrameSet>
+    </Transition>
+
+</MotionScene>

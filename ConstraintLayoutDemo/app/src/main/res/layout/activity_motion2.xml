@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/scene_02">
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="64dip"
+        android:layout_height="64dip"
+        android:background="@color/colorPrimary"
+        android:text="TextView" />
+</androidx.constraintlayout.motion.widget.MotionLayout>
