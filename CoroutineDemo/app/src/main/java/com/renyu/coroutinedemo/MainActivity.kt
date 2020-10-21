@@ -7,21 +7,21 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
-class MainActivity() : AppCompatActivity(), CoroutineScope {
+class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
     private val vm by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
-    private val job by lazy {
-        Job()
-    }
-
-    // 在Activity中使用协程，需要实现CoroutineScope相应接口
-    override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Main + job // Activity的协程
+    // 直接使用MainScope来代替
+//    private val job by lazy {
+//        Job()
+//    }
+//
+//    // 在Activity中使用协程，需要实现CoroutineScope相应接口
+//    override val coroutineContext: CoroutineContext
+//        get() = Dispatchers.Main + job // Activity的协程
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +60,6 @@ class MainActivity() : AppCompatActivity(), CoroutineScope {
 //            Log.d("TAG", "协程执行结束$value")
 //        }
 
-        Log.d("TAG", "主线程执行结束")
-
         // Retrofit使用
 //        vm.getHttpResult()
 
@@ -94,12 +92,23 @@ class MainActivity() : AppCompatActivity(), CoroutineScope {
 
 //        vm.getHttpResult1().observe(this, { t -> t })
 
-        vm.getHttpRequest2()
+//        vm.getHttpRequest2()
+
+        val job2 = launch(start = CoroutineStart.LAZY) {
+            Log.d("TAG", "launch coroutine : ${Thread.currentThread().name}")
+            doBackGround()
+            Log.d("TAG", "launch coroutine end : ${Thread.currentThread().name}")
+        }
+        // 延迟到使用的时候才进行调用
+        job2.start()
+
+        Log.d("TAG", "主线程执行结束")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        job.cancel()
+//        job.cancel()
+        cancel()
     }
 
     private fun test() {
@@ -131,6 +140,13 @@ class MainActivity() : AppCompatActivity(), CoroutineScope {
         for (i in 0 until 10) {
             // 在创建 Flow 对象的时候我们也需要调用 emit 方法发射数据
             emit(i)
+        }
+    }
+
+    private suspend fun doBackGround() {
+        withContext(Dispatchers.IO) {
+            Thread.sleep(3000)
+            Log.d("TAG", "background() called ${Thread.currentThread().name}")
         }
     }
 }
