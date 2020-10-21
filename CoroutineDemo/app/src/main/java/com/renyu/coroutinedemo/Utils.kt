@@ -23,8 +23,8 @@ object Utils {
     val apiService1 = retrofit1.create(ApiService::class.java)
 }
 
-fun <T> CoroutineScope.retrofit(dsl: RetrofitCoroutineDsl<T>.() -> Unit) {
-    launch(context = CoroutineExceptionHandler { _, e -> } + Dispatchers.Main) {
+fun <T> ViewModel.retrofit(dsl: RetrofitCoroutineDsl<T>.() -> Unit) {
+    viewModelScope.launch(context = CoroutineExceptionHandler { _, e -> } + Dispatchers.Main) {
         val retrofitCoroutineDsl = RetrofitCoroutineDsl<T>()
         retrofitCoroutineDsl.dsl()
         retrofitCoroutineDsl.api?.let {

@@ -40,6 +40,24 @@ class MainViewModel : ViewModel() {
         return result
     }
 
+    fun getHttpRequest2() {
+        retrofit<TestResponse> {
+            api = Utils.apiService.test2()
+
+            onSuccess {
+                it
+            }
+
+            onError {
+                it
+            }
+
+            onComplete {
+
+            }
+        }
+    }
+
     @MainThread
     private fun setValue(newValue: Resource<TestResponse>) {
         if (result.value != newValue) {

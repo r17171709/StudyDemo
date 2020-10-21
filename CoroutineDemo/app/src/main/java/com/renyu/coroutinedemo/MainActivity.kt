@@ -19,6 +19,7 @@ class MainActivity() : AppCompatActivity(), CoroutineScope {
         Job()
     }
 
+    // 在Activity中使用协程，需要实现CoroutineScope相应接口
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job // Activity的协程
 
@@ -93,21 +94,7 @@ class MainActivity() : AppCompatActivity(), CoroutineScope {
 
 //        vm.getHttpResult1().observe(this, { t -> t })
 
-        retrofit<TestResponse> {
-            api = Utils.apiService.test2()
-
-            onSuccess {
-                it
-            }
-
-            onError {
-                it
-            }
-
-            onComplete {
-
-            }
-        }
+        vm.getHttpRequest2()
     }
 
     override fun onDestroy() {
