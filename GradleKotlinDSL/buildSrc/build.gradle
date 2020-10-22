@@ -1,0 +1,33 @@
+apply plugin: 'java-library'
+apply plugin: 'groovy'
+apply plugin: 'kotlin'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
+    }
+}
+
+repositories {
+    google()
+    jcenter()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+
+    implementation "commons-io:commons-io:2.6"
+
+    implementation 'com.android.tools.build:gradle:4.0.2'
+    implementation 'com.android.tools.build:gradle-api:4.0.2'
+
+    implementation 'org.ow2.asm:asm:7.1'
+    implementation 'org.ow2.asm:asm-util:7.1'
+    implementation 'org.ow2.asm:asm-commons:7.1'
+}
