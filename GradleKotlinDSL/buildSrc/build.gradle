@@ -22,11 +22,14 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
 
+    // 常用io操作
     implementation "commons-io:commons-io:2.6"
 
+    // Android DSL  Android编译的大部分gradle源码
     implementation 'com.android.tools.build:gradle:4.0.2'
     implementation 'com.android.tools.build:gradle-api:4.0.2'
 
+    // ASM
     implementation 'org.ow2.asm:asm:7.1'
     implementation 'org.ow2.asm:asm-util:7.1'
     implementation 'org.ow2.asm:asm-commons:7.1'

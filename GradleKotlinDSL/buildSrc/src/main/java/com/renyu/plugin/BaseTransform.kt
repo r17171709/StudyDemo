@@ -4,9 +4,15 @@ import com.android.build.api.transform.*
 import com.android.build.gradle.internal.pipeline.TransformManager
 import com.android.ide.common.internal.WaitableExecutor
 import org.apache.commons.io.FileUtils
+import org.objectweb.asm.ClassReader
+import org.objectweb.asm.ClassVisitor
+import org.objectweb.asm.ClassWriter
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 abstract class BaseTransform : Transform() {
+    // 并发编译
     private val mWaitableExecutor by lazy {
         WaitableExecutor.useGlobalSharedThreadPool()
     }
@@ -23,6 +29,8 @@ abstract class BaseTransform : Transform() {
     override fun isIncremental() = true
 
     // 进行具体转换逻辑
+    // 在transform方法中，我们需要将每个jar包和class文件复制到dest路径，这个dest路径就是下一个Transform的输入数据
+    // 而在复制时，就可以将jar包和class文件的字节码做一些修改，再进行复制
     override fun transform(transformInvocation: TransformInvocation) {
         super.transform(transformInvocation)
 
@@ -34,6 +42,7 @@ abstract class BaseTransform : Transform() {
             // 不是增量编译则删除之前的所有文件
             outputProvider.deleteAll()
         }
+        // 输出类型是Collection<TransformInput>,可以从中获取jar包和class文件夹路径。需要输出给下一个任务
         transformInvocation.inputs.forEach {
             // 处理jar
             it.jarInputs.forEach {
@@ -48,7 +57,7 @@ abstract class BaseTransform : Transform() {
                 }
             }
         }
-        //等待所有任务结束
+        // 等待所有任务结束
         mWaitableExecutor.waitForTasksWithQuickFail<Any>(true)
     }
 
@@ -67,8 +76,9 @@ abstract class BaseTransform : Transform() {
         // 将修改过的字节码copy到dest,就可以实现编译期间干预字节码的目的
         if (isIncremental) {
             when (status) {
-                Status.NOTCHANGED -> {}
-                Status.ADDED, Status.CHANGED -> FileUtils.copyFile(jarInput.file, dest)
+                Status.NOTCHANGED -> {
+                }
+                Status.ADDED, Status.CHANGED -> transformJar(jarInput.file, dest)
                 Status.REMOVED -> {
                     if (dest.exists()) {
                         FileUtils.forceDelete(dest)
@@ -76,8 +86,12 @@ abstract class BaseTransform : Transform() {
                 }
             }
         } else {
-            FileUtils.copyFile(jarInput.file, dest)
+            transformJar(jarInput.file, dest)
         }
+    }
+
+    private fun transformJar(jarInput: File, dest: File) {
+        FileUtils.copyFile(jarInput, dest)
     }
 
     private fun processDirectoryInput(
@@ -101,11 +115,12 @@ abstract class BaseTransform : Transform() {
                 val destFilePath = inputFile.absolutePath.replace(srcDirPath, destDirPath)
                 val destFile = File(destFilePath)
                 when (status) {
-                    Status.NOTCHANGED -> {}
+                    Status.NOTCHANGED -> {
+                    }
                     Status.ADDED, Status.CHANGED -> {
                         FileUtils.touch(destFile)
                         println("拷贝单个文件")
-                        FileUtils.copyFile(inputFile, destFile)
+                        traceFile(inputFile, destFile)
                     }
                     Status.REMOVED -> {
                         if (destFile.exists()) {
@@ -115,7 +130,59 @@ abstract class BaseTransform : Transform() {
                 }
             }
         } else {
-            FileUtils.copyDirectory(directoryInput.file, dest)
+            transformDirectory(directoryInput, dest)
+//            FileUtils.copyDirectory(directoryInput.file, dest)
         }
     }
+
+    private fun transformDirectory(directoryInput: DirectoryInput, dest: File) {
+        val extensions = arrayOf("class")
+        // 递归地去获取该文件夹下面所有的文件
+        val fileList = FileUtils.listFiles(directoryInput.file, extensions, true)
+        val outputFilePath = dest.absolutePath
+        val inputFilePath = directoryInput.file.absolutePath
+        fileList.forEach {
+            val outputFullPath = it.absolutePath.replace(inputFilePath, outputFilePath)
+            val outputFile = File(outputFullPath)
+            FileUtils.touch(outputFile)
+            traceFile(it, outputFile)
+        }
+    }
+
+    private fun traceFile(inputFile: File, outputFile: File) {
+        if (isNeedTraceClass(inputFile)) {
+            println("${inputFile.name} ---- 需要插桩 ----")
+            val inputStream = FileInputStream(inputFile)
+            val outputStream = FileOutputStream(outputFile)
+
+            // 构建ClassReader对象
+            val classReader = ClassReader(inputStream)
+            // 构建ClassVisitor的实现类ClassWriter
+            val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
+            // 将ClassReader读取到的内容回调给ClassVisitor接口
+            classReader.accept(getClassVisitor(classWriter), ClassReader.EXPAND_FRAMES)
+            // 通过classWriter对象的toByteArray方法拿到完整的字节流
+            outputStream.write(classWriter.toByteArray())
+            inputStream.close()
+            outputStream.close()
+            println("${inputFile.name} ---- 插桩结束 ----")
+        } else {
+            FileUtils.copyFile(inputFile, outputFile)
+        }
+    }
+
+    private fun isNeedTraceClass(file: File): Boolean {
+        val name = file.name
+        if (!name.endsWith(".class")
+            || name.startsWith("R.class")
+            || name.startsWith("R\$")
+        ) {
+            return false
+        }
+        return true
+    }
+
+
+    // 获取一个用于插桩的ClassVisitor
+    abstract fun getClassVisitor(classWriter: ClassWriter): ClassVisitor
 }
