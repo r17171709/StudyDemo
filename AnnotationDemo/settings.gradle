@@ -1,1 +1,2 @@
-include ':app', ':annolib', ':viewinjectlib'
+include ':app', ':annolib'
+//, ':viewinjectlib'
