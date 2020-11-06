@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenCreated
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -101,6 +103,16 @@ class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
         }
         // 延迟到使用的时候才进行调用
         job2.start()
+
+        lifecycleScope.launch {
+            whenCreated {
+
+            }
+        }
+
+        lifecycleScope.launchWhenCreated {
+
+        }
 
         Log.d("TAG", "主线程执行结束")
     }
