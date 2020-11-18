@@ -1,10 +1,11 @@
 package com.renyu.coroutinedemo
 
 import androidx.annotation.MainThread
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 
 class MainViewModel : ViewModel() {
@@ -62,6 +63,15 @@ class MainViewModel : ViewModel() {
     private fun setValue(newValue: Resource<TestResponse>) {
         if (result.value != newValue) {
             result.value = newValue
+        }
+    }
+
+    fun getHttpRequest3() = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null))
+        try {
+            emit(Resource.success(Utils.apiService.test()))
+        } catch (e: Exception) {
+            emit(Resource.error(e.message!!, null))
         }
     }
 }

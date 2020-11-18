@@ -96,6 +96,8 @@ class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
 
 //        vm.getHttpRequest2()
 
+//        vm.getHttpRequest3().observe(this, { t -> t })
+
         val job2 = launch(start = CoroutineStart.LAZY) {
             Log.d("TAG", "launch coroutine : ${Thread.currentThread().name}")
             doBackGround()
