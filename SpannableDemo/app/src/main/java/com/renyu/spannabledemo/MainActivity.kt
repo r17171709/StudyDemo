@@ -1,11 +1,13 @@
 package com.renyu.spannabledemo
 
+import android.graphics.Color
 import android.os.Bundle
-import android.text.Selection
-import android.text.Spannable
-import android.text.SpannableStringBuilder
+import android.text.*
 import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.renyu.spannabledemo.databinding.ActivityMainBinding
 
@@ -30,8 +32,28 @@ class MainActivity : AppCompatActivity() {
         }
         binding.buttonRead.setOnClickListener {
             val text = binding.tvInput.text!!
+            val spans = ArrayList<Pair<Int, Int>>()
             text.getSpans(0, text.length, User::class.java).forEach {
-                Log.d("TAGTAGTAG", it.name)
+                Log.d(
+                    "TAGTAGTAG",
+                    it.name + " " + text.getSpanStart(it) + " " + text.getSpanEnd(it)
+                )
+                spans.add(Pair(text.getSpanStart(it), text.getSpanEnd(it)))
+            }
+            val value = text.toString()
+            val ss = SpannableString(value)
+            if (spans.size > 0) {
+                spans.forEach {
+                    ss.setSpan(
+                        ForegroundColorSpan(Color.CYAN),
+                        it.first,
+                        it.second,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                binding.tvOutput.text = ss
+            } else {
+                binding.tvOutput.text = value
             }
         }
         binding.tvInput.setEditableFactory(NoCopySpanEditableFactory(SelectionSpanWatcher()))
