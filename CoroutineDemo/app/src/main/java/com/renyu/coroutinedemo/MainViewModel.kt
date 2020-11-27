@@ -11,6 +11,12 @@ import kotlinx.coroutines.async
 class MainViewModel : ViewModel() {
     private val result = MediatorLiveData<Resource<TestResponse>>()
 
+    fun testDsl(dsl: DSLBean.() -> Unit) {
+        val bean = DSLBean()
+        bean.dsl()
+        bean.dslFunction?.invoke()
+    }
+
     fun getHttpResult() {
         launch(block = {
             val result = async {

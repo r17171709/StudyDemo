@@ -2,6 +2,7 @@ package com.renyu.coroutinedemo
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -30,6 +31,12 @@ class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
         setContentView(R.layout.activity_main)
 
         Log.d("TAG", "主线程ID:${mainLooper.thread.id}")
+
+        vm.testDsl {
+            dslFunction {
+                Toast.makeText(this@MainActivity, "HelloDSL", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         // runBlocking
         // runBlocking启动的协程任务会阻断当前线程，直到该协程执行结束。当协程执行结束之后，页面才会被显示出来
