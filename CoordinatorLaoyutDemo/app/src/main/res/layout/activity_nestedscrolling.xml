@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.renyu.coordinatorlaoyutdemo.nestedscrolling.NestedScrollingParent2Layout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.renyu.coordinatorlaoyutdemo.nestedscrolling.NestedScrollingChild2View
+        android:layout_width="match_parent"
+        android:layout_height="200dip">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/img_head" />
+    </com.renyu.coordinatorlaoyutdemo.nestedscrolling.NestedScrollingChild2View>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_nestedscrolling"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.renyu.coordinatorlaoyutdemo.nestedscrolling.NestedScrollingChild2View
+        android:layout_width="match_parent"
+        android:layout_height="200dip">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/img_head" />
+    </com.renyu.coordinatorlaoyutdemo.nestedscrolling.NestedScrollingChild2View>
+</com.renyu.coordinatorlaoyutdemo.nestedscrolling.NestedScrollingParent2Layout>
