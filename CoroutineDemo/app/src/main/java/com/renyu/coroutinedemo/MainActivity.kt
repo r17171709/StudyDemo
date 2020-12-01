@@ -11,7 +11,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-@ExperimentalCoroutinesApi
+/**
+ * 参考文章  https://blog.csdn.net/xlh1191860939/article/details/104970507/
+ */
 class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
     private val vm by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
@@ -37,6 +39,8 @@ class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
                 Toast.makeText(this@MainActivity, "HelloDSL", Toast.LENGTH_SHORT).show()
             }
         }
+
+        vm.testParentChild2()
 
         // runBlocking
         // runBlocking启动的协程任务会阻断当前线程，直到该协程执行结束。当协程执行结束之后，页面才会被显示出来

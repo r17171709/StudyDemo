@@ -1,12 +1,10 @@
 package com.renyu.coroutinedemo
 
 import androidx.annotation.MainThread
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
     private val result = MediatorLiveData<Resource<TestResponse>>()
@@ -15,6 +13,50 @@ class MainViewModel : ViewModel() {
         val bean = DSLBean()
         bean.dsl()
         bean.dslFunction?.invoke()
+    }
+
+    fun testParentChild1() {
+        viewModelScope.launch {
+            viewModelScope.launch {
+                println("HelloChild1")
+                println("HelloChild2")
+            }
+            println("HelloParent")
+            println("HelloParent2")
+        }
+        println("HelloOuter")
+    }
+
+    /**
+     * 如果子协程是正常的取消（即CancellationException），那么对于父协程是没有影响的
+     */
+    fun testParentChild2() {
+        viewModelScope.launch {
+            val child = viewModelScope.launch {
+                println("HelloChild1")
+                println("HelloChild2")
+            }
+            println("HelloParent")
+            child.cancel()
+            println("HelloParent2")
+        }
+        println("HelloOuter")
+    }
+
+    /**
+     * 这样非CancellationException导致的子协程地取消，也会导致父协程的取消
+     */
+    fun testParentChild3() {
+        viewModelScope.launch {
+            viewModelScope.launch {
+                println("HelloChild1")
+                println("HelloChild2")
+                throw Exception("")
+            }
+            println("HelloParent")
+            println("HelloParent2")
+        }
+        println("HelloOuter")
     }
 
     fun getHttpResult() {
