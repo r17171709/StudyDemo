@@ -1,0 +1,33 @@
+1. 下载仓库
+git clone https://gitee.com/r17171709/git-demo
+2. 添加文件test_master.txt
+git add test_master.txt
+3. 确定本地提交
+git commit -m "首次提交"
+4. 提交到远程仓库
+git push origin master
+5. 创建dev1分之
+git checkout -b dev1
+6. 查看本地所有分支
+git branch
+7. 修改文件
+8. git add test_master.txt
+9. git commit -m "dev1提交"
+10. git push origin dev1
+11. 切换回master
+git checkout master
+12. 修改文件
+13. git add test_master.txt   
+	git add test_master_new.txt
+14. git commit -m "master修改提交"
+15. git push origin master
+16. 合并2个分支
+git merge dev1
+出现冲突进行修复
+17. git add test_master.txt
+18. git commit -m "master合并修改提交"
+19. git push origin master
+20. 删除分支
+git branch -d dev1
+21. 删除远程分支
+git push origin --delete dev1
