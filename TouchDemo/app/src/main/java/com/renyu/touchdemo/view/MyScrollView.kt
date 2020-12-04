@@ -25,6 +25,7 @@ class MyScrollView : LinearLayout {
     private lateinit var scroller: Scroller
     private var velocityTracker: VelocityTracker? = null
     private var fling = false
+    private var flingY = 0
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -68,6 +69,7 @@ class MyScrollView : LinearLayout {
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         fling = false
+        flingY = 0
         if (velocityTracker == null) {
             velocityTracker = VelocityTracker.obtain()
         }
@@ -94,9 +96,9 @@ class MyScrollView : LinearLayout {
                         Int.MIN_VALUE,
                         Int.MAX_VALUE
                     )
-                    postInvalidate()
+                    invalidate()
                 }
-                velocityTracker!!.recycle()
+//                velocityTracker!!.recycle()
             }
         }
         lastX = currentX
@@ -119,10 +121,12 @@ class MyScrollView : LinearLayout {
     override fun computeScroll() {
         super.computeScroll()
         if (scroller.computeScrollOffset() && fling) {
-            scrollBy(0, -scroller.currY)
-            postInvalidate();
+            scrollBy(0, -(scroller.currY - flingY))
+            flingY = scroller.currY
+            postInvalidate()
         } else {
             fling = false
+            flingY = 0
         }
         Log.d("TAGTAGTAG", scroller.currY.toString())
     }
