@@ -46,8 +46,8 @@ class MyScrollView : LinearLayout {
         viewHeight = MeasureSpec.getSize(heightMeasureSpec)
     }
 
-    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        super.onLayout(changed, l, t, r, b)
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
         realHeight = childCount * dp2px(100f)
     }
 
@@ -85,6 +85,7 @@ class MyScrollView : LinearLayout {
                 velocityTracker!!.computeCurrentVelocity(1000, maxFlingVelocity.toFloat())
                 val yVelocity = velocityTracker!!.yVelocity
                 if (abs(yVelocity) > minFlingVelocity) {
+//                    Log.d("TAGTAGTAG", scrollY.toString() + "  " + -yVelocity)
                     fling = true
                     scroller.fling(
                         0,
@@ -98,7 +99,10 @@ class MyScrollView : LinearLayout {
                     )
                     invalidate()
                 }
-//                velocityTracker!!.recycle()
+                if (velocityTracker != null) {
+                    velocityTracker!!.recycle()
+                    velocityTracker = null
+                }
             }
         }
         lastX = currentX
