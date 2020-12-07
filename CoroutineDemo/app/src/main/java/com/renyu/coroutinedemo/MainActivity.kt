@@ -131,6 +131,13 @@ class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
 
         }
 
+        vm.liveDataValue.observe(this, { t ->
+            runOnUiThread() {
+                Toast.makeText(this@MainActivity, t, Toast.LENGTH_SHORT).show()
+            }
+        })
+        vm.updateChannel()
+
         Log.d("TAG", "主线程执行结束")
     }
 

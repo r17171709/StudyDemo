@@ -4,6 +4,8 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
@@ -120,6 +122,31 @@ class MainViewModel : ViewModel() {
             emit(Resource.success(Utils.apiService.test()))
         } catch (e: Exception) {
             emit(Resource.error(e.message!!, null))
+        }
+    }
+
+    private val channel = Channel<String>()
+    val liveDataValue = liveData<String> {
+        for (result in channel) {
+            emit(result)
+        }
+    }
+
+    fun updateChannel() {
+        viewModelScope.launch {
+            delay(3000)
+            channel.send("Hello")
+        }
+    }
+
+    /**
+     * 重新封装了一下
+     */
+    private fun <T> Channel<T>.coroutineLiveData() {
+        val liveDataValue = liveData<T> {
+            for (result in this@coroutineLiveData) {
+                emit(result)
+            }
         }
     }
 }
