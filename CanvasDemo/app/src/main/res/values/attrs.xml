@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyViewAttrs">
+        <attr name="color" format="reference|color" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="marginStart" format="dimension" />
+        <attr name="marginEnd" format="dimension" />
+    </declare-styleable>
+</resources>
