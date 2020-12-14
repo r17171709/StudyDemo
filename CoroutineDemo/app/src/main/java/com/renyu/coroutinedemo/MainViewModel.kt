@@ -2,11 +2,8 @@ package com.renyu.coroutinedemo
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
     private val result = MediatorLiveData<Resource<TestResponse>>()
@@ -50,7 +47,7 @@ class MainViewModel : ViewModel() {
      */
     fun testParentChild3() {
         viewModelScope.launch {
-            viewModelScope.launch {
+            viewModelScope.launch(context = CoroutineExceptionHandler { _, e -> e.printStackTrace() }) {
                 println("HelloChild1")
                 println("HelloChild2")
                 throw Exception("")
@@ -59,6 +56,22 @@ class MainViewModel : ViewModel() {
             println("HelloParent2")
         }
         println("HelloOuter")
+    }
+
+    fun testParentChild4() {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+        scope.launch {
+            try {
+                coroutineScope {
+                    async {
+                        throw Exception("")
+                    }.await()
+                }
+            } catch (e: NumberFormatException) {
+                e.printStackTrace()
+            }
+        }
     }
 
     fun getHttpResult() {

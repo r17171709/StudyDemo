@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.flow
 
 /**
  * 参考文章  https://blog.csdn.net/xlh1191860939/article/details/104970507/
+ * 参考文章  https://www.jianshu.com/p/51b454d73663
  */
 class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
     private val vm by lazy {
@@ -39,8 +40,6 @@ class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
                 Toast.makeText(this@MainActivity, "HelloDSL", Toast.LENGTH_SHORT).show()
             }
         }
-
-        vm.testParentChild2()
 
         // runBlocking
         // runBlocking启动的协程任务会阻断当前线程，直到该协程执行结束。当协程执行结束之后，页面才会被显示出来
@@ -131,12 +130,21 @@ class MainActivity() : AppCompatActivity(), CoroutineScope by MainScope() {
 
         }
 
-        vm.liveDataValue.observe(this, { t ->
-            runOnUiThread() {
-                Toast.makeText(this@MainActivity, t, Toast.LENGTH_SHORT).show()
+//        vm.liveDataValue.observe(this, { t ->
+//            runOnUiThread() {
+//                Toast.makeText(this@MainActivity, t, Toast.LENGTH_SHORT).show()
+//            }
+//        })
+//        vm.updateChannel()
+
+        receiveEvent<String> {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(this@MainActivity, "receiveEvent", Toast.LENGTH_SHORT).show()
             }
-        })
-        vm.updateChannel()
+        }
+        sendEvent(Event("String"))
+
+//        vm.testParentChild2()
 
         Log.d("TAG", "主线程执行结束")
     }
