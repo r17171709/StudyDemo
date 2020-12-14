@@ -14,9 +14,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeWidth="10dip"
-        app:marginStart="30dip"
         app:marginEnd="30dip"
+        app:marginStart="30dip"
+        app:strokeWidth="10dip"
         tools:layout_editor_absoluteX="0dp" />
+
+    <com.renyu.canvasdemo.view.RoundImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
