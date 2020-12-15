@@ -6,7 +6,7 @@ git add test_master.txt
 git commit -m "首次提交"
 4. 提交到远程仓库
 git push origin master
-5. 创建dev1分之
+5. 创建dev1分支
 git checkout -b dev1
 6. 查看本地所有分支
 git branch
@@ -31,3 +31,10 @@ git merge dev1
 git branch -d dev1
 21. 删除远程分支
 git push origin --delete dev1
+
+1. git查看远程分支
+git branch -a
+2. 切换到指定远程分支
+git checkout -b 418 origin/418
+3. 强制本地回滚到某一个版本
+git reset --hard b05646b0
