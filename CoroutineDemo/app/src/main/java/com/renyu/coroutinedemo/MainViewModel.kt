@@ -105,7 +105,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun getHttpRequest2() {
-        retrofit<TestResponse> {
+        retrofit2<TestResponse> {
             api = Utils.apiService.test2()
 
             onSuccess {

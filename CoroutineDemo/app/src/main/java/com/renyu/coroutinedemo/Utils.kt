@@ -55,3 +55,26 @@ fun <T> ViewModel.retrofit(dsl: RetrofitCoroutineDsl<T>.() -> Unit) {
         }
     }
 }
+
+fun <T> ViewModel.retrofit2(dsl: RetrofitCoroutineDsl<T>.() -> Unit) {
+    viewModelScope.launch {
+        val retrofitCoroutineDsl = RetrofitCoroutineDsl<T>()
+        retrofitCoroutineDsl.dsl()
+        runCatching {
+            withContext(Dispatchers.IO) {
+                retrofitCoroutineDsl.api!!.execute()
+            }
+        }.onSuccess {
+            if (it.isSuccessful) {
+                retrofitCoroutineDsl.onSuccess?.invoke(it.body()!!)
+            } else {
+                retrofitCoroutineDsl.onError?.invoke(Exception(it.errorBody().toString()))
+            }
+        }.onFailure {
+            // 如果协程还在运行，个别机型退出当前界面时，viewModel会通过抛出CancellationException，强行结束协程，与java中InterruptException类似，所以不必理会
+            if (it !is CancellationException) {
+                retrofitCoroutineDsl.onError?.invoke(it)
+            }
+        }
+    }
+}
