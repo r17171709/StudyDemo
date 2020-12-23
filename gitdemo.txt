@@ -38,3 +38,5 @@ git branch -a
 git checkout -b 418 origin/418
 3. 强制本地回滚到某一个版本
 git reset --hard b05646b0
+4. 以新commit的方式撤销某一个commit
+git revert b05646b0
