@@ -26,6 +26,12 @@ public class RepeatLayoutManager extends RecyclerView.LayoutManager {
         return orientation == RecyclerView.VERTICAL;
     }
 
+    /**
+     * 定义初始布局
+     *
+     * @param recycler
+     * @param state
+     */
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         if (getItemCount() <= 0) {
@@ -34,6 +40,7 @@ public class RepeatLayoutManager extends RecyclerView.LayoutManager {
         if (state.isPreLayout()) {
             return;
         }
+        // 将所有Item分离至scrap
         detachAndScrapAttachedViews(recycler);
         layoutChunk(recycler);
     }
@@ -45,8 +52,10 @@ public class RepeatLayoutManager extends RecyclerView.LayoutManager {
                 if (start > getWidth() - getPaddingEnd()) {
                     break;
                 }
+                // 从缓存中获取子View
                 View view = recycler.getViewForPosition(i);
                 addView(view);
+                // 测量子View，并将子View的margin也考虑进来。通常使用此函数
                 measureChildWithMargins(view, 0, 0);
                 int top = getPaddingTop();
                 int end = start + getDecoratedMeasuredWidth(view);
@@ -83,8 +92,10 @@ public class RepeatLayoutManager extends RecyclerView.LayoutManager {
      */
     @Override
     public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        // 测量 布局
         fillHorizontal(recycler, dx > 0);
         offsetChildrenHorizontal(-dx);
+        // 回收
         releaseChildView(recycler, dx > 0);
         return dx;
     }
@@ -208,6 +219,7 @@ public class RepeatLayoutManager extends RecyclerView.LayoutManager {
                 }
                 boolean needRecycler = orientation == RecyclerView.HORIZONTAL ? view.getLeft() >= getWidth() - getPaddingEnd() : view.getTop() > getHeight() - getPaddingBottom();
                 if (needRecycler) {
+                    // 将指定的View直接回收加至recyclerPool
                     removeAndRecycleView(view, recycler);
                 } else {
                     return;
