@@ -2,15 +2,15 @@ package com.renyu.recyclerviewdemo.impl
 
 import android.graphics.Canvas
 import android.graphics.Color
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 import org.jetbrains.anko.backgroundColor
 
 /**
  * Created by renyu on 2017/11/17.
  */
 class StartDragCallBack(private val onDragMoveListener: OnDragMoveListener, private val onSwipeListener: OnSwipeListener) : ItemTouchHelper.Callback() {
-    override fun getMovementFlags(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?): Int {
+    override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
         val up = ItemTouchHelper.UP
         val down = ItemTouchHelper.DOWN
         val left = ItemTouchHelper.LEFT
@@ -20,12 +20,12 @@ class StartDragCallBack(private val onDragMoveListener: OnDragMoveListener, priv
         return makeMovementFlags(dragFlags, swipeFlags)
     }
 
-    override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?): Boolean {
+    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
         onDragMoveListener.onMove(recyclerView, viewHolder, target)
         return true
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int) {
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         onSwipeListener.onSwiped(viewHolder, direction)
     }
 
@@ -33,11 +33,11 @@ class StartDragCallBack(private val onDragMoveListener: OnDragMoveListener, priv
 
     override fun isItemViewSwipeEnabled(): Boolean = false
 
-    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
-        viewHolder?.itemView?.backgroundColor = Color.BLUE
-    }
+//    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder, actionState: Int) {
+//        viewHolder?.itemView?.backgroundColor = Color.BLUE
+//    }
 
-    override fun clearView(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?) {
+    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         super.clearView(recyclerView, viewHolder)
         viewHolder?.itemView?.backgroundColor = android.R.color.holo_green_light
 
@@ -46,7 +46,7 @@ class StartDragCallBack(private val onDragMoveListener: OnDragMoveListener, priv
         viewHolder?.itemView?.scaleY = 1f
     }
 
-    override fun onChildDraw(c: Canvas?, recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
+    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
 
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {

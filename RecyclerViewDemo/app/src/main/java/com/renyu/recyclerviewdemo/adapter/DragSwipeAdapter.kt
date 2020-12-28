@@ -1,7 +1,7 @@
 package com.renyu.recyclerviewdemo.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +19,7 @@ class DragSwipeAdapter(private val beans: ArrayList<String>, private val context
 
     override fun getItemCount(): Int = beans.size
 
-    override fun onBindViewHolder(holder: DragSwipeHolder?, position: Int) {
+    override fun onBindViewHolder(holder: DragSwipeHolder, position: Int) {
         holder?.iv_adapter?.imageResource = R.mipmap.ic_launcher
         holder?.tv_adapter?.text = beans[holder?.layoutPosition!!]
         holder?.iv_adapter?.setOnTouchListener { _, _ ->
@@ -32,7 +32,7 @@ class DragSwipeAdapter(private val beans: ArrayList<String>, private val context
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): DragSwipeHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DragSwipeHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.adapter_main, parent, false)
         return DragSwipeHolder(view)
     }

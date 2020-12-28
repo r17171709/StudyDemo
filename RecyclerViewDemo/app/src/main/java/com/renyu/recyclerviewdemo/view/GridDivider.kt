@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 
 /**
@@ -13,7 +13,7 @@ import android.view.View
  */
 class GridDivider constructor(val context: Context, val dividerDrawable: Drawable) : RecyclerView.ItemDecoration() {
 
-    override fun onDraw(c: Canvas?, parent: RecyclerView?, state: RecyclerView.State?) {
+    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
         drawLeft(c, parent)
         drawTop(c, parent)
@@ -21,7 +21,7 @@ class GridDivider constructor(val context: Context, val dividerDrawable: Drawabl
         drawBottom(c, parent)
     }
 
-    private fun drawTop(c: Canvas?, parent: RecyclerView?) {
+    private fun drawTop(c: Canvas, parent: RecyclerView) {
         if (parent != null) {
             for (i in 0 until parent.childCount) {
                 val child = parent.getChildAt(i)
@@ -36,7 +36,7 @@ class GridDivider constructor(val context: Context, val dividerDrawable: Drawabl
         }
     }
 
-    private fun drawLeft(c: Canvas?, parent: RecyclerView?) {
+    private fun drawLeft(c: Canvas, parent: RecyclerView) {
         if (parent != null) {
             for (i in 0 until parent.childCount) {
                 val child = parent.getChildAt(i)
@@ -51,7 +51,7 @@ class GridDivider constructor(val context: Context, val dividerDrawable: Drawabl
         }
     }
 
-    private fun drawBottom(c: Canvas?, parent: RecyclerView?) {
+    private fun drawBottom(c: Canvas, parent: RecyclerView) {
         if (parent != null) {
             for (i in 0 until parent.childCount) {
                 val child = parent.getChildAt(i)
@@ -66,7 +66,7 @@ class GridDivider constructor(val context: Context, val dividerDrawable: Drawabl
         }
     }
 
-    private fun drawRight(c: Canvas?, parent: RecyclerView?) {
+    private fun drawRight(c: Canvas, parent: RecyclerView) {
         if (parent != null) {
             for (i in 0 until parent.childCount) {
                 val child = parent.getChildAt(i)
@@ -81,7 +81,7 @@ class GridDivider constructor(val context: Context, val dividerDrawable: Drawabl
         }
     }
 
-    override fun getItemOffsets(outRect: Rect?, view: View?, parent: RecyclerView?, state: RecyclerView.State?) {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)
         if (parent != null) {
             val position = parent.getChildAdapterPosition(view)

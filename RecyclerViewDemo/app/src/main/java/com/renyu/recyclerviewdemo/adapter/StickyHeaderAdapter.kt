@@ -1,7 +1,7 @@
 package com.renyu.recyclerviewdemo.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +24,7 @@ class StickyHeaderAdapter() : RecyclerView.Adapter<StickyHeaderAdapter.StickyHea
         this.beans = beans
     }
 
-    override fun onBindViewHolder(holder: StickyHeaderHolder?, position: Int) {
+    override fun onBindViewHolder(holder: StickyHeaderHolder, position: Int) {
         holder?.tv_adapter!!.text = beans!![position]
 
         val section = SectionBean()
@@ -37,7 +37,7 @@ class StickyHeaderAdapter() : RecyclerView.Adapter<StickyHeaderAdapter.StickyHea
         holder?.layout_adapter.tag = section
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): StickyHeaderHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StickyHeaderHolder {
         val view: View = LayoutInflater.from(context).inflate(R.layout.adapter_main, parent, false)
         return StickyHeaderHolder(view)
     }
