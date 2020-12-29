@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.renyu.recyclerviewdemo.R
 
-class LayoutManagerAdapter : RecyclerView.Adapter<LayoutManagerAdapter.LayoutManagerViewHolder>() {
+class LayoutManagerAdapter(private val beans: ArrayList<String>) : RecyclerView.Adapter<LayoutManagerAdapter.LayoutManagerViewHolder>() {
     class LayoutManagerViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LayoutManagerViewHolder {
@@ -16,8 +16,8 @@ class LayoutManagerAdapter : RecyclerView.Adapter<LayoutManagerAdapter.LayoutMan
     }
 
     override fun onBindViewHolder(holder: LayoutManagerViewHolder, position: Int) {
-        holder.itemView.findViewById<TextView>(R.id.tv_text).text = "$position"
+        holder.itemView.findViewById<TextView>(R.id.tv_text).text = beans[holder.layoutPosition]
     }
 
-    override fun getItemCount() = 30
+    override fun getItemCount() = beans.size
 }
