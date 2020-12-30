@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 /**
  * 参考 https://github.com/feng0403/ConstraintLayoutSamples
+ *     https://mp.weixin.qq.com/s/pF1Xo-CzNkWN706Be7XPnw
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         // none : 简单地把constraint_referenced_ids里面的元素组成chain,即使空间不够
         // chain : 根据空间的大小和元素的大小组成一条或者多条chain
         // aligned : wrap chain类似，但是会对齐
-        setContentView(R.layout.activity_flow)
+//        setContentView(R.layout.activity_flow)
         // ImageFilterButton、ImageFilterView 实现圆角图片，圆形图片以及色温、亮度、饱和度
 //        setContentView(R.layout.activity_imagefilter)
         // MotionLayout设置场景切换
@@ -53,5 +54,6 @@ class MainActivity : AppCompatActivity() {
         // KeyTrigger  在动画的过程中可以触发视图中的函数。onCross值为要触发的函数名
         // 参考 https://blog.csdn.net/knight1996/article/details/108015536
 //        setContentView(R.layout.activity_motion3)
+        setContentView(R.layout.activity_motion4)
     }
 }
