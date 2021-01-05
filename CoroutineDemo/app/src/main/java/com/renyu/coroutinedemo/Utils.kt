@@ -1,11 +1,14 @@
 package com.renyu.coroutinedemo
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.coroutines.CoroutineContext
 
 fun ViewModel.launch(block: suspend CoroutineScope.() -> Unit,
                      error: (Throwable) -> Unit,
@@ -75,6 +78,22 @@ fun <T> ViewModel.retrofit2(dsl: RetrofitCoroutineDsl<T>.() -> Unit) {
             if (it !is CancellationException) {
                 retrofitCoroutineDsl.onError?.invoke(it)
             }
+        }
+    }
+}
+
+fun <T> retrofit3(context: CoroutineContext, dsl: RetrofitCoroutineDsl<T>.() -> Unit): LiveData<Resource<T>> {
+    return liveData<Resource<T>>(context, 3000L) {
+        val retrofitCoroutineDsl = RetrofitCoroutineDsl<T>()
+        retrofitCoroutineDsl.dsl()
+        emit(Resource.loading(null))
+        try {
+            emit(withContext(Dispatchers.IO) {
+                val q = retrofitCoroutineDsl.api!!.execute().body()!!
+                Resource.success(q)
+            })
+        } catch (e: Exception) {
+            emit(Resource.error(e.message!!, null))
         }
     }
 }

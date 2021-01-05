@@ -138,6 +138,24 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    fun getHttpRequest4(): LiveData<Resource<TestResponse>> {
+        return retrofit3<TestResponse>(context = SupervisorJob() + Dispatchers.Main.immediate) {
+            api = Utils.apiService.test2()
+
+            onSuccess {
+                it
+            }
+
+            onError {
+                it
+            }
+
+            onComplete {
+
+            }
+        }
+    }
+
     private val channel = Channel<String>()
     val liveDataValue = liveData<String> {
         for (result in channel) {
