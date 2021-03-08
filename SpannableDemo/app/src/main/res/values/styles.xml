@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SpecialTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+        <item name="android:textColorHighlight">@android:color/holo_red_light</item>
+        <item name="android:textColorHint">@android:color/holo_red_light</item>
+        <item name="android:textColorLink">@android:color/holo_red_light</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+</resources>
