@@ -1,13 +1,5 @@
 package com.renyu.kotlin.chapter9
 
-import kotlin.reflect.KMutableProperty1
-import kotlin.reflect.full.createInstance
-import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.full.functions
-import kotlin.reflect.jvm.isAccessible
-import kotlin.reflect.jvm.javaConstructor
-import kotlin.reflect.jvm.javaMethod
-
 fun main(args: Array<String>) {
     val arrays = arrayOf("1", "2", "3")
     for (array in arrays) {
@@ -33,31 +25,31 @@ fun main(args: Array<String>) {
     println(abc.yValue)
 
 
-//    val reflectStudyAClass = ReflectStudyA::class.java
-//    var reflectStudyA: ReflectStudyA = reflectStudyAClass.getDeclaredConstructor().newInstance()
-//    val aValueField = reflectStudyAClass.getDeclaredField("aValue")
-//    aValueField.isAccessible = true
-//    val aValue = aValueField.get(reflectStudyA)
-//    val reflectStudyAMethod = reflectStudyAClass.getDeclaredMethod("toIntValue", String::class.java)
-//    reflectStudyAMethod.isAccessible=true
-//    reflectStudyAMethod.invoke(reflectStudyA, aValue)
+    val reflectStudyAClass = ReflectStudyA::class.java
+    var reflectStudyA: ReflectStudyA = reflectStudyAClass.getDeclaredConstructor().newInstance()
+    val aValueField = reflectStudyAClass.getDeclaredField("aValue")
+    aValueField.isAccessible = true
+    val aValue = aValueField.get(reflectStudyA)
+    val reflectStudyAMethod = reflectStudyAClass.getDeclaredMethod("toIntValue", String::class.java)
+    reflectStudyAMethod.isAccessible = true
+    reflectStudyAMethod.invoke(reflectStudyA, aValue)
 
-    val reflectStudyAClass = ReflectStudyA::class
-    for (constructor in reflectStudyAClass.constructors) {
-        var reflectStudyA: ReflectStudyA = constructor.javaConstructor!!.newInstance()
-        for (declaredMemberProperty in reflectStudyAClass.declaredMemberProperties) {
-            if (declaredMemberProperty.name == "aValue") {
-                declaredMemberProperty.isAccessible = true
-                val aValue = declaredMemberProperty.get(reflectStudyA)
-                for (function in reflectStudyAClass.functions) {
-                    if (function.name == "toIntValue") {
-                        function.isAccessible = true
-                        function.javaMethod!!.invoke(reflectStudyA, aValue)
-                    }
-                }
-            }
-        }
-    }
+//    val reflectStudyAClass = ReflectStudyA::class
+//    for (constructor in reflectStudyAClass.constructors) {
+//        var reflectStudyA: ReflectStudyA = constructor.javaConstructor!!.newInstance()
+//        for (declaredMemberProperty in reflectStudyAClass.declaredMemberProperties) {
+//            if (declaredMemberProperty.name == "aValue") {
+//                declaredMemberProperty.isAccessible = true
+//                val aValue = declaredMemberProperty.get(reflectStudyA)
+//                for (function in reflectStudyAClass.functions) {
+//                    if (function.name == "toIntValue") {
+//                        function.isAccessible = true
+//                        function.javaMethod!!.invoke(reflectStudyA, aValue)
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 //    val reflectStudyBClass = ReflectStudyB::class
 //    val reflectStudyB = reflectStudyBClass.createInstance()
@@ -70,11 +62,11 @@ fun main(args: Array<String>) {
 //    cde.printValue()
 }
 
-fun abc(value: String) : Int {
+fun abc(value: String): Int {
     return value.toInt()
 }
 
-fun String.bcd() : Int {
+fun String.bcd(): Int {
     return this.toInt()
 }
 
@@ -85,7 +77,7 @@ fun getValue(funValue: (String) -> Int, value: String) {
 var xValue = 3
 
 val String.x1Value: String
-    get() = "Hello "+this
+    get() = "Hello " + this
 
 class ABC {
     var yValue = 3
@@ -110,6 +102,6 @@ class CDE {
     }
 }
 
-fun getCDE(cde: (String) -> CDE, value: String) : CDE {
+fun getCDE(cde: (String) -> CDE, value: String): CDE {
     return cde(value)
 }
