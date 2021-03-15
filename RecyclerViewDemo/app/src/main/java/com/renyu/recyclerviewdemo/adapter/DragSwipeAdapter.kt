@@ -15,18 +15,18 @@ import org.jetbrains.anko.imageResource
 /**
  * Created by renyu on 2017/11/17.
  */
-class DragSwipeAdapter(private val beans: ArrayList<String>, private val context: Context, private val startDragAndSwipeListener: StartDragAndSwipeListener) : RecyclerView.Adapter<DragSwipeAdapter.DragSwipeHolder>() {
+class DragSwipeAdapter(private val beans: ArrayList<String>, private val context: Context, private val startDragAndSwipeListener: StartDragAndSwipeListener?) : RecyclerView.Adapter<DragSwipeAdapter.DragSwipeHolder>() {
 
     override fun getItemCount(): Int = beans.size
 
     override fun onBindViewHolder(holder: DragSwipeHolder, position: Int) {
-        holder?.iv_adapter?.imageResource = R.mipmap.ic_launcher
-        holder?.tv_adapter?.text = beans[holder?.layoutPosition!!]
-        holder?.iv_adapter?.setOnTouchListener { _, _ ->
+        holder.iv_adapter.imageResource = R.mipmap.ic_launcher
+        holder.tv_adapter.text = beans[holder.layoutPosition!!]
+        holder.iv_adapter.setOnTouchListener { _, _ ->
             startDragAndSwipeListener?.onStartDrag(holder)
             true
         }
-        holder?.iv2_adapter?.setOnTouchListener { _, _ ->
+        holder.iv2_adapter.setOnTouchListener { _, _ ->
             startDragAndSwipeListener?.onStartSwipe(holder)
             true
         }
