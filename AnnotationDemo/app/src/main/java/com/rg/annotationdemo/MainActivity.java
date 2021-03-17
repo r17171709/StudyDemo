@@ -1,6 +1,7 @@
 package com.rg.annotationdemo;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         textview.setOnClickListener(v -> {
             Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
+        });
+        textview.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
         });
     }
 }
