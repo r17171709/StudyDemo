@@ -16,4 +16,9 @@
         <attr name="min_height" format="dimension" />
         <attr name="scrolling_id" format="integer" />
     </declare-styleable>
+
+    <style name="Cut" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">20dp</item>
+    </style>
 </resources>
