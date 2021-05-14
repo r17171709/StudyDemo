@@ -1,0 +1,42 @@
+class DefaultConfig {
+    private String versionName
+
+    def versionName(String versionName) {
+        this.versionName = versionName
+    }
+}
+
+class MyAndroid {
+    private String compileSdkVersion
+    private DefaultConfig defaultConfig
+
+    MyAndroid() {
+        this.defaultConfig = new DefaultConfig()
+    }
+
+    def compileSdkVersion(String compileSdkVersion) {
+        this.compileSdkVersion = compileSdkVersion
+    }
+
+    def defaultConfig(Closure closure) {
+        println closure
+        closure.delegate = defaultConfig
+        closure.call()
+    }
+}
+
+
+def myAndroid = {
+    compileSdkVersion "100"
+    defaultConfig {
+        versionName "1.0.0"
+    }
+}
+
+task dslDemo {
+    doLast {
+        MyAndroid a = new MyAndroid()
+        myAndroid.delegate = a
+        myAndroid.call()
+    }
+}
