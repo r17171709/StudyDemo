@@ -1,0 +1,121 @@
+// 定义了一个叫做 helloWorld 的任务
+task helloWorld {
+    doLast {
+        4.times {
+            println "hello world"
+        }
+    }
+}
+
+task(helloInner) {
+    doLast {
+        println("helloInner")
+    }
+}
+
+// 申明任务之间的依赖关系
+// 如果在使用前已经创建过相应Task，则可直接使用，否则需要使用字符串声明
+task helloWorld2(dependsOn: [helloWorld]) {
+    doLast {
+        println "hello world 2"
+    }
+}
+
+// 还可以使用字符串作为任务名称
+// 在加入一个依赖之前, 这个依赖的任务不需要提前定义
+task helloWorld3(dependsOn: "helloWorld4") {
+    doLast {
+        println "hello world 3"
+    }
+}
+
+task helloWorld4 {
+    doLast {
+        println "hello world 4"
+    }
+}
+
+// 您可以使用一个 Task 对象而不是任务名称来定义依赖
+helloWorld4.dependsOn(helloWorld)
+//helloWorld4.dependsOn {
+//    tasks.findAll {
+//        it.name.startsWith("lib")
+//    }
+//}
+
+task helloWorld5 {
+    doLast {
+        println "hello world 5"
+    }
+}
+
+task helloWorld6 {
+    doLast {
+        println "hello world 6"
+    }
+}
+
+// 添加'必须在之后运行'的任务排序
+//helloWorld6.mustRunAfter helloWorld5
+
+// 请注意"B.mustRunAfter(A)"或"B.shouldRunAfter(A)"并不意味着这些任务之间的任何执行上的依赖关系
+
+// 添加'应该在之后运行'的任务排序，它仍有可能执行helloWorld6而不会导致helloWorld5也运行
+//helloWorld6.shouldRunAfter helloWorld5
+
+// 当引入循环时，“应该在其之后运行”的任务排序会被忽略
+//helloWorld6.dependsOn helloWorld5
+//helloWorld5.shouldRunAfter helloWorld6
+
+// 动态标记任务
+2.times { position ->
+    // 将任务添加到 tasks 集合
+    tasks.create("task$position") {
+        doLast {
+            println "task$position"
+        }
+    }
+}
+
+// 给已经存在的任务加入行为
+helloWorld4.doFirst {
+    println "hello world 4 doFirst"
+}
+
+helloWorld4.doLast {
+    println "hello world 4 doLast"
+}
+
+// 定义任务扩展属性
+//ext.description1 = "description1 default"
+
+ext {
+    description1 = "description1 new"
+}
+
+task changeTaskProperties {
+    description1 = "description1 changeTaskProperties"
+}
+
+task printTaskProperties {
+    doLast {
+        println description1
+    }
+}
+
+
+// 给其他项目添加任务
+project(":mylibrary") {
+    task printlnMyLibrary {
+        doLast {
+            println project.name
+        }
+    }
+}
+
+// 要引用另一个项目中的任务，你需要把它所属的项目的路径作为前缀加到它的名字中
+task usePrintlnMyLibrary(dependsOn: ":mylibrary:printlnMyLibrary") {
+    doLast {
+        println "usePrintlnMyLibrary"
+    }
+}

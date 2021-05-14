@@ -1,0 +1,126 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.5.0"
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url ('https://maven.aliyun.com/repository/public')
+            credentials {
+                username = ""
+                password = ""
+            }
+        }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+//        jcenter() // Warning: this repository is going to shut down soon
+    }
+
+    task allTask {
+        doLast {
+            println project.name
+        }
+    }
+}
+
+subprojects { Project project ->
+    task subTask {
+        doLast {
+            println project.name
+        }
+    }
+    // 使用app中的taskA进行依赖
+    subTask.dependsOn ":app:taskA"
+
+    if (project.plugins.hasPlugin('com.android.library')) {
+
+    }
+}
+
+project(":mylibrary") {
+    task fromylibrary {
+        doLast {
+            println "fromylibrary ${project.name}"
+        }
+    }
+    // 使用app中的taskA进行依赖
+    fromylibrary.dependsOn ":app:taskA"
+}
+
+// 使用app中的taskA进行依赖
+//allTask.dependsOn ":app:taskA"
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+def getAllProjectsInfo() {
+    getAllprojects().eachWithIndex { Project project, int index ->
+        if (index == 0) {
+            println "Root Project :${project.name}"
+        } else {
+            println "++ :${project.name}"
+        }
+    }
+}
+
+//this.getAllProjectsInfo()
+
+//println project.name
+//println project.buildDir
+
+// 配置阶段开始前回调
+//beforeEvaluate {
+//    println("beforeEvaluate")
+//}
+
+// 配置阶段完成后回调
+//afterEvaluate {
+//    println("afterEvaluate")
+//}
+
+// 执行阶段完成
+//gradle.buildFinished {
+//    println("buildFinished")
+//}
+
+//gradle.beforeProject {
+//    println("beforeProject")
+//}
+
+//gradle.afterProject {
+//    println("afterProject")
+//}
+
+//println getSubprojects().name
+
+// 根目录绝对路径
+//println getRootDir().absolutePath
+//println getProjectDir().absolutePath
+// 生成文件路径
+//println getBuildDir().absolutePath
+
+def getContent(String path) {
+    // 可以直接传递当前相对路径
+    def file = file(path)
+    if (file.exists()) {
+        println file.text
+    }
+}
+
+getContent("app/destination.txt")

@@ -1,0 +1,75 @@
+task fileInfo {
+    doLast {
+        File file = new File("src/main/AndroidManifest.xml")
+//        println file.path
+
+        // 创建一个文件集合
+        FileCollection collection = files("src/main/AndroidManifest.xml")
+        collection.files.forEach {
+//            println(it)
+        }
+
+        FileTree tree = fileTree(dir: "src")
+        // 过滤得到包含相应格式的
+//        tree = tree.include("**/*.xml")
+        // 过滤得到不包含相应格式的
+//        tree = tree.exclude("**/*.xml")
+//        tree = fileTree(dir: "src").include("**/*.xml")
+//        tree = fileTree(dir: "src", include: "**/*.xml")
+//        tree = fileTree(dir: "src", includes: ["**/*.xml"])
+        tree = fileTree(dir: 'src', include: '**/*.kt', exclude: '**/*Test*/**')
+        println(tree)
+        tree.forEach {
+            println("FileTree " + it)
+        }
+    }
+}
+
+// 配置任务-使用闭包
+//task("mCopy", type: Copy) {
+//    from("xml")
+//    into("xml2")
+//}
+
+task mCopy(type: Copy) {
+    from("xml")
+    into("xml2")
+//    include("**/*.txt")
+    exclude {
+//        it.file.name.startsWith("test")
+    }
+}
+
+//mCopy.enabled = false
+
+task sysCopy {
+    doLast {
+        copy {
+            from("destination.txt")
+            into("../app/libs")
+            exclude {
+                it.file.name.startsWith("destination")
+            }
+        }
+    }
+}
+
+task commandMove {
+    doLast {
+        def command = "mv -f destination.txt libs"
+        exec {
+            executable("bash")
+            args("-c", command)
+        }
+    }
+}
+
+task fileTreeDemo {
+    doLast {
+        fileTree("src") { FileTree fileTree ->
+            fileTree.visit { FileTreeElement element ->
+                println element.file.name
+            }
+        }
+    }
+}

@@ -1,0 +1,215 @@
+import com.android.build.gradle.api.ApkOutputFile
+import com.android.build.gradle.api.ApkVariant
+import com.android.build.gradle.internal.api.ApkVariantOutputImpl
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'CustomPluginP'
+}
+
+apply from: "lsn1.gradle"
+apply from: "lsn2.gradle"
+apply from: "lsn3.gradle"
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.renyu.gradledemo"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.txt.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+//            res.srcDirs = ['', '']
+        }
+    }
+
+    applicationVariants.all { ApkVariant variant ->
+        println variant.buildType.name
+        def apkName = "${variant.baseName}-${variant.versionName}.apk"
+        ApkVariantOutputImpl output = variant.getOutputs().first()
+        output.outputFileName = apkName
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+//    compileOnly "com.android.tools.build:gradle:4.2.0"
+//    implementation 'com.renyu.plugin:standardAlonePlugin:1.0.1'
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
+
+//task copyFile(type: Copy) {
+//    from 'xml'
+//    into 'xml2'
+//}
+//
+
+
+//task showTasks {
+//    println(tasks.class)
+//    println(tasks.size())
+//}
+//
+
+
+//String description1 = ""
+//
+//task Hello8 {
+//    doLast {
+//        println(description1)
+//    }
+//}
+//
+////Hello8 {
+////    description1 = "Hello8"
+////}
+//
+//Hello8.configure {
+//    description1 = "Hello8"
+//}
+
+
+//task showDescription1 {
+//    doLast {
+//        description = "showDescription1"
+//        println(description)
+//    }
+//}
+//
+//task showDescription2(dependsOn: "showDescription3") {
+//    doLast {
+//        println(description)
+//    }
+//}
+//showDescription2.description = "showDescription2"
+//println("设置showDescription2")
+//
+//task showDescription3 {
+//    doLast {
+//        println(description)
+//    }
+//}
+//showDescription3 {
+//    description = "showDescription3"
+//    println("设置showDescription3")
+//}
+
+
+//class Child {
+//    private String name = ""
+//}
+//
+//class Parent {
+//    Child child = new Child()
+//
+//    void configChild(Closure c) {
+//        c.delegate = child
+//        c.setResolveStrategy(Closure.DELEGATE_FIRST)
+//        c()
+//    }
+//}
+//
+//task abc {
+//    doLast {
+//        def parent = new Parent()
+//
+//        parent.configChild {
+//            name = "child"
+//        }
+//
+//        println parent.child.name
+//    }
+//}
+
+
+//description = 'this is the project description'
+//
+//ext.description1 = "description1"
+//
+//ext {
+//    description1 = "description2"
+//}
+//
+//task showProjectProperties {
+//    println name
+//    println path
+//    println project.description
+//    println buildDir
+//    println version
+//    println description1
+//    // gradle -Pdescription3="description3" showProjectProperties
+//    // gradle -Dorg.gradle.project.description3="this is another description3" showProjectProperties
+////    println description3
+//}
+
+
+task taskA {
+    doLast {
+        println 'this is taskA from app'
+    }
+}
+
+
+task helloTask1(type: davenkin.HelloWorldTask)
+
+task helloTask2(type: davenkin.HelloWorldTask) {
+    message = "helloTask2"
+}
+
+// 在使用自定义Plugin时，可以通过以下方式对Property进行重新配置
+dateAndTime {
+    timeFormat = "MM/dd/yyyy HH:mm:ss"
+}
+
+//println getParent().name
+//println getRootProject().name
+
+
+def startTime = 0L
+def endTime = 0L
+afterEvaluate { Project project ->
+//    project.tasks.each {
+//        println it.name
+//    }
+
+//    def preBuild = project.tasks.getByName("preBuild")
+//    def build = project.tasks.getByName("build")
+//    preBuild.doFirst {
+//        startTime = System.currentTimeMillis()
+//    }
+//    build.doLast {
+//        endTime = System.currentTimeMillis()
+//        println("use time : ${endTime - startTime}")
+//    }
+}

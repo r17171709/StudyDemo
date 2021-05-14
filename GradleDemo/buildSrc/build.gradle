@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'groovy'
+    id 'maven'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation localGroovy()
+    implementation gradleApi()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // groupId
+            pom.groupId = 'com.renyu.plugin'
+            // artifactId
+            pom.artifactId = 'standardAlonePlugin'
+            // 版本号
+            pom.version = '1.0.1'
+            // 提交到本地目录：
+            repository(url: uri('../myplugin'))
+        }
+    }
+}

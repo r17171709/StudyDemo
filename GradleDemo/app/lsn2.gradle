@@ -1,0 +1,102 @@
+// 根据选择的任务产生不同的输出
+task print1 {
+    doLast {
+        println "this is print1, version = $version"
+    }
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    // 判断是否包含某个任务
+//    println taskGraph.hasTask(print1)
+    if (taskGraph.hasTask(print1)) {
+        version = "1"
+    }
+}
+
+
+// 创建目录
+File classDir = new File("build/classes")
+
+task resource {
+    doLast {
+        classDir.mkdirs()
+    }
+}
+
+task compile(dependsOn: resource) {
+    doLast {
+        if (classDir.isDirectory()) {
+            println 'The class directory exists. I can operate'
+        }
+    }
+}
+
+// 使用 gradle.properties 文件设置属性
+task printDescription {
+    doLast {
+        println testValue
+        // 使用-P命令行选项来添加属性
+        // gradle -Pdescription3="description3" printDescription
+        // 使用-D命令行选项传入一个系统属性
+        // gradle -Dorg.gradle.project.description3="this is another description3" printDescription
+//        println description3
+        // project层级上的判断属性存在与否
+        println project.hasProperty("testValue")
+    }
+}
+
+
+// 以属性方式访问任务
+//println printTaskProperties.name
+//println project.printTaskProperties.name
+//// 通过 tasks 集合访问任务
+//println tasks.printTaskProperties.name
+//println tasks["printTaskProperties"].name
+//// 通过路径访问任务
+//println tasks.getByName("printTaskProperties").name
+
+// 每个任务都有一个inputs和outputs的属性，用来声明任务的输入和输出
+task combineFileContentNonIncrement {
+    def sources = fileTree("xml")
+    def destination = file("destination.txt")
+
+    inputs.dir sources
+    outputs.file destination
+
+    doLast {
+        destination.withPrintWriter { write ->
+            sources.each { source ->
+                write.println(source.text)
+            }
+        }
+    }
+}
+
+
+ext {
+    versionName = "1.0.0"
+    versionCode = 100
+    versionInfo = "新版本"
+    destFile = file("release.txt")
+    if (!destFile.exists()) {
+        destFile.createNewFile()
+    }
+}
+
+task writeReleseInfo {
+    inputs.property("versionName", versionName)
+    inputs.property("versionCode", versionCode)
+    inputs.property("versionInfo", versionInfo)
+    outputs.file(destFile)
+    doLast {
+        Map map = inputs.getProperties()
+        File file = outputs.getFiles().getSingleFile()
+        map.each {
+            String tmp = "${it.key} ${it.value} \n"
+            file.withWriterAppend {
+                it.println(tmp)
+            }
+//            println tmp
+        }
+    }
+}

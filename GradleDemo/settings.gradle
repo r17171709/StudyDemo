@@ -1,0 +1,6 @@
+if (hasProperty("testValue")) {
+    include ':mylibrary'
+}
+include ':app'
+rootProject.name = "GradleDemo"
+
