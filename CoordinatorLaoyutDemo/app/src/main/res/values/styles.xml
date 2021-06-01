@@ -21,4 +21,10 @@
         <item name="cornerFamily">cut</item>
         <item name="cornerSize">20dp</item>
     </style>
+
+    <style name="RoundedStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">50%</item>
+        <item name="cornerSizeBottomRight">50%</item>
+    </style>
 </resources>
