@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         // KeyTrigger  在动画的过程中可以触发视图中的函数。onCross值为要触发的函数名
         // 参考 https://blog.csdn.net/knight1996/article/details/108015536
 //        setContentView(R.layout.activity_motion3)
-        setContentView(R.layout.activity_motion4)
+//        setContentView(R.layout.activity_motion4)
+        setContentView(R.layout.activity_motioneffect)
     }
 }

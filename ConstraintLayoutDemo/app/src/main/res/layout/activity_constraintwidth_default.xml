@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -43,4 +42,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintWidth_percent="0.7" />
+
+    <!--  当TextView文字较少时，可以发现其尺寸是默认占据了整个约束空间，这时候，如果要求TextView只显示文字大小，类似设置wrap_content的效果，但是在文字长的时候，又必须被边缘约束，所以又不能设置wrap_content，这种场景下，可以通过layout_constraintWidth_default属性来解决，它提供了边缘约束下默认的尺寸设置方式  -->
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:text="textView44"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="wrap" />
 </androidx.constraintlayout.widget.ConstraintLayout>

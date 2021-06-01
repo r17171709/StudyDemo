@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    app:layoutDescription="@xml/activity_motioneffect_scene">
+
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t2"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="2"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t3"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="3"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t4"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="4"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t5"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="5"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t6"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="6"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t7"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="7"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t8"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="8"
+        android:textColor="#FFF" />
+
+    <TextView
+        android:id="@+id/t9"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/rounded"
+        android:gravity="center"
+        android:text="9"
+        android:textColor="#FFF" />
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/flow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="t1,t2,t3,t4,t5,t6,t7,t8,t9"
+        app:flow_horizontalGap="10dp"
+        app:flow_maxElementsWrap="3"
+        app:flow_verticalGap="10dp"
+        app:flow_wrapMode="aligned"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.helper.widget.MotionEffect
+        android:id="@+id/fade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="t1,t2,t3,t4,t5,t6,t7,t8,t9"
+        app:motionEffect_alpha="0"
+        app:motionEffect_end="60"
+        app:motionEffect_move="west"
+        app:motionEffect_start="40"
+        app:motionEffect_strict="false" />
+</androidx.constraintlayout.motion.widget.MotionLayout>

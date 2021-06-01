@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <!-- 百分比对齐 -->
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
@@ -13,8 +11,41 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Space
+        android:id="@+id/space1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/textView8"
+        app:layout_constraintEnd_toEndOf="@id/textView8"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="@id/textView8"
+        app:layout_constraintTop_toTopOf="@id/textView8"
+        app:layout_constraintVertical_bias="1.2" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView2"
+        app:layout_constraintStart_toStartOf="@id/space1"
+        app:layout_constraintTop_toTopOf="@id/space1" />
+
+    <!--  超长限制强制约束
+          使用constrainedWidth来使其宽度约束强制生效  -->
+
+    <TextView
+        android:id="@+id/textView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="TextView2TextView2TextView2"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="@id/textView42"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/textView42"
+        app:layout_constraintTop_toBottomOf="@id/textView42" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

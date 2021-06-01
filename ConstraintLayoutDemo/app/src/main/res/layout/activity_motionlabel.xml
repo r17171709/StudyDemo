@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--
+    textureHeight：文字填充纹理的高度
+    textureWidth：文字填充纹理的宽度
+    textBackgroundRotate：文字填充纹理的旋转角度
+    textBackgroundZoom：文字填充纹理的缩放
+    当不设置textureWidth和textureHeight时，纹理默认撑满文字。
+
+    textOutlineColor：描边颜色
+    textOutlineThickness：描边宽度
+    borderRound：按dp处理圆角
+    borderRoundPercent：按百分比处理圆角
+
+    文字纹理背景的偏移，是通过textBackgroundPanX和textBackgroundPanY属性来实现的。
+    通过CustomAttribute给textBackgroundPanX和textBackgroundPanY设置-1到1的变换，就可以实现纹理背景移动的动画效果。
+
+
+     -->
+    <androidx.constraintlayout.utils.widget.MotionLabel
+        android:layout_width="wrap_content"
+        android:layout_height="200dip"
+        android:background="@android:color/black"
+        android:padding="10dip"
+        android:text="皮球"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textBackground="@mipmap/ic_launcher"
+        app:textBackgroundRotate="45"
+        app:textBackgroundZoom="2"
+        app:textOutlineColor="@android:color/holo_red_dark"
+        app:textOutlineThickness="2dip"
+        app:borderRound="5dip"
+        app:textBackgroundPanX="1"
+        app:textPanY="1"
+        app:textureHeight="10dip"
+        app:textureWidth="10dip" />
+</androidx.constraintlayout.widget.ConstraintLayout>
