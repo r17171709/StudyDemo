@@ -1,21 +1,27 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.5.0"
+    ext.kotlin_version = "1.5.10"
     repositories {
         google()
         mavenCentral()
         maven {
-            url ('https://maven.aliyun.com/repository/public')
+            url('https://maven.aliyun.com/repository/public')
             credentials {
                 username = ""
                 password = ""
             }
         }
         maven { url 'https://maven.aliyun.com/repository/google' }
+        // 配置自定义插件的名称
+        maven {
+            url "/Users/renyu/Documents/workspace/android_demo/GradleDemo/myplugin"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // 声明依赖插件
+//        classpath "com.renyu.plugin:standardAlonePlugin:1.0.1"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -29,6 +35,10 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/google' }
 //        jcenter() // Warning: this repository is going to shut down soon
+        // 配置自定义插件的名称
+        maven {
+            url "/Users/renyu/Documents/workspace/android_demo/GradleDemo/myplugin"
+        }
     }
 
     task allTask {

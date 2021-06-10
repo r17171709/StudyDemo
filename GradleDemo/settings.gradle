@@ -32,3 +32,10 @@ gradle.addBuildListener(new BuildListener() {
         println("buildFinished")
     }
 })
+include ':route-annotations'
+include ':route-processor'
+
+gradle.taskGraph.beforeTask { Task task ->
+//    println "taskGraph: " + task.name
+}
+include ':route-runtime'

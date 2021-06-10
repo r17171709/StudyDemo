@@ -1,0 +1,3 @@
+class RouteExtension {
+    String wikiDir = ""
+}

@@ -4,6 +4,13 @@ plugins {
     id 'maven'
 }
 
+repositories {
+    google()
+    mavenCentral()
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -12,6 +19,7 @@ java {
 dependencies {
     implementation localGroovy()
     implementation gradleApi()
+    implementation 'com.android.tools.build:gradle:4.2.1'
 }
 
 uploadArchives {

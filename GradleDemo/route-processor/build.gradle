@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+}
+
+apply from: rootProject.file("maven-publish.gradle")
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+//    implementation project(":route-annotations")
+    implementation 'com.renyu.route:route-annotations:1.0.0'
+    // 注解 processor 类，并对其生成 META-INF 的配置信息
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
+    // 帮助我们通过类调用的方式来生成Java代码
+    implementation 'com.squareup:javapoet:1.13.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+}

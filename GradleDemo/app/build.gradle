@@ -4,6 +4,9 @@ import com.android.build.gradle.internal.api.ApkVariantOutputImpl
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    // 应用自定义的路由插件
+    // 获取kapt中的数据，得放置在kotlin插件下方
     id 'CustomPluginP'
 }
 
@@ -46,6 +49,14 @@ android {
         }
     }
 
+    // 注解处理器参数  使用 arguments {} 块将参数传给注解处理器
+    // 可以直接在插件中定义好
+//    kapt {
+//        arguments {
+//            arg("root_project_dir", project.getRootProject().projectDir.absolutePath)
+//        }
+//    }
+
     applicationVariants.all { ApkVariant variant ->
         println variant.buildType.name
         def apkName = "${variant.baseName}-${variant.versionName}.apk"
@@ -61,12 +72,24 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation project(":mylibrary")
 //    compileOnly "com.android.tools.build:gradle:4.2.0"
 //    implementation 'com.renyu.plugin:standardAlonePlugin:1.0.1'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation project(":route-annotations")
+    kapt project(":route-processor")
+    implementation project(":route-runtime")
+//    implementation 'com.renyu.route:route-annotations:1.0.0'
+//    kapt 'com.renyu.route:route-processor:1.0.0'
+//    implementation 'com.renyu.route:route-runtime:1.0.0'
+}
+
+RouteExtension {
+    wikiDir = "123456"
 }
 
 //task copyFile(type: Copy) {
@@ -187,7 +210,7 @@ task helloTask2(type: davenkin.HelloWorldTask) {
     message = "helloTask2"
 }
 
-// 在使用自定义Plugin时，可以通过以下方式对Property进行重新配置
+// 在使用自定义Plugin时，可以通过以下方式对Property进行参数配置
 dateAndTime {
     timeFormat = "MM/dd/yyyy HH:mm:ss"
 }

@@ -1,0 +1,34 @@
+apply plugin: 'maven'
+
+// 获取根目录下的 gradle.properties 文件
+Properties properties = new Properties()
+properties.load(project.rootProject.file("gradle.properties").newDataInputStream())
+
+// 获取项目下的 gradle.properties 文件
+Properties projectProperties = new Properties()
+projectProperties.load(project.file("gradle.properties").newDataInputStream())
+
+def POM_URL = projectProperties.getProperty("POM_URL")
+def GROUP_ID = projectProperties.getProperty("GROUP_ID")
+def POM_ARTIFACT_ID = projectProperties.getProperty("POM_ARTIFACT_ID")
+def VERSION_NAME = projectProperties.getProperty("VERSION_NAME")
+
+println POM_URL
+println GROUP_ID
+println POM_ARTIFACT_ID
+println VERSION_NAME
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // groupId
+            pom.groupId = GROUP_ID
+            // artifactId
+            pom.artifactId = POM_ARTIFACT_ID
+            // 版本号
+            pom.version = VERSION_NAME
+            // 提交到本地目录：
+            repository(url: uri(POM_URL))
+        }
+    }
+}
