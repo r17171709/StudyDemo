@@ -1,8 +1,11 @@
 package com.renyu.kotlindemo
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.renyu.kotlindemo.bean.Test
 import com.renyu.kotlindemo.bean.User
+import com.renyu.kotlindemo.model.DelegateGamePlayer
+import com.renyu.kotlindemo.model.RealGamePlayer
 import com.renyu.kotlindemo.presenter.IUserPresenter
 import com.renyu.kotlindemo.presenter.UserPresenter
 import com.renyu.kotlindemo.view.IUserView
@@ -13,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class KotlinMainActivity : AppCompatActivity(), IUserView {
 
-    val presenter: IUserPresenter by lazy {
+    private val presenter: IUserPresenter by lazy {
         UserPresenter(this)
     }
 
@@ -25,6 +28,17 @@ class KotlinMainActivity : AppCompatActivity(), IUserView {
         tv_hello.setOnClickListener {
             presenter.getUserInfo()
         }
+
+        // 代理
+        val realGamePlayer = RealGamePlayer()
+        val delegateGamePlayer = DelegateGamePlayer(realGamePlayer)
+        delegateGamePlayer.rank()
+        delegateGamePlayer.upgrade()
+
+        val test = Test()
+        println(test.delegate1)
+        test.delegate2 = 10
+        println(test.delegate2)
     }
 
     override fun updateUserInfo(userInfo: User?) {
