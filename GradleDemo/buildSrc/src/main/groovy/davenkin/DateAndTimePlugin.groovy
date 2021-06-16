@@ -39,12 +39,12 @@ class DateAndTimePlugin implements Plugin<Project> {
         project.extensions.create("RouteExtension", RouteExtension)
         project.task("showTime") {
             doLast {
-                println("${new Date().format(project.dateAndTime.timeFormat)}")
+                println("Hello showTime   ${new Date().format(project.dateAndTime.timeFormat)}")
             }
         }
         project.tasks.create("showDate") {
             doLast {
-                println("${new Date().format(project.dateAndTime.dateFormat)}")
+                println("Hello showDate   ${new Date().format(project.dateAndTime.dateFormat)}")
             }
         }
         project.tasks.create("lsn1") {

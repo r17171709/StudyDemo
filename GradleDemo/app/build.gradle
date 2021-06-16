@@ -212,7 +212,23 @@ task helloTask2(type: davenkin.HelloWorldTask) {
 
 // 在使用自定义Plugin时，可以通过以下方式对Property进行参数配置
 dateAndTime {
+    // 配置属性
     timeFormat = "MM/dd/yyyy HH:mm:ss"
+    // 方法调用，也就是调用setDateFormat()
+    setDateFormat "MM/dd/yyyy HH:mm:ss"
+
+    inner {
+        innerName = "innerNameinnerName"
+    }
+}
+
+task customerExtensions {
+    doLast {
+        // 查找Extension
+        def dateAndTime = project.getExtensions().getByName("dateAndTime")
+        // 加载内部嵌套Extension
+        println("customerExtensions   ${dateAndTime.innerExtension.innerName}")
+    }
 }
 
 //println getParent().name
