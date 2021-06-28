@@ -1,0 +1,2 @@
+rootProject.name = "CPPDemo"
+include ':app'
