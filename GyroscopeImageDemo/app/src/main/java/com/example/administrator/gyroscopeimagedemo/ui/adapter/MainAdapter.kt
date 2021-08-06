@@ -1,17 +1,17 @@
 package com.example.administrator.gyroscopeimagedemo.ui.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
+import androidx.recyclerview.widget.RecyclerView
 import com.example.administrator.gyroscopeimagedemo.R
 import com.example.administrator.gyroscopeimagedemo.utils.GyroscopeTransFormation
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.adapter_main.view.*
 
-class MainAdapter(val context: Context, val beans: ArrayList<String>) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+class MainAdapter(val context: Context, val beans: ArrayList<String>) :
+    RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MainViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.adapter_main, p0, false)
         return MainViewHolder(view)
@@ -30,9 +30,9 @@ class MainAdapter(val context: Context, val beans: ArrayList<String>) : Recycler
 //                    .into(itemView.iv_adapter_image)
 
             Picasso.get()
-                    .load(string)
-                    .transform(GyroscopeTransFormation(1080, 600))
-                    .into(itemView.iv_adapter_image)
+                .load(string)
+                .transform(GyroscopeTransFormation(1080, 600))
+                .into(itemView.iv_adapter_image)
         }
     }
 }

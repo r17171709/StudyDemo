@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.example.administrator.gyroscopeimagedemo.ui.view.GyroscopeImageView
@@ -7,4 +7,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="center"/>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
