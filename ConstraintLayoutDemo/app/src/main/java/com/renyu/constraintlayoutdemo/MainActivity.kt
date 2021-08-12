@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 /**
  * 参考 https://github.com/feng0403/ConstraintLayoutSamples
  *     https://mp.weixin.qq.com/s/pF1Xo-CzNkWN706Be7XPnw
+ *     https://mp.weixin.qq.com/s/3IAPd53rMOrLiIUDT520-w
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
         // 参考 https://blog.csdn.net/knight1996/article/details/108015536
 //        setContentView(R.layout.activity_motion3)
 //        setContentView(R.layout.activity_motion4)
-        setContentView(R.layout.activity_motioneffect)
+//        setContentView(R.layout.activity_motioneffect)
+        setContentView(R.layout.activity_motion6)
     }
 }
