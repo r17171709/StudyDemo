@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_circleangle_scene">
 
     <TextView
         android:id="@+id/textView4"
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="50dip"
         android:text="TextView4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +23,5 @@
         android:text="TextView5"
         app:layout_constraintCircle="@id/textView4"
         app:layout_constraintCircleAngle="120"
-        app:layout_constraintCircleRadius="200dip"
-        app:layout_constraintStart_toStartOf="@id/textView4"
-        app:layout_constraintTop_toTopOf="@id/textView4" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintCircleRadius="100dip" />
+</androidx.constraintlayout.motion.widget.MotionLayout>
