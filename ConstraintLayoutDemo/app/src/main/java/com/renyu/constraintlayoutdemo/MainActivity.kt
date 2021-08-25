@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 //        setContentView(R.layout.activity_motion3)
 //        setContentView(R.layout.activity_motion4)
 //        setContentView(R.layout.activity_motioneffect)
-        setContentView(R.layout.activity_circleangle)
+//        setContentView(R.layout.activity_circleangle)
+        setContentView(R.layout.activity_motion_viewtransition)
     }
 }

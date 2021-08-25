@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <OnClick />
+        <KeyFrameSet></KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start"></ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end"></ConstraintSet>
+
+    <ViewTransition
+        android:id="@+id/pop"
+        motion:duration="300"
+        motion:ifTagNotSet="@id/myTag1"
+        motion:motionTarget="@+id/tv_motionviewtransition"
+        motion:onStateTransition="actionDown"
+        motion:setsTag="@+id/myTag1"
+        motion:viewTransitionMode="allStates">
+        <ConstraintOverride android:layout_height="300dp" />
+    </ViewTransition>
+
+    <ViewTransition
+        android:id="@+id/reset"
+        motion:clearsTag="@+id/myTag1"
+        motion:duration="300"
+        motion:ifTagSet="@id/myTag1"
+        motion:motionTarget="@+id/tv_motionviewtransition"
+        motion:onStateTransition="actionDown"
+        motion:viewTransitionMode="allStates">
+        <ConstraintOverride android:layout_height="150dip" />
+    </ViewTransition>
+</MotionScene>
