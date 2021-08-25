@@ -2,18 +2,39 @@ package com.renyu.kotlindemo
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import java.util.concurrent.Executors
 
 class FlowActivity : AppCompatActivity() {
+    // Flow.shareIn 与 Flow.stateIn 操作符可以将冷流转换为热流: 它们可以将来自上游冷数据流的信息广播给多个收集者。这两个操作符通常用于提升性能: 在没有收集者时加入缓冲；或者干脆作为一种缓存机制使用。
+    private val stateFlow: StateFlow<String> by lazy { LocatopmDataSource().stateIn(lifecycleScope) }
+    private val sharedFlow: SharedFlow<String> by lazy { LocatopmDataSource().shareIn(lifecycleScope) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         MainScope().launch {
             flowDemo7()
+        }
+
+        lifecycleScope.launchWhenStarted {
+//            sharedFlow.collectLatest {
+//                println(it)
+//            }
+            stateFlow.collectLatest {
+                println(it)
+            }
+        }
+
+        findViewById<TextView>(R.id.tv_hello).setOnClickListener {
+            // StateFlow 是 SharedFlow 的一种特殊配置，两者之间的最主要区别，在于 StateFlow 接口允许您通过读取 value 属性同步访问其最后发出的值。而这不是 SharedFlow 的使用方式。
+            println(stateFlow.value)
         }
     }
 
@@ -125,4 +146,23 @@ class FlowActivity : AppCompatActivity() {
             Log.d("TAGTAGTAG", it)
         }
     }
+}
+
+class LocatopmDataSource {
+    private val locationSource: Flow<String> =
+        callbackFlow<String> {
+            for (i in 0..10) {
+                trySend("$i").isSuccess
+                delay(1000)
+            }
+            awaitClose {
+
+            }
+        }
+
+    fun shareIn(scope: CoroutineScope) =
+        locationSource.shareIn(scope, SharingStarted.WhileSubscribed())
+
+    fun stateIn(scope: CoroutineScope) =
+        locationSource.stateIn(scope, SharingStarted.WhileSubscribed(), "")
 }
