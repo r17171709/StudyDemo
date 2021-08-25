@@ -1,11 +1,12 @@
 package com.renyu.swiperefreshlayoutdemo.view
 
 import android.content.Context
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import android.util.AttributeSet
 import android.view.View
 
-class CustomerSwipeRefreshLayout : SwipeRefreshLayout {
+class CustomerSwipeRefreshLayout :
+    SwipeRefreshLayout {
 
     // 设置可触发SwipeRefreshLayout判断滑动的全部View数组
     var swipeViews: Array<out View>? = null

@@ -1,9 +1,9 @@
 package com.renyu.swiperefreshlayoutdemo
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.renyu.swiperefreshlayoutdemo.adapter.MainAdapter
 import com.renyu.swiperefreshlayoutdemo.view.BaseSwipeRefresh
 import kotlinx.android.synthetic.main.activity_main.*
