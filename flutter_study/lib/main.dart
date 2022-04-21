@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_study/routes/Routes.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'flutter_learn/TimeWidget.dart';
+import 'service/share_preferences_service.dart';
 
 void main() {
   // Get.lazyPut(()=>SimpleController());
@@ -15,6 +16,8 @@ void main() {
   // }, tag: "user");
   //
   // runApp(const MyGetXApp());
+
+  initService();
 
   runApp(GetMaterialApp(
     title: 'Flutter Demo',
@@ -31,6 +34,13 @@ void main() {
       primarySwatch: Colors.blue,
     ),
     initialRoute: Routes.initial,
+    // 公共初始化binding
+    // initialBinding: ,
     getPages: Routes.paths,
   ));
+}
+
+initService() {
+  // GetxService为持久化
+  Get.putAsync<SharedPreferences>(() => SharedPreferencesService().init());
 }

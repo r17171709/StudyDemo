@@ -36,4 +36,22 @@ class DetailController extends GetxController {
     // 只针对ID为money4的GetBuilder进行刷新
     update(["money4"]);
   }
+
+  @override
+  void onInit() {
+    super.onInit();
+    print("onInit");
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    print("onReady");
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    print("onClose");
+  }
 }

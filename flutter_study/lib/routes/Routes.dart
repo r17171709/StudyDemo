@@ -24,6 +24,7 @@ class Routes {
     GetPage(
         name: "/detail",
         page: () => DetailView(),
+        // 使用BindingsBuilder相对简便一点
         binding: BindingsBuilder(() {
           Get.lazyPut(() => DetailController());
         })),

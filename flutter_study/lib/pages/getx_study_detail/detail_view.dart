@@ -14,9 +14,18 @@ class DetailView extends GetView<DetailController> {
         child: Column(
           children: [
             // GetBuilder的更新形式与GetX、Obx有所不同
-            GetBuilder<DetailController>(builder: (_controller) {
-              return Text("钱就这么多：" + _controller.price.value.money.toString());
-            }),
+            GetBuilder<DetailController>(
+              builder: (_controller) {
+                return Text(
+                    "钱就这么多：" + _controller.price.value.money.toString());
+              },
+              initState: (state) {
+                print("initState");
+              },
+              dispose: (state) {
+                print("dispose");
+              },
+            ),
             GetX<DetailController>(builder: (_controller) {
               return Text("钱就这么多：" + _controller.price.value.money.toString());
             }),

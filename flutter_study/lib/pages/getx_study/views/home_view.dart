@@ -41,22 +41,43 @@ class HomeView extends GetView<HomeController> {
               style: TextStyle(fontSize: 20),
             ),
             ElevatedButton(
-                onPressed: () {
-                  Get.snackbar("title", "message",
-                      titleText: const Text("title2",
-                          style: TextStyle(color: Colors.black)),
-                      messageText: Column(
-                        children: const [
-                          Text("message2_1",
-                              style: TextStyle(color: Colors.red)),
-                          Text("message2_2",
-                              style: TextStyle(color: Colors.yellowAccent)),
-                          Text("message2_3",
-                              style: TextStyle(color: Colors.green)),
-                        ],
-                      ));
+              onPressed: () {
+                Get.snackbar("title", "message",
+                    titleText: const Text("title2",
+                        style: TextStyle(color: Colors.black)),
+                    icon: const Icon(Icons.ac_unit),
+                    shouldIconPulse: true,
+                    backgroundColor: Colors.green.withOpacity(0.2),
+                    leftBarIndicatorColor: Colors.orange,
+                    // 展示snackbar右侧按钮
+                    mainButton: TextButton(
+                        onPressed: () {
+                          print("确认");
+                        },
+                        child: const Text(
+                          "确认",
+                          style: TextStyle(color: Colors.purple),
+                        )),
+                    // 点击snackbar
+                    onTap: (snack) {
+                  print("点击");
                 },
-                child: const Text("触发Snack")),
+                    // snackbar状态监听
+                    snackbarStatus: (status) {
+                  print(status.reactive);
+                },
+                    messageText: Column(
+                      children: const [
+                        Text("message2_1", style: TextStyle(color: Colors.red)),
+                        Text("message2_2",
+                            style: TextStyle(color: Colors.yellowAccent)),
+                        Text("message2_3",
+                            style: TextStyle(color: Colors.green)),
+                      ],
+                    ));
+              },
+              child: const Text("触发Snack"),
+            ),
             ElevatedButton(
               child: const Text("触发Dialog"),
               onPressed: () {
@@ -96,7 +117,10 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                     isDismissible: false,
-                    enableDrag: false);
+                    enableDrag: false,
+                    // 在内容足够高的情况下，是否完全展开弹出层
+                    isScrollControlled: false,
+                );
               },
             ),
           ],
