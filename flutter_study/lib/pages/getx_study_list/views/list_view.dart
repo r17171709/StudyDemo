@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '/data/user.dart';
 import '/pages/getx_study_list/list_controller.dart';
+import 'list_view_withstate.dart';
 
 class ListDView extends GetView<ListController> {
   SharedPreferences sp = Get.find<SharedPreferences>();
@@ -24,7 +25,10 @@ class ListDView extends GetView<ListController> {
       body: Center(
         child: Column(
           children: [
+            const Text("显示对象中的参数"),
             Text(user.name + user.age.toString()),
+            const Padding(padding: EdgeInsets.only(top: 50)),
+            const Text("显示传入参数"),
             controller.getRouteData(),
             const Padding(padding: EdgeInsets.only(top: 50)),
             Text((sp.getString("key") ?? "").toString()),
@@ -34,7 +38,11 @@ class ListDView extends GetView<ListController> {
                 },
                 child: const Text("存入数据到SP")),
             const Padding(padding: EdgeInsets.only(top: 50)),
+            const Text("网络请求1"),
             Obx(() => Text(controller.welcomeData.value.code.toString())),
+            const Padding(padding: EdgeInsets.only(top: 50)),
+            const Text("网络请求2"),
+            ListDWithStateView(),
             const Padding(padding: EdgeInsets.only(top: 50)),
             ElevatedButton(
                 onPressed: () {

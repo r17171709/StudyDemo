@@ -6,7 +6,8 @@ import '../pages/getx_study/views/home_view.dart';
 import '../pages/getx_study_detail/detail_controller.dart';
 import '../pages/getx_study_detail/detail_view.dart';
 import '../pages/getx_study_list/list_controller.dart';
-import '../pages/getx_study_list/list_view.dart';
+import '../pages/getx_study_list/list_controller_withstate.dart';
+import '../pages/getx_study_list/views/list_view.dart';
 
 class Routes {
   static const String initial = "/home";
@@ -20,6 +21,7 @@ class Routes {
           // binding的两种不同的实现方式
           Get.lazyPut(() => ListController());
           Get.put(User(name: "ry", age: 35));
+          Get.lazyPut(() => ListDWithStateController());
         })),
     GetPage(
         name: "/detail",

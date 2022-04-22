@@ -17,8 +17,6 @@ void main() {
   //
   // runApp(const MyGetXApp());
 
-  initService();
-
   runApp(GetMaterialApp(
     title: 'Flutter Demo',
     // 设置时间控件时，要设置国际化
@@ -38,6 +36,8 @@ void main() {
     // initialBinding: ,
     getPages: Routes.paths,
   ));
+
+  initService();
 }
 
 initService() {
