@@ -4,6 +4,7 @@ import '../data/user.dart';
 import '../pages/getx_study/bindings/home_binding.dart';
 import '../pages/getx_study/views/home_view.dart';
 import '../pages/getx_study_detail/detail_controller.dart';
+import '../pages/getx_study_detail/detail_middleware.dart';
 import '../pages/getx_study_detail/detail_view.dart';
 import '../pages/getx_study_list/controllers/list_controller.dart';
 import '../pages/getx_study_list/controllers/list_controller_withstate.dart';
@@ -22,13 +23,15 @@ class Routes {
           Get.lazyPut(() => ListController());
           Get.put(User(name: "ry", age: 35));
           Get.lazyPut(() => ListDWithStateController());
-        })),
+        }),
+        middlewares: [DummyMiddleware(priority: 1)]),
     GetPage(
-        name: "/detail",
-        page: () => DetailView(),
-        // 使用BindingsBuilder相对简便一点
-        binding: BindingsBuilder(() {
-          Get.lazyPut(() => DetailController());
-        })),
+      name: "/detail",
+      page: () => DetailView(),
+      // 使用BindingsBuilder相对简便一点
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => DetailController());
+      }),
+    ),
   ];
 }

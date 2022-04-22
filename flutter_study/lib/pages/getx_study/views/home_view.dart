@@ -24,9 +24,13 @@ class HomeView extends GetView<HomeController> {
                   // Get.to(DetailView());
 
                   // 传递参数
-                  var future = await Get.toNamed("/list?a=1&b=2",
+                  // var future = await Get.toNamed("/list?a=1&b=2",
+                  //     arguments: {"name": "pq", "age": 1});
+                  // print("future:" + future);
+
+                  // 通过中间件实现跳转
+                  Get.rootDelegate.toNamed("/list?a=1&b=2",
                       arguments: {"name": "pq", "age": 1});
-                  print("future:" + future);
                 },
                 child: const Text("跳转到列表")),
             const Padding(padding: EdgeInsets.only(top: 50)),
@@ -96,30 +100,30 @@ class HomeView extends GetView<HomeController> {
               child: const Text("触发bottomSheet"),
               onPressed: () {
                 Get.bottomSheet(
-                    Container(
-                      color: Colors.blue,
-                      height: 200,
-                      child: Column(
-                        children: [
-                          const ListTile(
-                            title: Text("bottomSheet1"),
-                          ),
-                          const ListTile(
-                            title: Text("bottomSheet2"),
-                          ),
-                          ListTile(
-                            title: const Text('bottomSheet3'),
-                            onTap: () {
-                              Get.back();
-                            },
-                          ),
-                        ],
-                      ),
+                  Container(
+                    color: Colors.blue,
+                    height: 200,
+                    child: Column(
+                      children: [
+                        const ListTile(
+                          title: Text("bottomSheet1"),
+                        ),
+                        const ListTile(
+                          title: Text("bottomSheet2"),
+                        ),
+                        ListTile(
+                          title: const Text('bottomSheet3'),
+                          onTap: () {
+                            Get.back();
+                          },
+                        ),
+                      ],
                     ),
-                    isDismissible: false,
-                    enableDrag: false,
-                    // 在内容足够高的情况下，是否完全展开弹出层
-                    isScrollControlled: false,
+                  ),
+                  isDismissible: false,
+                  enableDrag: false,
+                  // 在内容足够高的情况下，是否完全展开弹出层
+                  isScrollControlled: false,
                 );
               },
             ),

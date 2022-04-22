@@ -35,6 +35,9 @@ void main() {
     // 公共初始化binding
     // initialBinding: ,
     getPages: Routes.paths,
+    routingCallback: (value) {
+      print("routingCallback:" + value!.current);
+    },
   ));
 
   initService();
