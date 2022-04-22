@@ -2,7 +2,7 @@ import 'package:flutter_study/data/welcome.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
-import '../../service/api_service.dart';
+import '../../../service/api_service.dart';
 
 class ListDWithStateController extends GetxController with StateMixin<Welcome> {
   @override

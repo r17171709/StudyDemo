@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_study/data/welcome.dart';
 import 'package:get/get.dart';
 
-import '../../service/api_service.dart';
+import '../../../service/api_service.dart';
 
 class ListController extends GetxController {
   var welcomeData = Welcome().obs;

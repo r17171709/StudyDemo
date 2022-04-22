@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/data/user.dart';
-import '/pages/getx_study_list/list_controller.dart';
+import '../controllers/list_controller.dart';
 import 'list_view_withstate.dart';
 
 class ListDView extends GetView<ListController> {

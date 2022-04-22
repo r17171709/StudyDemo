@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../list_controller_withstate.dart';
+import '../controllers/list_controller_withstate.dart';
 
 class ListDWithStateView extends GetView<ListDWithStateController> {
   @override

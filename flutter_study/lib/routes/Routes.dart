@@ -5,8 +5,8 @@ import '../pages/getx_study/bindings/home_binding.dart';
 import '../pages/getx_study/views/home_view.dart';
 import '../pages/getx_study_detail/detail_controller.dart';
 import '../pages/getx_study_detail/detail_view.dart';
-import '../pages/getx_study_list/list_controller.dart';
-import '../pages/getx_study_list/list_controller_withstate.dart';
+import '../pages/getx_study_list/controllers/list_controller.dart';
+import '../pages/getx_study_list/controllers/list_controller_withstate.dart';
 import '../pages/getx_study_list/views/list_view.dart';
 
 class Routes {
