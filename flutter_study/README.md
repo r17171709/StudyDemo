@@ -1,16 +1,13 @@
-# flutter_study
+flutter build web时提示"Missing index.html."
 
-A new Flutter project.
+控制台输入flutter config --enable-web
+在项目根目录执行flutter create .注意有个英文符号点！
+最后执行flutter build web就能看到web目录创建成功了。
+执行flutter run -d chrome就能在Chrome浏览器中运行Flutter应用了！
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Flutter web打包后,访问页面显示空白
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+flutter build web --web-renderer html

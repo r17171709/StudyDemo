@@ -1,9 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_study/routes/Routes.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../routes/Routes.dart';
 import 'service/share_preferences_service.dart';
 
 void main() {
@@ -16,6 +18,13 @@ void main() {
   // }, tag: "user");
   //
   // runApp(const MyGetXApp());
+
+  window.onBeforeUnload.listen((event) async {
+    print("onBeforeUnload");
+  });
+  window.onUnload.listen((event) async {
+    print("onUnload");
+  });
 
   runApp(GetMaterialApp(
     title: 'Flutter Demo',

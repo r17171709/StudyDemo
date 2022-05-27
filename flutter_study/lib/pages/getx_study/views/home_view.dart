@@ -34,6 +34,12 @@ class HomeView extends GetView<HomeController> {
                 },
                 child: const Text("跳转到列表")),
             const Padding(padding: EdgeInsets.only(top: 50)),
+            ElevatedButton(
+                onPressed: () {
+                  Get.toNamed("/nav");
+                },
+                child: const Text("嵌套导航")),
+            const Padding(padding: EdgeInsets.only(top: 50)),
             const Text(
               "展示操作符使用",
               style: TextStyle(fontSize: 20),

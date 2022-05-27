@@ -14,6 +14,7 @@ class DetailView extends GetView<DetailController> {
         child: Column(
           children: [
             // GetBuilder的更新形式与GetX、Obx有所不同
+            const Text("GetX、Obx使用"),
             GetBuilder<DetailController>(
               builder: (_controller) {
                 return Text(
@@ -26,7 +27,10 @@ class DetailView extends GetView<DetailController> {
                 print("dispose");
               },
             ),
-            GetX<DetailController>(builder: (_controller) {
+            GetX<DetailController>(
+                // 可以通过init方式初始化其controller
+                // init: Get.find<DetailController>(),
+                builder: (_controller) {
               return Text("钱就这么多：" + _controller.price.value.money.toString());
             }),
             Obx(() => Text("钱就这么多：" + controller.price.value.money.toString())),
@@ -51,6 +55,7 @@ class DetailView extends GetView<DetailController> {
                 },
                 child: const Text("加钱3")),
             const Padding(padding: EdgeInsets.only(top: 50)),
+            const Text("GetBuilder使用"),
             GetBuilder<DetailController>(
                 id: "money4",
                 builder: (_controller) {
@@ -65,6 +70,19 @@ class DetailView extends GetView<DetailController> {
                   controller.increase4();
                 },
                 child: const Text("加钱4")),
+            const Padding(padding: EdgeInsets.only(top: 50)),
+            const Text("ValueBuilder使用"),
+            ValueBuilder<bool?>(
+              builder: (snapshot, updater) {
+                return Switch(
+                    value: snapshot ?? false,
+                    onChanged: (newValue) => updater(newValue));
+              },
+              onDispose: () {},
+              onUpdate: (value) {
+                print("ValueBuilder onUpdate $value");
+              },
+            )
           ],
         ),
       ),

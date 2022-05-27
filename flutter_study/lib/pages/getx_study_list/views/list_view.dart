@@ -13,7 +13,6 @@ class ListDView extends GetView<ListController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("List"),

@@ -9,12 +9,14 @@ import '../pages/getx_study_detail/detail_view.dart';
 import '../pages/getx_study_list/controllers/list_controller.dart';
 import '../pages/getx_study_list/controllers/list_controller_withstate.dart';
 import '../pages/getx_study_list/views/list_view.dart';
+import '../pages/getx_study_nav/nav_view.dart';
 
 class Routes {
   static const String initial = "/home";
 
   static final List<GetPage> paths = [
     GetPage(name: "/home", page: () => HomeView(), binding: HomeBinding()),
+    GetPage(name: "/nav", page: () => const NavView()),
     GetPage(
         name: "/list",
         page: () => ListDView(),
